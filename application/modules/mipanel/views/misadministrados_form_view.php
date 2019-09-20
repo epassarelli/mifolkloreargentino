@@ -19,7 +19,7 @@
   
 	<?php echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
 
-  <?php echo form_open_multipart('interpretes/sugerir');?>
+  <?php echo form_open_multipart($this->objeto . '/sugerir');?>
 
   <div class="col-md-6">
 
@@ -77,22 +77,24 @@
         <span id="helpBlock" class="help-block">Aqu&iacute; puede poner la trayectoria, biografía, etc.</span>
     </div>
 
-    <!--
+    
     <div class="form-group">
       <label for="userfile">Foto</label>
       <input type="file" class="form-control" name="userfile">
       <p class="help-block">La foto debe ser .JPG, no pesar más de 300 kb y se recortará a un tamaño máximo de 640 x 480 px.<br></p>
     </div>
-    -->
+    
 
   </div>
 
 
   <div class="col-xs-12">
     <div class="form-group">
+      <!--       
       <div class="g-recaptcha" data-sitekey="6LcEtjIUAAAAAKs-QTqMVw6vsZs-Z11iFUHyQnzY"></div>
+       -->      
       <button type="submit" class="btn btn-success">Enviar Artista Sugerido</button>
-      <a href="<?php echo site_url('mipanel/administrados'); ?>" class="btn btn-default">Volver al listado</a>
+      <a href="<?php echo site_url('mipanel/' . $this->objeto); ?>" class="btn btn-default"><i class="fa fa-reply"></i> Volver al listado</a>
     </div>    
   </div>
 

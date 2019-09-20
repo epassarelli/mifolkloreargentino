@@ -101,7 +101,7 @@ $route['mipanel/interpretes/ver/(:any)']	= "mipanel/interpretes/ver/$1";
 // Mostrar los datos de un artista administrado
 $route['mipanel/interpretes/eliminar/(:any)']	= "mipanel/interpretes/eliminar/$1";
 // Solicitar administrar un artista
-$route['mipanel/interpretes/administrar']	= "mipanel/soicitarAdministrarlo";
+$route['mipanel/interpretes/administrar']	= "mipanel/interpretes/solicitaradministrar";
 
 
 // Shows de mis artistas
