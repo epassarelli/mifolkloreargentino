@@ -47,7 +47,7 @@
 
 <body class="hold-transition skin-yellow sidebar-mini">
 
-
+<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
   
 <div class="wrapper">
 
@@ -70,7 +70,7 @@
         }; 
         ?>
         <li class="hidden-xs">
-         <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_like_count_view"); } ?>
+         <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_like_count_view"); } ?>
         </li>
     </ol>
     <?php endif; ?>      

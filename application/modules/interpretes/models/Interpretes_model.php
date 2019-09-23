@@ -126,27 +126,7 @@ function getInterpretesConAlbunes(){
     return $query->result();
 }			
 
-#############################################################
-###
-###		Devuelve los artistas activos que no sean ya administrados
-###		por el solicitante ni tengan un pedido en trámite
 
-function getParaAdministrar($user_id){
-	$sql = "SELECT
-				i.inte_nombre,
-				i.inte_id
-			FROM
-				interprete i
-			LEFT OUTER JOIN
-				user_interprete ui ON ui.inte_id = i.inte_id
-			WHERE
-				i.inte_habilitado = 1 AND IFNULL(ui.user_id, 0) NOT IN ($user_id)
-			ORDER BY
-				i.inte_nombre";
-
-	$query = $this->db->query($sql);
-    return $query->result();
-}
 
 #############################################################
 ###

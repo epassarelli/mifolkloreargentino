@@ -1,32 +1,20 @@
-<?php 
-if(isset($_SESSION['userData']['picture_url'])){
-    $fotoUser = $_SESSION['userData']['picture_url'];
-    $nameUser = $_SESSION['userData']['first_name'];
-  }
-    else{ 
-      $fotoUser =  site_url('assets/img/mfa.jpg');
-      $nameUser = $this->tank_auth->get_username();
-    }
-?>
-
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
-
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="<?php echo $fotoUser; ?>" class="img-circle" alt="User Image">
+    
+    <!-- search form -->
+    <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Buscar...">
+        <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
       </div>
-      <div class="pull-left info">
-        <p><?php echo $nameUser; ?></p>
-        <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
-    </div>
-
+    </form>
+    <!-- /.search form -->
 
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu" data-widget="tree">
@@ -65,13 +53,11 @@ if(isset($_SESSION['userData']['picture_url'])){
       <li <?php if($this->uri->segment(2) == 'radios') echo "class='active'"; ?> >
         <a href="<?php echo site_url('radios-para-escuchar-folklore-argentino');?>"><i class="fa fa-volume-up"></i> <span>Radios</span></a></li>          
     
-      <li <?php if($this->uri->segment(2) == 'ayuda') echo "class='active'"; ?> >
-        <a href="<?php echo site_url('ayuda');?>"><i class="fa  fa-lightbulb-o"></i> <span>Ayuda</span></a></li>   
+      <!-- <li <?php if($this->uri->segment(2) == 'ayuda') echo "class='active'"; ?> >
+        <a href="<?php echo site_url('ayuda');?>"><i class="fa  fa-lightbulb-o"></i> <span>Ayuda</span></a></li>  -->  
 
     </ul>
     <!-- /.sidebar-menu -->
   </section>
 
-  <?php //echo Modules::run('contacto'); ?>
-  <!-- /.sidebar -->
 </aside>

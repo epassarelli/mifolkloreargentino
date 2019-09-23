@@ -44,9 +44,7 @@
 
         <td class="pull-right">
           <?php $id = $fila->inte_id; ?>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary"><i class="fa fa-fw fa-eye"></i></a>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success"><i class="fa fa-fw fa-edit"></i></a>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/eliminar/'.$id); ?>" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/solicitaradministrar/'.$id); ?>" class="btn btn-xs btn-success"><i class="fa fa-fw fa-edit"></i> Solicitar</a>
         </td>   
       </tr>      
      <?php endforeach; ?>

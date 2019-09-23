@@ -44,9 +44,9 @@
 
         <td class="pull-right">
           <?php $id = $fila->inte_id; ?>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary"><i class="fa fa-fw fa-eye"></i></a>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success"><i class="fa fa-fw fa-edit"></i></a>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/eliminar/'.$id); ?>" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary" title="Ver"><i class="fa fa-fw fa-eye"></i></a>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i></a>
         </td>   
       </tr>      
      <?php endforeach; ?>

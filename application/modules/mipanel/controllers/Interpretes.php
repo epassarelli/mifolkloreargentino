@@ -46,71 +46,40 @@ public function index(){
 		}	
 
 	$data['breadcrumb'] 	= array(
-								'Inicio' => base_url()
+								'Mi panel' => base_url('mipanel'),
 								);		
 	$data['view']       	= 'misadministrados_view';
 	//$data['sidebar']       	= 'interpretes_sidebar_view';
 	$this->load->view('layout.php', $data);
 }
 
-
-
-
-
-
-
-
 ##############################################################
-public function ver($id){
-	$data['fila']       	= $this->Interpretes_model->getInterprete($alias);
-	
-	$data['title']      	= "Biografia de " . $data['fila']->inte_nombre ;
-	$data['description']	= "Biografia de " . $data['fila']->inte_nombre . ". Tambien encontrara otras de Autores, Compositores, Grupos y Solistas";
-	$data['keywords']   	= "interpretes, grupos, solistas, folklore, argentino, musica, cantores, payadores, biografias, artistas".$data['fila']->inte_nombre;
+##
+## 		Ver un Artista completo
+##
 
-	$data['interpretes'] 	= $this->Interpretes_model->getActivados();
-	$data['redirigir']     	= "biografia-de-";
+public function ver($id){
+	$data['fila']       	= $this->Interpretes_model->getMiAdministrado($id);
+	
+	$data['title']      	= $data['fila']->inte_nombre ;
+	$data['description']	= "Biografia de " . $data['fila']->inte_nombre . ". Tambien encontrara otras de Autores, Compositores, Grupos y Solistas";
+	$data['keywords']   	= "interpretes";
 
 	$data['breadcrumb'] = array(
-						'Inicio' => base_url(), 
-						'Grupos y Solistas' => base_url().'grupos-y-solistas'
+						'Mi panel' => base_url('mipanel'), 
+						'Mis administrados' => base_url('mipanel/interpretes')
 					);	
 	
-	$data['pagina']     	= "grupos-y-solistas";	
-	$data['view']       	= "interpretes_mostrar_view";
-	$data['sidebar']       	= 'interpretes_sidebar_view';
+	$data['view']       	= "misadministrados_mostrar_view";
 	$this->load->view('layout', $data);
 }
-
-#######################################################
-##
-##  Validación del CAPTCHA
-
-function validate_captcha() {
-    $captcha = $this->input->post('g-recaptcha-response');
-     $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=your secret key here &response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
-    if ($response . 'success' == false) {
-        return FALSE;
-    } else {
-        return TRUE;
-    }
-}
-############################################################
-##
-##		FUNCIONES PRIVADAS
-##
-############################################################
-
-##############################################################
-##
-##		Funciones privadas en base a Permisos
 
 ##############################################################
 ##
 ## 		Sugerir un Artista
 ##
 
-function nuevo(){
+public function nuevo(){
 	$data['title'] 			= "Sugerir Interprete del Folklore Argentino";
 	$data['mensaje'] = '';
 	
@@ -219,66 +188,15 @@ function nuevo(){
 }
 
 
-    //FUNCIÓN PARA SUBIR LA IMAGEN Y VALIDAR EL TÍTULO
-    function do_upload() {
-		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[4]');
-		$this->form_validation->set_rules('biografia', 'biografia', 'required|trim|min_length[25]');
-        // SI EL FORMULARIO PASA LA VALIDACIÓN HACEMOS TODO LO QUE SIGUE
-        if ($this->form_validation->run() == TRUE) 
-        {
-        $config['upload_path'] = './upload/interpretes';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '2000';
-        $config['max_width'] = '2024';
-        $config['max_height'] = '2008';
 
-        $this->load->library('upload', $config);
-        // SI LA IMAGEN FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA UPLOAD_VIEW
-        if (!$this->upload->do_upload()) {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('interpretes_form_sugerir_view', $error);
-        } else {
-        // EN OTRO CASO SUBIMOS LA IMAGEN, CREAMOS LA MINIATURA Y HACEMOS 
-        // ENVÍAMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÓN
-            $file_info = $this->upload->data();
-            // USAMOS LA FUNCIÓN create_thumbnail Y LE PASAMOS EL NOMBRE DE LA IMAGEN,
-            // ASÍ YA TENEMOS LA IMAGEN REDIMENSIONADA
-            $this->_create_thumbnail($file_info['file_name']);
-            $data = array('upload_data' => $this->upload->data());
-            $titulo = $this->input->post('titulo');
-            $imagen = $file_info['file_name'];
-            $subir = $this->upload_model->subir($titulo,$imagen);      
-            $data['titulo'] = $titulo;
-            $data['imagen'] = $imagen;
-            $this->load->view('interpretes_form_sugerir_view', $data);
-        }
-        }else{
-        // SI EL FORMULARIO NO SE VÁLIDA LO MOSTRAMOS DE NUEVO CON LOS ERRORES
-            $this->index();
-        }
-    }
 
-// FUNCIÓN PARA CREAR LA MINIATURA A LA MEDIDA QUE LE DIGAMOS
-function _create_thumbnail($filename){
-    $config['image_library']  = 'gd2';
-    // CARPETA EN LA QUE ESTÁ LA IMAGEN A REDIMENSIONAR
-    $config['source_image']   = './upload/interpretes/'.$filename;
-    $config['create_thumb']   = TRUE;
-    $config['maintain_ratio'] = TRUE;
-    // CARPETA EN LA QUE GUARDAMOS LA MINIATURA
-    $config['new_image']	= './upload/interpretes';
-    $config['width']  		= 300;
-    $config['height'] 		= 300;
-    $this->load->library('image_lib', $config); 
-    $this->image_lib->resize();
-}
 
 ##############################################################
 ##
-## 		Editar una Biografía
+## 		Editar un Artista
 ##
 
-function editar(){
+public function editar(){
 	if (!$this->tank_auth->is_logged_in()){
 		redirect('/auth/login/');
 	} 
@@ -292,94 +210,91 @@ function editar(){
 	}
 }
 
+
 ##############################################################
 ##
-## 		Sugerir un Artista
+## 		Desvincular un Artista
 ##
 
-function solicitaradministrarOLD(){
-	if (!$this->tank_auth->is_logged_in()){
-		redirect('/auth/login/');
-	} 
-	else{
-		
-		if($this->tank_auth->get_user_profile() == 2){
-			// Ya es ADMIN, Mensaje de que por el momento se puede administrar solo un interprete 
-			$data['view'] 	= 'biografias_ya_es_admin_view';
-			$this->load->view('layout', $data);
-			}
-			else{
-				//var_dump($this->Biografias_model->solicitudesPendientes());die();
-				// Si NO tiene ninguna solicitud pendiente
-				if($this->Biografias_model->solicitudesPendientes() == 0){
-					// Muestro el FORM o lo proceso
-					$this->form_validation->set_rules('inte_id', 'inte_id', 'required');
-					
-					// Si no pasó la validacion muestro el formulario
-					if($this->form_validation->run()==FALSE){	
-						
-						$this->load->model('interpretes/Interpretes_model');
-						$data['interpretes'] 	= $this->Interpretes_model->getParaAdministrar($this->tank_auth->get_user_id());
-						
-						$data['view'] 	= 'biografias_form_solicitar_admin_view';
-						$this->load->view('layout', $data);	
-						}
-					else{ // Guardo en la BDD la solicitud
-						$solicitud['user_id'] 	= $this->tank_auth->get_user_id();
-						$solicitud['inte_id'] 	= $this->input->post('inte_id');
-						$solicitud['habilitado'] = 0;
-
-						// Inserto la cancion en la BDD
-						if ($this->Biografias_model->set('user_interprete',$solicitud))
-							{	
-							// Si no estoy en LOCAL envio el MAIL
-							if( $_SERVER['SERVER_NAME'] != 'localhost' ) 
-								{
-									// Mando un correo a los administradores
-									$this->load->library('email');
-									$this->email->from('info@mifolkloreargentino.com.ar', 'Mi Folklore Argentino');
-									$this->email->to('epassarelli@gmail.com', 'mifolkloreargentino@gmail.com');
-									$this->email->subject('Solicitud de administrar interprete');
-									$mensaje = "Se solicitó administrar el interprete: " . $this->input->post('inte_id') . "<br />";
-									//$mensaje .= "para el dia: " . $this->input->post('fecha') . "<br /><br />";
-									//$mensaje .= "con la siguiente biografíanl2br($this->input->post('biografia'));
-									$this->email->message($mensaje);
-									$this->email->send();
-								}
-							$data['view'] 	= 'biografias_solicitud_ok_view';
-							$this->load->view('layout', $data);	
-							}
-							else{
-								$data['view'] 	= 'biografias_solicitud_error_view';
-								$this->load->view('layout', $data);	
-							}
-						}					
-					}
-					else{
-					// SINO, muestro mensaje de Solicitud en proceso
-					$data['view'] 	= 'biografias_procesando_solicitud_view';
-					$this->load->view('layout', $data);					
-					}
-				}
-		}
-}
-
-############################################################
-###
-###		Retorna los interpretes sugeridos
-###
-
-function sugeridos(){
-	if (!$this->tank_auth->is_logged_in()){ 
-		redirect('/auth/login/'); 
-	} 
-	else{ 
-		$data['interpretes']   	= $this->Interpretes_model->getSugeridos();
-		$data['title'] 		= "Solicitudes pendientes de aprobación";
-		$data['view']       	= 'interpretes_sugeridos_view';
-		$this->load->view('layout.php', $data);
+public function desvincular($value=''){	
+	$vinculados = $this->Interpretes_model->getMisAdministrados();
+	
+	// Si está vinculado lo desvinculo y redirijo a su listado de administrados
+	if (in_array($value, $vinculados)) {
+		$this->Interpretes_model->desvincularAdministrado($value);
+		redirect(site_url('mipanel/interpretes/administrados'));
+	}
+	else{ // SINO, muestro una pantalla de error
+		$data['view'] 	= 'misadministrados_view';
+		$this->load->view('layout', $data);			
 	}
 }
+
+##############################################################
+##
+## 		Solicitar administrar un Artista
+##
+
+public function solicitaradministrar($inte_id=''){
+
+	$data['title']      	= "Interpretes del Folklore Argentino";
+	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
+	$data['keywords']   	= "interpretes";		
+	//var_dump($this->Interpretes_model->solicitudesPendientes());die();
+	// Si NO tiene ninguna solicitud pendiente
+	//if($this->Interpretes_model->solicitudesPendientes() == 0){
+	// Muestro el FORM o lo proceso
+	$this->form_validation->set_rules('inte_id', 'inte_id', 'required');
+	
+	// Si no pasó la validacion muestro el formulario
+	if($this->form_validation->run()==FALSE){	
+		
+		$this->load->model('interpretes/Interpretes_model');
+		$data['filas'] 	= $this->Interpretes_model->getParaAdministrar();
+		
+		$data['view'] 	= 'solicitaradministracion_view';
+		$this->load->view('layout', $data);	
+		}
+	else{ // Guardo en la BDD la solicitud
+		$solicitud['user_id'] 	= $this->tank_auth->get_user_id();
+		$solicitud['inte_id'] 	= $this->input->post('inte_id');
+		$solicitud['habilitado'] = 0;
+
+		// Inserto la cancion en la BDD
+		if ($this->Interpretes_model->set('user_interprete',$solicitud))
+			{	
+			// Si no estoy en LOCAL envio el MAIL
+			if( $_SERVER['SERVER_NAME'] != 'localhost' ) 
+				{
+					// Mando un correo a los administradores
+					$this->load->library('email');
+					$this->email->from('info@mifolkloreargentino.com.ar', 'Mi Folklore Argentino');
+					$this->email->to('epassarelli@gmail.com', 'mifolkloreargentino@gmail.com');
+					$this->email->subject('Solicitud de administrar interprete');
+					$mensaje = "Se solicitó administrar el interprete: " . $this->input->post('inte_id') . "<br />";
+					//$mensaje .= "para el dia: " . $this->input->post('fecha') . "<br /><br />";
+					//$mensaje .= "con la siguiente biografíanl2br($this->input->post('biografia'));
+					$this->email->message($mensaje);
+					$this->email->send();
+				}
+			$data['view'] 	= 'biografias_solicitud_ok_view';
+			$this->load->view('layout', $data);	
+			}
+			else{
+				$data['view'] 	= 'biografias_solicitud_error_view';
+				$this->load->view('layout', $data);	
+			}
+		}					
+		//}
+		// else{
+		// // SINO, muestro mensaje de Solicitud en proceso
+		// $data['view'] 	= 'biografias_procesando_solicitud_view';
+		// $this->load->view('layout', $data);					
+		// }
+
+
+}
+
 
 
 ############################################################
@@ -433,31 +348,6 @@ function aprobar($inte_id){
 	}
 }
 
-
-#######################################################
-##
-##  Vista de sugerido de interprete OK
-
-public function sugerido(){
-	$data['title']      	= 'Interprete sugerido' ;
-	$data['description']	= 'Se ha sugerido el interprete de forma correcta. Solo resta la validacion de los datos por parte del Administrador del sitio';
-	$data['keywords']   	= 'interpretes, grupos, solistas, folklore, argentino, musica, cantores, payadores, biografias, artistas';
-	$data['pagina']     	= "grupos-y-solistas";						
-	$data['mensaje'] 		= 'El interprete se ha insertado exitosamente. Sólo resta la validación de los datos por parte del Administrador del sitio';
-	$data['view'] 			= 'interprete_sugerido_ok_view';
-	$this->load->view('layout', $data);	
-}
-
-
-
-public function solicitaradministrar($value='')
-{
-	$data['title']      	= 'Solicitar administrar otros interpretes' ;
-
-	$data['view'] 			= 'solicitaradministracion_view';
-	$this->load->view('layout', $data);
-
-}
 
 
 
