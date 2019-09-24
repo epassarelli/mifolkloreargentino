@@ -23,27 +23,26 @@ public function index(){
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes";
 
-
 	$rol = $this->tank_auth->get_user_profile();
 	$user_id = $this->tank_auth->get_user_id();
 
 	switch ($rol) {
-			case '1':
-				# registrado...				
-				$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-				break;
-			case '2':
-				# admin banda...
-				$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-				break;			
-			case '3':
-				# admin mfa...
-				$data['filas'] = $this->Interpretes_model->get_all();
-				break;
-			default:
-				# code...
-				break;
-		}	
+		case '1':
+			# registrado...				
+			$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
+			break;
+		case '2':
+			# admin banda...
+			$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
+			break;			
+		case '3':
+			# admin mfa...
+			$data['filas'] = $this->Interpretes_model->get_all();
+			break;
+		default:
+			# code...
+			break;
+	}	
 
 	$data['breadcrumb'] 	= array(
 								'Mi panel' => base_url('mipanel'),
@@ -93,6 +92,7 @@ public function nuevo(){
 
 	// Si no pasó la validacion
 	if($this->form_validation->run()==FALSE){	
+		$data['mensaje'] = 'No pasó la validacion';
 		$data['view'] 	= 'misadministrados_form_view';
 		$this->load->view('layout', $data);	
 		}
@@ -106,7 +106,7 @@ public function nuevo(){
 
 	        $config['upload_path'] = './assets/upload/interpretes';
 	        //var_dump($config['upload_path']);die();
-	        $config['allowed_types'] = 'gif|jpg|png';
+	        $config['allowed_types'] = 'gif|jpg|jpeg|png';
 	        $config['max_size'] = '4048';
 	        $config['max_width'] = '4048';
 	        $config['max_height'] = '2008';
@@ -126,29 +126,24 @@ public function nuevo(){
 	            $data['view'] 		= 'misadministrados_form_view';
 	            //var_dump($data['mensaje']);die();
 				$this->load->view('layout', $data);	
-	        } else {
-	        //EN OTRO CASO SUBIMOS LA IMAGEN, CREAMOS LA MINIATURA Y HACEMOS 
-	        //ENVÍAMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÓN
+	        } 
+	        else 
+	        	{
+	        	//EN OTRO CASO SUBIMOS LA IMAGEN, CREAMOS LA MINIATURA Y HACEMOS 
+	        	//ENVÍAMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÓN
 	            $file_info = $this->upload->data();
 	            //USAMOS LA FUNCIÓN create_thumbnail Y LE PASAMOS EL NOMBRE DE LA IMAGEN,
 	            //ASÍ YA TENEMOS LA IMAGEN REDIMENSIONADA
-	            $this->_create_thumbnail($file_info['file_name']);
-	            $data = array('upload_data' => $this->upload->data());
+	            //$this->_create_thumbnail($file_info['file_name']);
+	            //$data = array('upload_data' => $this->upload->data());
 
 				// Recolecto y aseguro los datos
 				$artista['inte_nombre'] 	= $this->input->post('nombre');
 				$artista['inte_alias']		= url_title($this->input->post('nombre'),'-',TRUE);
 				$artista['inte_biografia'] 	= nl2br($this->input->post('biografia'));			
-				$artista['inte_foto'] 		= $file_info['file_name'];	
-						
-				if( is_null($this->tank_auth->get_user_id()) ){
-					$user_id = 0;
-				}
-				else{
-					$user_id = $this->tank_auth->get_user_id();
-				}
-
-				$artista['user_id'] 		= $user_id;			
+				$artista['inte_foto'] 		= $file_info['file_name'];
+				$artista['inte_telefono'] 	= $this->input->post('telefono');
+				$artista['user_id'] 		= $this->tank_auth->get_user_id();			
 				$artista['inte_habilitado'] = 0;
 	            
 				// Si se inserta correctamente
@@ -168,7 +163,7 @@ public function nuevo(){
 							$this->email->send();
 						}
 
-					redirect(base_url().'interpretes/sugerido');					
+					redirect(base_url('mipanel/interpretes'));					
 				}
 				else{
 					$data['mensaje'] 	= 'El interprete NO SE PUDO INSERTAR, verifique todo';

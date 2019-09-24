@@ -16,10 +16,10 @@
   <div class="box-body">
 
 
-  
+  <?php if(isset($mensaje)){ echo "<h1>$mensaje</h1>"; } ?>
 	<?php echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
 
-  <?php echo form_open_multipart($this->objeto . '/sugerir');?>
+  <?php echo form_open_multipart('mipanel/' . $this->objeto . '/nuevo');?>
 
   <div class="col-md-6">
 
@@ -37,7 +37,7 @@
 
     <div class="form-group">
       <label for="titulo">Tel. Contrataciones</label>    
-      <input type="text" class="form-control" name="nombre" value="<?php echo set_value('nombre', @$nombre)?>" placeholder="Ej: 11 15 8888-9999"> 
+      <input type="text" class="form-control" name="telefono" value="<?php echo set_value('telefono', @$telefono)?>" placeholder="Ej: 11 15 8888-9999"> 
     </div>
 
 
