@@ -5,7 +5,7 @@
     <h3 class="box-title"><?php echo $title; ?></h3>
 
     <div class="box-tools pull-right">
-      <a class="btn btn-primary" href="<?php echo base_url();?>mipanel/interpretes/solicitaradministrar" role="button"><i class="fa fa-user"></i> Solicitar administrar uno existente</a>
+      <a class="btn btn-primary" href="<?php echo base_url();?>mipanel/interpretes/solicitar" role="button"><i class="fa fa-user"></i> Solicitar administrar uno existente</a>
       <a class="btn btn-success" href="<?php echo base_url();?>mipanel/interpretes/nuevo" role="button"><i class="fa fa-plus"></i> Nuevo interprete</a>
 
       <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"

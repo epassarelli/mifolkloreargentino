@@ -44,7 +44,7 @@
 
         <td class="pull-right">
           <?php $id = $fila->inte_id; ?>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/solicitaradministrar/'.$id); ?>" class="btn btn-xs btn-success"><i class="fa fa-fw fa-edit"></i> Solicitar</a>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/administrar/'.$id); ?>" class="btn btn-xs btn-success"><i class="fa fa-fw fa-edit"></i> Solicitar</a>
         </td>   
       </tr>      
      <?php endforeach; ?>

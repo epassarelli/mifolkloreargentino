@@ -93,16 +93,17 @@ $route['mipanel/misdatos']					= "mipanel/misdatos";
 // Mis artistas administrados
 $route['mipanel/interpretes']				= "mipanel/interpretes";
 // Editar los datos de un artista administrado
-$route['mipanel/interpretes/nuevo']		= "mipanel/interpretes/nuevo";
+$route['mipanel/interpretes/nuevo']				= "mipanel/interpretes/nuevo";
 // Editar los datos de un artista administrado
-$route['mipanel/interpretes/editar/(:any)']= "mipanel/interpretes/editar/$1";
+$route['mipanel/interpretes/editar/(:any)']		= "mipanel/interpretes/editar/$1";
 // Mostrar los datos de un artista administrado
-$route['mipanel/interpretes/ver/(:any)']	= "mipanel/interpretes/ver/$1";
+$route['mipanel/interpretes/ver/(:any)']		= "mipanel/interpretes/ver/$1";
 // Mostrar los datos de un artista administrado
 $route['mipanel/interpretes/eliminar/(:any)']	= "mipanel/interpretes/eliminar/$1";
 // Solicitar administrar un artista
-$route['mipanel/interpretes/administrar']	= "mipanel/interpretes/solicitaradministrar";
-
+$route['mipanel/interpretes/solicitar']			= "mipanel/interpretes/solicitar";
+// Mostrar los datos de un artista administrado
+$route['mipanel/interpretes/administrar/(:any)']= "mipanel/interpretes/administrar/$1";
 
 // Shows de mis artistas
 $route['mipanel/shows']					= "mipanel/shows";

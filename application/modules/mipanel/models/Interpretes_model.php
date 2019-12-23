@@ -13,9 +13,12 @@ class Interpretes_model extends MY_Model {
 	###		por el solicitante ni tengan un pedido en trámite
 
 	public function getMisAdministrados($user_id){
-		$this->db->where('user_id', $user_id);
-		$query = $this->db->get('interprete');
-    	return $query->result();
+		$query = $this->db->from('interprete i')
+		        ->join('user_interprete ui', 'i.inte_id = ui.inte_id')
+                ->where("ui.user_id", $user_id)
+                ->get();
+    	
+    	return $query->result(); 
 	}
 
 	#############################################################

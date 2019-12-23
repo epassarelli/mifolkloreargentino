@@ -230,7 +230,7 @@ public function desvincular($value=''){
 ## 		Solicitar administrar un Artista
 ##
 
-public function solicitaradministrar($inte_id=''){
+public function solicitar($inte_id=''){
 
 	$data['title']      	= "Interpretes del Folklore Argentino";
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
@@ -250,14 +250,88 @@ public function solicitaradministrar($inte_id=''){
 		$data['view'] 	= 'solicitaradministracion_view';
 		$this->load->view('layout', $data);	
 		}
-	else{ // Guardo en la BDD la solicitud
-		$solicitud['user_id'] 	= $this->tank_auth->get_user_id();
-		$solicitud['inte_id'] 	= $this->input->post('inte_id');
-		$solicitud['habilitado'] = 0;
+		else{ 
+			// Guardo en la BDD la solicitud
+			$solicitud['user_id'] 		= $this->tank_auth->get_user_id();
+			$solicitud['inte_id'] 		= $this->input->post('inte_id');
+			$solicitud['habilitado']	= 0;
 
-		// Inserto la cancion en la BDD
-		if ($this->Interpretes_model->set('user_interprete',$solicitud))
-			{	
+			// Inserto la cancion en la BDD
+			if ($this->Interpretes_model->set('user_interprete',$solicitud))
+				{	
+				// Si no estoy en LOCAL envio el MAIL
+				if( $_SERVER['SERVER_NAME'] != 'localhost' ) 
+					{
+						// Mando un correo a los administradores
+						$this->load->library('email');
+						$this->email->from('info@mifolkloreargentino.com.ar', 'Mi Folklore Argentino');
+						$this->email->to('epassarelli@gmail.com', 'mifolkloreargentino@gmail.com');
+						$this->email->subject('Solicitud de administrar interprete');
+						$mensaje = "Se solicitó administrar el interprete: " . $this->input->post('inte_id') . "<br />";
+						//$mensaje .= "para el dia: " . $this->input->post('fecha') . "<br /><br />";
+						//$mensaje .= "con la siguiente biografíanl2br($this->input->post('biografia'));
+						$this->email->message($mensaje);
+						$this->email->send();
+					}
+				$data['view'] 	= 'biografias_solicitud_ok_view';
+				$this->load->view('layout', $data);	
+				}
+				else{
+					$data['view'] 	= 'biografias_solicitud_error_view';
+					$this->load->view('layout', $data);	
+				}
+			}					
+		//}
+		// else{
+		// // SINO, muestro mensaje de Solicitud en proceso
+		// $data['view'] 	= 'biografias_procesando_solicitud_view';
+		// $this->load->view('layout', $data);					
+		// }
+
+
+}
+
+##############################################################
+##
+## 		Solicitar administrar un Artista
+##
+
+public function administrar($inte_id='')
+{
+	# code...
+	$data['title']      	= "Interpretes del Folklore Argentino";
+	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
+	$data['keywords']   	= "interpretes";		
+
+	$solicitud['user_id'] 		= $this->tank_auth->get_user_id();
+	$solicitud['inte_id'] 		= $inte_id;
+	// Verifico si existe el ID
+
+	// Inserto la tupla y redirecciono a Mis Administrados y mando un mail
+
+
+	
+	// Muestro el FORM o lo proceso
+	// $this->form_validation->set_rules('inte_id', 'inte_id', 'required');
+	
+	// Si no pasó la validacion muestro el formulario
+	// if($this->form_validation->run()==FALSE){	
+		
+	// 	$this->load->model('interpretes/Interpretes_model');
+	// 	$data['filas'] 	= $this->Interpretes_model->getParaAdministrar();
+		
+	// 	$data['view'] 	= 'solicitaradministracion_view';
+	// 	$this->load->view('layout', $data);	
+	// 	}
+	// 	else{ 
+
+
+	// Guardo en la BDD la solicitud
+
+
+	// Inserto la cancion en la BDD
+	if ($this->Interpretes_model->set('user_interprete',$solicitud))
+		{	
 			// Si no estoy en LOCAL envio el MAIL
 			if( $_SERVER['SERVER_NAME'] != 'localhost' ) 
 				{
@@ -272,25 +346,14 @@ public function solicitaradministrar($inte_id=''){
 					$this->email->message($mensaje);
 					$this->email->send();
 				}
-			$data['view'] 	= 'biografias_solicitud_ok_view';
+
+		redirect(base_url('mipanel/interpretes'));	
+		}
+		else{
+			$data['view'] 	= 'misadministrados_solicitud_error_view';
 			$this->load->view('layout', $data);	
-			}
-			else{
-				$data['view'] 	= 'biografias_solicitud_error_view';
-				$this->load->view('layout', $data);	
-			}
-		}					
-		//}
-		// else{
-		// // SINO, muestro mensaje de Solicitud en proceso
-		// $data['view'] 	= 'biografias_procesando_solicitud_view';
-		// $this->load->view('layout', $data);					
-		// }
-
-
+			}		
 }
-
-
 
 ############################################################
 ###
