@@ -2,7 +2,7 @@
 <div class="box">
   
   <div class="box-header with-border">
-    <h3 class="box-title"><?php echo $title; ?></h3>
+    <!-- <h3 class="box-title"><?php echo $title; ?></h3> -->
 
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -15,7 +15,6 @@
   
   <div class="box-body">
 
-
   <?php if(isset($mensaje)){ echo "<h1>$mensaje</h1>"; } ?>
 	<?php echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
 
@@ -25,43 +24,43 @@
 
     <div class="form-group">
       <label for="titulo">Nombre del Grupo o Solista</label>    
-      <input type="text" class="form-control" name="nombre" value="<?php echo set_value('nombre', @$nombre)?>" placeholder="Ej: Los Rojenses"> 
+      <input type="text" class="form-control" name="nombre" value="<?php echo set_value('nombre', @$fila->inte_nombre)?>" placeholder="Ej: Los Rojenses"> 
     </div>
 
 
     <div class="form-group">
       <label for="correo">E-mail de contacto</label>    
-      <input type="text" class="form-control" name="correo" value="<?php echo set_value('correo', @$correo)?>" placeholder="Ej: losrojenses@gmail.com"> 
+      <input type="text" class="form-control" name="correo" value="<?php echo set_value('correo', @$fila->inte_correo)?>" placeholder="Ej: losrojenses@gmail.com"> 
     </div>
 
 
     <div class="form-group">
       <label for="titulo">Tel. Contrataciones</label>    
-      <input type="text" class="form-control" name="telefono" value="<?php echo set_value('telefono', @$telefono)?>" placeholder="Ej: 11 15 8888-9999"> 
+      <input type="text" class="form-control" name="telefono" value="<?php echo set_value('telefono', @$fila->inte_telefono)?>" placeholder="Ej: 11 15 8888-9999"> 
     </div>
 
 
     <div class="form-group">
       <label for="facebook">Página de Facebook</label>    
-      <input type="text" class="form-control" name="facebook" value="<?php echo set_value('facebook', @$facebook)?>" placeholder="Ej: https://web.facebook.com/LosRojenses/"> 
+      <input type="text" class="form-control" name="facebook" value="<?php echo set_value('facebook', @$fila->inte_facebook)?>" placeholder="Ej: https://web.facebook.com/LosRojenses/"> 
     </div>
 
 
     <div class="form-group">
       <label for="youtube">Canal de Youtube</label>    
-      <input type="text" class="form-control" name="youtube" value="<?php echo set_value('youtube', @$youtube)?>" placeholder="Ej: https://www.youtube.com/channel/UCp0x0iqZJhBIRYhuhwWX91A"> 
+      <input type="text" class="form-control" name="youtube" value="<?php echo set_value('youtube', @$fila->inte_youtube)?>" placeholder="Ej: https://www.youtube.com/channel/UCp0x0iqZJhBIRYhuhwWX91A"> 
     </div>
 
 
     <div class="form-group">
       <label for="twitter">Twitter</label>    
-      <input type="text" class="form-control" name="twitter" value="<?php echo set_value('twitter', @$twitter)?>" placeholder="Ej: https://twitter.com/losrojenses"> 
+      <input type="text" class="form-control" name="twitter" value="<?php echo set_value('twitter', @$fila->inte_twitter)?>" placeholder="Ej: https://twitter.com/losrojenses"> 
     </div>
 
 
     <div class="form-group">
       <label for="instagram">Instagram</label>    
-      <input type="text" class="form-control" name="instagram" value="<?php echo set_value('instagram', @$instagram)?>" placeholder="Ej: https://www.instagram.com/losrojenses/"> 
+      <input type="text" class="form-control" name="instagram" value="<?php echo set_value('instagram', @$fila->inte_instagram)?>" placeholder="Ej: https://www.instagram.com/losrojenses/"> 
     </div>
 
 
@@ -73,7 +72,7 @@
     
     <div class="form-group">
         <label for="titulo">Trayectoria / Biografía</label> 
-        <textarea class="form-control" name="biografia" rows="15"><?php echo set_value('biografia', @$biografia)?></textarea>
+        <textarea class="form-control" name="biografia" rows="15"><?php echo set_value('biografia', @strip_tags(html_entity_decode($fila->inte_biografia))); ?></textarea>
         <span id="helpBlock" class="help-block">Aqu&iacute; puede poner la trayectoria, biografía, etc.</span>
     </div>
 
@@ -93,7 +92,7 @@
       <!--       
       <div class="g-recaptcha" data-sitekey="6LcEtjIUAAAAAKs-QTqMVw6vsZs-Z11iFUHyQnzY"></div>
        -->      
-      <button type="submit" class="btn btn-success">Enviar Artista Sugerido</button>
+      <button type="submit" class="btn btn-success">Enviar</button>
       <a href="<?php echo site_url('mipanel/' . $this->objeto); ?>" class="btn btn-default"><i class="fa fa-reply"></i> Volver al listado</a>
     </div>    
   </div>
@@ -107,7 +106,7 @@
   <!-- /.box-body -->
   
   <div class="box-footer">
-    Footer
+    
   </div>
   <!-- /.box-footer-->
 

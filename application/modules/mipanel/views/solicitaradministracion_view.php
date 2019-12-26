@@ -21,6 +21,7 @@
     <ul>
       <li>Si el Artista ya existe en nuestro portal puede solicitar administrarlo.</li>
       <li>Sino, puede agregarlo y de ésta forma usted ya es el administrador del mismo.</li>
+      <li>Si aparece en el listado pero no da la posibilidad de solicitar su administración es porque aún no ha sido validada la información del artista.</li>
     </ul>
     
     

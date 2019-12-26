@@ -21,6 +21,7 @@
     <ul>
       <li>Si el Artista ya existe en nuestro portal puede solicitar administrarlo.</li>
       <li>Sino, puede agregarlo y de ésta forma usted ya es el administrador del mismo.</li>
+      <li>Si aparece en el listado pero no da la posibilidad de solicitar su administración es porque aún no ha sido validada la información del artista.</li>
     </ul>
     
     
@@ -32,6 +33,7 @@
      <thead>
       <tr>
         <th>Artista</th>
+        <th>Visitas</th>
 
         <th>Acciones</th>
       </tr>
@@ -41,12 +43,15 @@
       <?php foreach ($filas as $fila): ?>
       <tr>
         <td><?php echo $fila->inte_nombre?></td>
-
+        <td><?php echo $fila->inte_visitas?></td>
         <td class="pull-right">
           <?php $id = $fila->inte_id; ?>
           <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary" title="Ver"><i class="fa fa-fw fa-eye"></i></a>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i></a>
+          <!-- <?php if($fila->habilitado == 1): ?>
+            <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success" title="Editar"><i class="fa fa-fw fa-edit"></i>
+            </a>
+          <?php endif; ?> -->
+          <!-- <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i></a> -->
         </td>   
       </tr>      
      <?php endforeach; ?>

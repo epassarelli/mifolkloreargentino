@@ -30,13 +30,17 @@
           <div class="box box-widget box-warning widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-yellow">
-
+            <?php   
+              $foto = base_url() . "assets/upload/interpretes/" . $fila->inte_foto ;
+              if (is_dir($foto)) 
+                { $foto = base_url() . "assets/upload/sin_foto.jpg"; }
+            ?>  
             <div class="widget-user-image">
-              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+              <img class="img-circle" src="<?php echo $foto; ?>" alt="User Avatar">
             </div>
 
               <h3 class="widget-user-username"><?php echo $fila->inte_nombre; ?></h3>
-              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+              <!-- <h5 class="widget-user-desc">Founder &amp; CEO</h5> -->
             </div>
 
             

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>  
-
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="google-site-verification" content="b4e3xgPWj0Fwb1N4ggo93LYs33S1uZ7EAUnyEaIGP90" />
@@ -10,28 +8,11 @@
   <meta name="description" content="<?php if(isset($description)) echo $description; ?>">
   <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords; ?>">  
 
-
   <title><?php  if(strlen($title) < 70){ $titulo = $title . ' | Mi Folklore Argentino'; echo $titulo; }; ?></title>
     
   <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
-
   <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("google_analitycs_view"); } ?>
-  
-  <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../">
-  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins.  -->
-  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/skins/skin-yellow.min.css'); ?>">
 
-
-  <?php if(isset($css_files)): ?>
-    <?php foreach($css_files as $file): ?>
-  		<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" disabled>
-  	<?php endforeach; ?>
-  <?php endif; ?>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -44,17 +25,57 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" disabled>
 </head>
 
-
 <body class="hold-transition skin-yellow sidebar-mini">
 
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
   
 <div class="wrapper">
 
-  <?php $this->load->view('front/header_front_view'); ?>  
+  <?php //$this->load->view('front/header_front_view'); ?> 
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="<?php echo base_url(); ?>" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>MF</b>A</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Mi </b>Folklore Argentino</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigacion</span>
+      </a>
+      
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar">
+              <i class="fa fa-user"></i>
+              <span>
+                <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?>
+                 Publicar
+                <?php else: ?>
+                 Ingresar
+                <?php endif; ?>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+
 
   <?php $this->load->view('front/aside_front_view'); ?>  
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -69,21 +90,20 @@
           echo "<li><a href='$value''>$key</a></li>";
         }; 
         ?>
+        <!--         
         <li class="hidden-xs">
-         <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_like_count_view"); } ?>
-        </li>
+         <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_like_count_view"); } ?>
+        </li> 
+        -->
     </ol>
     <?php endif; ?>      
-
 
       <h1><?php echo $title; ?></h1>
 
     </section>
-    
 
     <!-- Main content -->
     <section class="content container-fluid">
-
       <!-- | Your Page Content Here | -->
       	<?php 
       	if (isset($output)){
@@ -93,14 +113,11 @@
 			     $this->load->view($view);
       	}
       	?>
-      <!--   -->
-
     </section>
     <!-- /.content -->
 
   </div>
   <!-- /.content-wrapper -->
-
 
   <!-- Main Footer -->
   <footer class="main-footer">
@@ -120,50 +137,154 @@
       <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
       <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
-
-   
+  
     <!-- Tab panes -->
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Ayuda</h3>
-        <!--
+        
+        <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?> 
+
+
+
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Mis contenidos</h3>
         <ul class="control-sidebar-menu">
+          
           <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+            <a href="<?php echo site_url('mipanel/interpretes');?>">
+              <i class="menu-icon fa fa-user bg-red"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Aniversario</h4>
+                <h4 class="control-sidebar-subheading">Artistas</h4>
 
-                <p>Will be 23 on April 24th</p>
+                <p>Mis artistas</p>
               </div>
             </a>
           </li>
-        </ul>
-      -->
-        <!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Preguntas frecuentes</h3>
-        <!--
-        <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
-                  </span>
-              </h4>
+            <a href="<?php echo site_url('mipanel/noticias');?>">
+              <i class="menu-icon fa fa-bullhorn bg-yellow"></i>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Prensa / Gacetillas</h4>
+
+                <p>Gacetillas de prensa</p>
               </div>
             </a>
           </li>
+
+          <li>
+            <a href="<?php echo site_url('mipanel/shows');?>">
+              <i class="menu-icon fa fa-calendar bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Shows / Agenda</h4>
+
+                <p>Cartelera de artistas</p>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?php echo site_url('mipanel/discos');?>">
+              <i class="menu-icon fa fa-bullseye bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Discos</h4>
+
+                <p>Datos de sus discos</p>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?php echo site_url('mipanel/canciones');?>">
+              <i class="menu-icon fa fa-music bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Canciones</h4>
+
+                <p>Letras y videos de canciones </p>
+              </div>
+            </a>
+          </li>
+          
+          <li>
+            <a href="<?php echo site_url('mipanel/festivales');?>">
+              <i class="menu-icon fa fa-map bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Festivales</h4>
+
+                <p>...</p>
+              </div>
+            </a>
+          </li>
+          
+          <li>
+            <a href="<?php echo site_url('mipanel/penias');?>">
+              <i class="menu-icon fa fa-map-marker bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Peñas</h4>
+
+                <p>...</p>
+              </div>
+            </a>
+          </li>
+          
+          <li>
+            <a href="<?php echo site_url('mipanel/radios');?>">
+              <i class="menu-icon fa fa-volume-up bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Radios</h4>
+
+                <p>...</p>
+              </div>
+            </a>
+          </li>
+
+          <!--           
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-file-code-o bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Clasificados</h4>
+
+                <p>...</p>
+              </div>
+            </a>
+          </li> 
+          -->
+
         </ul>
-      -->
         <!-- /.control-sidebar-menu -->
+
+      </div>
+
+
+
+       
+
+      <a href="<?php echo site_url('auth/logout');?>">Salir</a>
+          
+          <?php else: ?>
+
+            <div class="form-group">
+              <label class="control-sidebar-subheading">
+                
+                <a href="<?php echo base_url();?>auth/login"><i class="fa fa-user"></i> Iniciar sesion
+              </a>
+              </label>
+                <h4 class="control-sidebar-heading">¿Por qué registrarme?</h4>
+                <p>Al registrarse e iniciar sesion usted puede agregar contenidos como nuevos artistas, fechas de shows, gacetillas de prensa, letras de canciones y mucho más.</p>
+            </div>
+
+          <?php endif; ?>
 
       </div>
       <!-- /.tab-pane -->
@@ -174,21 +295,7 @@
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
         <form method="post">
-          <!--<h3 class="control-sidebar-heading">Configuracion General</h3>-->
           <?php echo Modules::run('contacto',''); ?>
-          <!--
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-        -->
-          <!-- /.form-group -->
         </form>
       </div>
       <!-- /.tab-pane -->
@@ -202,11 +309,28 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
-<?php if (isset($output)): ?>
-  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- DataTables -->
+<!--   <link rel="stylesheet" href="../../">
+  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>"> -->
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/AdminLTE.min.css'); ?>">
+  <!-- AdminLTE Skins.  -->
+  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/skins/skin-yellow.min.css'); ?>">
 
-<?php endif; ?>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/font-awesome/css/font-awesome.min.css">
+ <!-- Ionicons -->
+<!--   <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/Ionicons/css/ionicons.min.css"> -->
+ 
+  <?php if(isset($css_files)): ?>
+    <?php foreach($css_files as $file): ?>
+      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" disabled>
+    <?php endforeach; ?>
+  <?php endif; ?>
+
+<!-- REQUIRED JS SCRIPTS -->
+<script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
 
 <?php if(isset($js_files)): ?>
 
@@ -216,67 +340,17 @@
 
   <?php endforeach; ?>
 
-<?php else: ?>
-  <!-- jQuery 3 -->
-  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
-
 <?php endif; ?>
 
-<!-- AdminLTE App -->
-<script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
      
   <!-- Bootstrap 3.3.7 -->
   <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <script src="<?php echo base_url();?>assets/js/scripts.js" defer></script>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/Ionicons/css/ionicons.min.css">
-<!-- DataTables -->
-<script src="<?php echo base_url(); ?>assets/templates/adminlte242/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/templates/adminlte242/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $('#interpretes').DataTable({
-    language: {
-        "decimal": "",
-        "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ entradas",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-        }
-    },
-    })
-    
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
-
-
-<script type="text/javascript">
-  
+<script type="text/javascript">  
 
     $("#send").click(function(){       
       
