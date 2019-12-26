@@ -5,8 +5,7 @@
     <h3 class="box-title"><?php echo $title; ?></h3>
 
     <div class="box-tools pull-right">
-      <a class="btn btn-primary" href="<?php echo base_url();?>mipanel/interpretes/solicitar" role="button"><i class="fa fa-user"></i> Solicitar administrar uno existente</a>
-      <a class="btn btn-success" href="<?php echo base_url();?>mipanel/interpretes/nuevo" role="button"><i class="fa fa-plus"></i> Nuevo interprete</a>
+
 
       <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
               title="Collapse">
@@ -24,7 +23,8 @@
       <li>Si aparece en el listado pero no da la posibilidad de solicitar su administración es porque aún no ha sido validada la información del artista.</li>
     </ul>
     
-    
+    <a class="btn btn-primary" href="<?php echo base_url();?>mipanel/interpretes/solicitar" role="button"><i class="fa fa-user"></i> Solicitar administrar uno existente</a>
+    <a class="btn btn-success" href="<?php echo base_url();?>mipanel/interpretes/nuevo" role="button"><i class="fa fa-plus"></i> Nuevo interprete</a>  
     
     <?php if(isset($filas)): ?>
 

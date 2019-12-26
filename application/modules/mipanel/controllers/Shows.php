@@ -49,4 +49,82 @@ public function index(){
 	$this->load->view('layout.php', $data);
 }
 
+
+####################################################
+###			Nuevo Show del Artista
+####################################################		
+
+public function nuevo(){
+	$data['title'] 			= "Sugerir show folklorico";
+	$this->load->model('cartelera/Cartelera_model');
+	
+	$this->form_validation->set_rules('titulo', 'titulo', 'required|trim|min_length[5]');
+	$this->form_validation->set_rules('detalle', 'detalle', 'required|trim|min_length[5]');
+	$this->form_validation->set_rules('lugar', 'lugar', 'required|trim|min_length[5]');
+	$this->form_validation->set_rules('direccion', 'direccion', 'required|trim|min_length[5]');
+	
+	$this->form_validation->set_rules('provincia', 'provincia', 'required');
+	$this->form_validation->set_rules('localidad', 'localidad', 'required');
+	$this->form_validation->set_rules('fecha', 'fecha', 'required');
+	$this->form_validation->set_rules('hora', 'hora', 'required');
+		
+	$this->form_validation->set_message('required', 'Debe introducir el campo "%s"');
+	$this->form_validation->set_message('min_length', 'El campo "%s" debe ser de al menos %s carcteres');	
+	
+	// Si no pasó la validacion
+	if($this->form_validation->run()==FALSE)
+	{	
+			$this->load->model('admin/Provincias_model');
+			$data['provincias'] 	= $this->Provincias_model->get_all();
+
+			$data['breadcrumb'] = array(
+							'Inicio' => base_url()
+						);
+								
+			$data['view'] 			= "cartelera_sugerir_shows_form_view";
+			$data['accion'] 		= "cartelera/evento/nuevo";
+			$this->load->view('layout', $data);	
+	}
+	else
+		{
+			$evento['even_titulo'] 		= $this->input->post('titulo');
+			$evento['even_fecha'] 		= $this->input->post('fecha');
+			$evento['even_hora'] 		= $this->input->post('hora');
+			$evento['prov_id'] 			= $this->input->post('provincia');
+			$evento['loca_id'] 			= $this->input->post('localidad');
+			$evento['even_lugar'] 		= $this->input->post('lugar');
+			$evento['even_direccion'] 	= $this->input->post('direccion');
+			$evento['even_detalle'] 	= $this->input->post('detalle');
+			$evento['inte_id'] 			= $this->tank_auth->get_user_inte_id();
+			
+			// inserto el show	
+				
+						
+			if ($this->Cartelera_model->set('evento',$evento)){	
+			
+				if( $_SERVER['SERVER_NAME'] != 'localhost' ) {
+					// Mando un correo a los administradores
+					$this->load->library('email');
+					$this->email->from('info@mifolkloreargentino.com.ar', 'Mi Folklore Argentino');
+					$this->email->to('epassarelli@gmail.com', 'aruffo73@gmail.com');
+					$this->email->subject('Datos de Artista actualizados');
+					$mensaje = "Sugirieron un evento: " . $this->input->post('titulo') . "<br />";
+					$mensaje .= "para el dia: " . $this->input->post('fecha') . "<br /><br />";
+					$mensaje .= nl2br($this->input->post('detalle'));
+					$this->email->message($mensaje);
+					$this->email->send();
+				}
+				
+				$this->session->set_flashdata('mensaje', 'ok');
+			}
+			else{
+				$this->session->set_flashdata('mensaje', 'error');
+			}
+
+			$redirecta = base_url() . "mipanel/misshows";
+			Header("Location: $redirecta"); 
+		}
+}
+
+
 }

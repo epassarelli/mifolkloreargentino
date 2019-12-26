@@ -14,9 +14,9 @@
   </div>
   
   <div class="box-body">
-    <p>Texto</p>
-    <a class="btn btn-success btn-xs" href="<?php echo base_url();?>mipanel/miscanciones/nueva" role="button">Agregar cancion</a>
-    <hr>
+    <p>Gacetillas de prensa del artista administrado.</p>
+    <a class="btn btn-success" href="<?php echo site_url('mipanel/noticias/nueva');?>" role="button">Agregar una gacetilla</a>
+    
     <?php if(isset($filas)): ?>
 
     <table id="interpretes" class="table table-hover datatable"> 
@@ -50,7 +50,7 @@
     <?php else: ?>
 
         <div class="alert alert-danger" role="alert">
-        <p>Ud. aun no tiene CANCIONES publicadas</p>
+        <p>Ud. aun no tiene noticias publicadas</p>
         </div>
 
     <?php endif; ?>

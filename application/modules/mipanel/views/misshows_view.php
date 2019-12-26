@@ -14,7 +14,8 @@
   </div>
   
   <div class="box-body">
-
+    <p>Shows del artista administrado.</p>
+    <a class="btn btn-success" href="<?php echo site_url('mipanel/misshows/nuevo');?>" role="button">Agregar un show</a>
     <?php
     switch ($this->session->flashdata('mensaje')) {
         case 'ok':

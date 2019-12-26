@@ -113,10 +113,10 @@ $route['mipanel/shows/nuevo']			= "mipanel/shows/nuevo";
 $route['mipanel/shows/editar']			= "mipanel/shows/editar";
 
 // Noticias de mis artistas
-$route['mipanel/noticias']				= "mipanel/noticias";
+$route['mipanel/misnoticias']				= "mipanel/noticias";
 // Nueva noticia de uno de mis artistas
-$route['mipanel/noticias/nueva']			= "mipanel/nueva";
-$route['mipanel/noticias/editar/(:any)']	= "mipanel/editar/$1";
+$route['mipanel/misnoticias/nueva']			= "mipanel/noticias/nueva";
+$route['mipanel/misnoticias/editar/(:any)']	= "mipanel/noticias/editar/$1";
 
 
 $route['mipanel/discos']					= "mipanel/discos";
