@@ -15,9 +15,7 @@
   </div>
   
   <div class="box-body">
-    <div class="pull-right">
-    <a href="<?php echo site_url('mipanel/shows/nuevo'); ?>"><button type="button" class="btn btn-success">Nuevo</button></a>
-    </div>
+    
     <?php
     switch ($this->session->flashdata('mensaje')) {
         case 'ok':
@@ -46,7 +44,9 @@
     }
     ?> 
 		
-        
+    <div class="pull-right">
+    <a href="<?php echo site_url('mipanel/shows/nuevo'); ?>"><button type="button" class="btn btn-success">Nuevo</button></a>
+    </div>   
     <?php if(isset($filas)): ?>
 
         <table id="shows" class="table table-hover datatable"> 

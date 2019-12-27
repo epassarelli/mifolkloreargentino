@@ -177,7 +177,7 @@ public function editar($id=''){
 			// $evento['inte_estado'] 			= 1;
 			
 			// inserto el show	
-			if ($this->Shows_model->update($id,$evento)){	
+			if ($this->Shows_model->updateShow($id,$evento)){	
 			
 				if( $_SERVER['SERVER_NAME'] != 'localhost' ) {
 					// Mando un correo a los administradores
