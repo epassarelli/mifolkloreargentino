@@ -11,10 +11,13 @@
       <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
         <i class="fa fa-times"></i></button>
     </div>
+    
   </div>
   
   <div class="box-body">
-
+    <div class="pull-right">
+    <a href="<?php echo site_url('mipanel/shows/nuevo'); ?>"><button type="button" class="btn btn-success">Nuevo</button></a>
+    </div>
     <?php
     switch ($this->session->flashdata('mensaje')) {
         case 'ok':
@@ -27,11 +30,22 @@
             echo '<div class="alert alert-danger"><p>Lo sentimos pero NO se pudo agregar el SHOW</p></div>';
             break;  
 
+        case 'eliminado':
+          # code...
+          echo '<div class="alert alert-success"><p>Show eliminado con Exito!</p></div>';
+          break; 
+
+        case 'errorDelete':
+          # code...
+          echo '<div class="alert alert-danger"><p>Lo sentimos pero NO se pudo eliminar el SHOW</p></div>';
+          break; 
+
         default:
             # code...
             break;
     }
     ?> 
+		
         
     <?php if(isset($filas)): ?>
 
@@ -51,9 +65,9 @@
                 <td><?php echo $e->even_lugar?></td>
                 <td><?php echo $e->even_direccion?></td>
                 <td>
-                  <a href="<?php echo site_url('mipanel'); ?>"><i class="fa fa-fw fa-eye"></i></a>
-                  <a href="<?php echo site_url('mipanel'); ?>"><i class="fa fa-fw fa-edit"></i></a>
-                  <a href="<?php echo site_url('mipanel'); ?>"><i class="fa fa-fw fa-trash-o"></i></a>
+                  <!-- <i href="<?php echo site_url('mipanel'); ?>"><i class="fa fa-fw fa-eye"></i></a> -->
+                  <a href="<?php echo site_url('mipanel/shows/editar/'.$e->even_id); ?>"><i class="fa fa-fw fa-edit"></i></a>
+                  <a href="<?php echo site_url('mipanel/shows/eliminar/'.$e->even_id); ?>"><i class="fa fa-fw fa-trash-o"></i></a>
                 </td> 
             </tr>       
         <?php endforeach; ?>
