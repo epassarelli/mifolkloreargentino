@@ -332,6 +332,7 @@
 <!-- REQUIRED JS SCRIPTS -->
 <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
 
+<input type="hidden" id="url" value="<?php echo site_url();?>">
 <?php if(isset($js_files)): ?>
 
   <?php foreach($js_files as $file): ?>

@@ -1,26 +1,10 @@
-<script type="text/javascript">
-    $( function() {            
-		$("#provincia").change( function() {                
-			$("#provincia option:selected").each( function() {
-                provincia = $('#provincia').val();                   
-				$.post( 
-					"<?php echo base_url();?>admin/localidades/getLocalidadesForm", 
-					{ provincia : provincia }, 
-					function(data) {
-                    	$("#localidad").html(data);
-                });					
-            });            
-		});       	
-	});	
-</script>	
-
 
 
 <div class="row">
   <div class="col-md-12">
 
   
-	<h4>Nuevo evento</h4>
+	<!-- <h4>Nuevo evento</h4> -->
 
 	<?php echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
     <?php echo form_open(current_url()) ?>
@@ -51,16 +35,23 @@
 	<div class="form-group">
 	<div class="row">
 		<div class="col-md-6">
+		<label for="interprete">Interprete</label>   
+        <select name="interprete" id="interpretes" class="form-control">
+			<?php foreach($interpretes as $int): ?>
+				<option value="<?php echo $int->inte_id ?>" <?php if ($int->inte_id == @$fila->inte_id) echo 'selected="selected"'; ?>><?php echo $int->inte_nombre ?></option>
+			<?php endforeach; ?>
+		</select>
+
 		<label for="provincia">Provincia</label>   
         <select name="provincia" id="provincia" class="form-control">
+		<option value="" disabled selected>Seleccione</option>
 			<?php foreach($provincias as $prov): ?>
 				<option value="<?php echo $prov->prov_id ?>" <?php if ($prov->prov_id == @$fila->prov_id) echo 'selected="selected"'; ?>><?php echo $prov->prov_nombre ?></option>
 			<?php endforeach; ?>
 		</select>
 
-
 		<label for="localidad">Localidad</label>   
-        <select name="localidad" id="localidad" class="form-control">
+        <select name="localidad" id="localidad" class="form-control" disabled>
             <?php
 			// SI es un nuevo evento
 			if( $accion == 'nuevo'):
@@ -89,7 +80,7 @@
 
 		<div class="col-md-6">
 		<label for="detalle">Detalles</label>
-      	<textarea class="form-control" name="detalle" rows="10"><?php echo set_value('detalle', @$fila->even_detalle)?></textarea>
+      	<textarea class="form-control" name="detalle" rows="13"><?php echo set_value('detalle', @$fila->even_detalle)?></textarea>
       	
       	<span id="helpBlock" class="help-block">Aqu&iacute; puede poner quien lo organiza, d&oacute;nde se compran entradas y su valor, a d&oacute;nde contactarse para m&aacute;s datos, etc.</span>
 		</div>
@@ -99,7 +90,10 @@
 	
 	<div class="form-group">
 		<input type="hidden" name="inte_id" value="<?//=$inte_id?>">
-		<button type="submit" class="btn btn-success">Enviar</button>
+		<input type="hidden" name="show_id" value="<?php echo @$fila->even_id?>">
+		<button type="submit" class="btn btn-success"><?php echo $a = ($accion === 'editar') ? 'Editar' : 'Guardar'; ?></button>
+		<a href="<?php echo site_url('mipanel/shows'); ?>"><button type="button" class="btn btn-outline-secondary">Volver a listado</button></a>
+
 	</div>
 	
 	</form>

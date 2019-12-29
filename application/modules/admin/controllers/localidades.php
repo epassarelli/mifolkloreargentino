@@ -32,6 +32,7 @@ class Localidades extends CI_Controller
     public function getLocalidadesForm()
     {
         $options = "";
+
         if($this->input->post('provincia'))
         {
             $provincia = $this->input->post('provincia');
