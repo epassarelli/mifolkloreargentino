@@ -23,6 +23,13 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" disabled>
+
+        <?php if(isset($css_files)): ?>
+    <?php foreach($css_files as $file): ?>
+      <link type="text/css" rel="stylesheet" href="<?php echo site_url('assets/css/').$file; ?>">
+    <?php endforeach; ?>
+  <?php endif; ?>
+
 </head>
 
 <body class="hold-transition skin-yellow sidebar-mini">
@@ -323,11 +330,7 @@
  <!-- Ionicons -->
 <!--   <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/Ionicons/css/ionicons.min.css"> -->
  
-  <?php if(isset($css_files)): ?>
-    <?php foreach($css_files as $file): ?>
-      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" disabled>
-    <?php endforeach; ?>
-  <?php endif; ?>
+
 
 <!-- REQUIRED JS SCRIPTS -->
 <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
@@ -337,7 +340,7 @@
 
   <?php foreach($js_files as $file): ?>
   	
-    <script src="<?php echo $file; ?>"></script>
+    <script src="<?php echo site_url('assets/js/').$file; ?>"></script>
 
   <?php endforeach; ?>
 

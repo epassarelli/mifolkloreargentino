@@ -14,9 +14,11 @@
   </div>
   
   <div class="box-body">
-    <p>Texto</p>
-    <a class="btn btn-success btn-xs" href="<?php echo base_url();?>mipanel/miscanciones/nueva" role="button">Agregar cancion</a>
-    <hr>
+    
+  <div class="pull-right">
+  <a class="btn btn-success" href="<?php echo base_url();?>mipanel/noticias/nuevo" role="button">Agregar noticia</a>
+  </div>
+  
     <?php if(isset($filas)): ?>
 
     <table id="interpretes" class="table table-hover datatable"> 
@@ -37,7 +39,7 @@
         <td><?php echo $fila->noti_titulo; ?></td>
         <td></td>
         <td>
-          <a href="<?php echo site_url('#'); ?>"><i class="fa fa-fw fa-eye"></i></a>
+          <!-- <i href="<?php echo site_url('#'); ?>"><i class="fa fa-fw fa-eye"></i></a> -->
           <a href="<?php echo site_url('#'); ?>"><i class="fa fa-fw fa-edit"></i></a>
           <a href="<?php echo site_url('#'); ?>"><i class="fa fa-fw fa-trash-o"></i></a>
         </td>    

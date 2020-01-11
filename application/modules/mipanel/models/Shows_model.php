@@ -22,8 +22,8 @@ class Shows_model extends MY_Model {
 	public function setShow($data)
 	{
 		
-		/////////// Inicio de Transaccion
-		$this->db->trans_begin(); 
+	/////////// Inicio de Transaccion
+	$this->db->trans_begin(); 
 
 		//insertamos el show
 		$this->db->insert($this->table, $data);

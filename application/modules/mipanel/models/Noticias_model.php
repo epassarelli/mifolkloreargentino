@@ -16,5 +16,33 @@ class Noticias_model extends MY_Model {
     	return $query->result();
 	}
 
+	public function setNoticia($data,$interpretes)
+	{
+		/////////// Inicio de Transaccion
+		$this->db->trans_begin(); 
+
+			//insertamos el show
+			$this->db->insert($this->table, $data);
+			//tomamos el id del insertado
+			$id = $this->db->insert_id();
+			//insertamos en la transpuesta
+			$datos['even_id'] = $id;
+			foreach ($interpretes as $int) {
+				$datos['inte_id'] = $int;
+				$this->db->insert('evento_interprete', $datos);	
+			}
+
+		/////////// Cierre de Transaccion
+		if ($this->db->trans_status() === FALSE){      
+			//Hubo errores en la consulta, entonces se cancela la transacción.   
+				$this->db->trans_rollback();  
+				return FALSE;    
+		}else{      
+			//Todas las consultas se hicieron correctamente.  
+				$this->db->trans_commit();   
+				return TRUE;
+		}//Endif
+	}
+
 
 }
