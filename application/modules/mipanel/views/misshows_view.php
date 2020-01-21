@@ -1,26 +1,8 @@
 <!-- Default box -->
 <div class="box">
   
-  <div class="box-header with-border">
-    <h3 class="box-title"><?php echo $title; ?></h3>
-
-    <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-              title="Collapse">
-        <i class="fa fa-minus"></i></button>
-      <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-        <i class="fa fa-times"></i></button>
-    </div>
-    
-  </div>
-  
   <div class="box-body">
-<<<<<<< HEAD
-    <p>Shows del artista administrado.</p>
-    <a class="btn btn-success" href="<?php echo site_url('mipanel/misshows/nuevo');?>" role="button">Agregar un show</a>
-=======
-    
->>>>>>> shows
+
     <?php
     switch ($this->session->flashdata('mensaje')) {
         case 'ok':
@@ -50,27 +32,26 @@
     ?> 
 		
     <div class="pull-right">
-    <a href="<?php echo site_url('mipanel/shows/nuevo'); ?>"><button type="button" class="btn btn-success">Nuevo</button></a>
+    <a href="<?php echo site_url('mipanel/shows/nuevo'); ?>"><button type="button" class="btn btn-success">+ Nuevo show</button></a>
     </div>   
     <?php if(isset($filas)): ?>
 
         <table id="shows" class="table table-hover datatable"> 
         <thead>
             <th>Fecha</th>
-            <th>Titulo</th>
+            <th class="hidden-xs">Titulo</th>
             <th>Lugar</th>
-            <th>Direccion</th>
+            <th class="hidden-xs">Direccion</th>
             <th>Editar</th>
         </thead>
         <tbody>
         <?php foreach($filas as $e): ?>
             <tr>
                 <td><?php echo date('d-m-Y',strtotime($e->even_fecha))?></td>
-                <td><?php echo $e->even_titulo?></td>
+                <td class="hidden-xs"><?php echo $e->even_titulo?></td>
                 <td><?php echo $e->even_lugar?></td>
-                <td><?php echo $e->even_direccion?></td>
+                <td class="hidden-xs"><?php echo $e->even_direccion?></td>
                 <td>
-                  <!-- <i href="<?php echo site_url('mipanel'); ?>"><i class="fa fa-fw fa-eye"></i></a> -->
                   <a href="<?php echo site_url('mipanel/shows/editar/'.$e->even_id); ?>"><i class="fa fa-fw fa-edit"></i></a>
                   <a href="<?php echo site_url('mipanel/shows/eliminar/'.$e->even_id); ?>"><i class="fa fa-fw fa-trash-o"></i></a>
                 </td> 
@@ -89,11 +70,6 @@
 
   </div>
   <!-- /.box-body -->
-  
-  <div class="box-footer">
-    Footer
-  </div>
-  <!-- /.box-footer-->
 
 </div>
 <!-- /.box -->

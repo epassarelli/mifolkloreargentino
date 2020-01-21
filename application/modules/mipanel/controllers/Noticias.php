@@ -16,7 +16,7 @@ function __construct(){
 
 public function index(){
 	
-	$data['title']      	= "Noticias de mis administrados";
+	$data['title']      	= "Noticias y gacetillas";
 	$data['description']	= "Noticias de mis administrados";
 	$data['keywords']   	= "Noticias de mis administrados";
 
@@ -56,7 +56,7 @@ public function index(){
 
 function nueva(){
 
-	$data['title']      	= "Noticias de mis administrados";
+	$data['title']      	= "Noticias y gacetillas";
 	$data['description']	= "Noticias de mis administrados";
 	$data['keywords']   	= "Noticias de mis administrados";
 	
@@ -116,7 +116,7 @@ function nueva(){
 
 function editar($noti_id){
 
-	$data['title']      	= "Noticias de mis administrados";
+	$data['title']      	= "Noticias y gacetillas";
 	$data['description']	= "Noticias de mis administrados";
 	$data['keywords']   	= "Noticias de mis administrados";
 	
@@ -150,7 +150,7 @@ function editar($noti_id){
 					$this->load->library('email');
 					$this->email->from('info@mifolkloreargentino.com.ar', 'Mi Folklore Argentino');
 					$this->email->to('epassarelli@gmail.com', 'aruffo73@gmail.com');
-					$this->email->subject('Show actualizado');
+					$this->email->subject('Noticia actualizada');
 					$mensaje = "Editaron una noticia: " . $this->input->post('titulo') . "<br />";
 					$mensaje .= "el artista: " . $this->tank_auth->get_user_inte_id() . "<br /><br />";
 					$mensaje .= nl2br($this->input->post('detalle'));

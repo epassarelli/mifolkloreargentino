@@ -21,7 +21,7 @@ public function __construct(){
 
 public function index(){
 	
-	$data['title']      	= "Interpretes del Folklore Argentino";
+	$data['title']      	= "Mis administrados";
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes";
 
@@ -81,7 +81,7 @@ public function ver($id){
 ##
 
 public function nuevo(){
-	$data['title'] 			= "Sugerir Interprete del Folklore Argentino";
+	$data['title'] 			= "Sugerir un interprete";
 	$data['mensaje'] = '';
 	
 	$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[4]');

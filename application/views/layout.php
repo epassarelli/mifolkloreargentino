@@ -8,7 +8,7 @@
   <meta name="description" content="<?php if(isset($description)) echo $description; ?>">
   <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords; ?>">  
 
-  <title><?php  if(strlen($title) < 70){ $titulo = $title . ' | Mi Folklore Argentino'; echo $titulo; }; ?></title>
+  <title><?php  if(strlen($title) < 70){ $titulo = $title . ' | Folklore Argentino'; echo $titulo; }; ?></title>
     
   <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
   <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("google_analitycs_view"); } ?>
@@ -145,20 +145,15 @@
         
         <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?> 
 
-
-
     <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Mis contenidos</h3>
         <ul class="control-sidebar-menu">
           
           <li>
             <a href="<?php echo site_url('mipanel/interpretes');?>">
               <i class="menu-icon fa fa-user bg-red"></i>
-
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Artistas</h4>
-
-                <p>Mis artistas</p>
+                <h4 class="control-sidebar-subheading">Mis administrados</h4>
+                <p>Datos de artistas</p>
               </div>
             </a>
           </li>
@@ -166,10 +161,8 @@
           <li>
             <a href="<?php echo site_url('mipanel/noticias');?>">
               <i class="menu-icon fa fa-bullhorn bg-yellow"></i>
-
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Prensa / Gacetillas</h4>
-
+                <h4 class="control-sidebar-subheading">Noticias</h4>
                 <p>Gacetillas de prensa</p>
               </div>
             </a>
@@ -178,10 +171,8 @@
           <li>
             <a href="<?php echo site_url('mipanel/shows');?>">
               <i class="menu-icon fa fa-calendar bg-light-blue"></i>
-
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Shows / Agenda</h4>
-
                 <p>Cartelera de artistas</p>
               </div>
             </a>
@@ -190,10 +181,8 @@
           <li>
             <a href="<?php echo site_url('mipanel/discos');?>">
               <i class="menu-icon fa fa-bullseye bg-green"></i>
-
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Discos</h4>
-
                 <p>Datos de sus discos</p>
               </div>
             </a>
@@ -202,22 +191,19 @@
           <li>
             <a href="<?php echo site_url('mipanel/canciones');?>">
               <i class="menu-icon fa fa-music bg-red"></i>
-
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Canciones</h4>
-
                 <p>Letras y videos de canciones </p>
               </div>
             </a>
           </li>
           
+          <!--
           <li>
             <a href="<?php echo site_url('mipanel/festivales');?>">
               <i class="menu-icon fa fa-map bg-yellow"></i>
-
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Festivales</h4>
-
                 <p>...</p>
               </div>
             </a>
@@ -226,10 +212,8 @@
           <li>
             <a href="<?php echo site_url('mipanel/penias');?>">
               <i class="menu-icon fa fa-map-marker bg-light-blue"></i>
-
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Peñas</h4>
-
                 <p>...</p>
               </div>
             </a>
@@ -241,13 +225,12 @@
 
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Radios</h4>
-
                 <p>...</p>
               </div>
             </a>
           </li>
 
-          <!--           
+                     
           <li>
             <a href="javascript:void(0)">
               <i class="menu-icon fa fa-file-code-o bg-red"></i>
@@ -273,6 +256,8 @@
       <a href="<?php echo site_url('auth/logout');?>">Salir</a>
           
           <?php else: ?>
+
+            <?php //$this->load->view('auth/login_form', $data); //echo Modules::run('auth','login'); ?>
 
             <div class="form-group">
               <label class="control-sidebar-subheading">
@@ -311,7 +296,7 @@
 
   <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- DataTables -->
-<!--   <link rel="stylesheet" href="../../">
+  <!--
   <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/AdminLTE.min.css'); ?>">
@@ -356,7 +341,7 @@
     $("#send").click(function(){       
       
      letra = $("#letra").val();
-     cancion_id = <?php echo $cancion->canc_id; ?>;
+     cancion_id = <?php if(isset($cancion->canc_id)){ echo $cancion->canc_id; } else { echo "1";} ?>;
      //alert(letra + ' - ' + cancion_id);
      $.ajax({
          type: "post",

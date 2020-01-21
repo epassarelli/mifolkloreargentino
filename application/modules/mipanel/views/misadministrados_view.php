@@ -1,19 +1,6 @@
 <!-- Default box -->
 <div class="box">
   
-  <div class="box-header with-border">
-    <h3 class="box-title"><?php echo $title; ?></h3>
-
-    <div class="box-tools pull-right">
-
-
-      <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-              title="Collapse">
-        <i class="fa fa-minus"></i></button>
-      <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-        <i class="fa fa-times"></i></button>
-    </div>
-  </div>
   
   <div class="box-body">
     <p>Si usted es integrante de una banda folklorica, prensa, comunity, promotor o simplemente desea administrar los contenidos en nuestro portal como noticias, shows, canciones de un Artista determinado puede hacer lo siguiente:</p>
@@ -34,7 +21,6 @@
       <tr>
         <th>Artista</th>
         <th>Visitas</th>
-
         <th>Acciones</th>
       </tr>
      </thead>
@@ -67,16 +53,8 @@
 
     <?php endif; ?>
 
-
-
-
   </div>
   <!-- /.box-body -->
-  
-  <div class="box-footer">
-    Footer
-  </div>
-  <!-- /.box-footer-->
 
 </div>
 <!-- /.box -->

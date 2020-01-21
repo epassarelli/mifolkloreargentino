@@ -1,24 +1,12 @@
 <!-- Default box -->
 <div class="box">
   
-  <div class="box-header with-border">
-    <!-- <h3 class="box-title"><?php echo $title; ?></h3> -->
-
-    <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-              title="Collapse">
-        <i class="fa fa-minus"></i></button>
-      <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-        <i class="fa fa-times"></i></button>
-    </div>
-  </div>
-  
   <div class="box-body">
 
   <?php if(isset($mensaje)){ echo "<h1>$mensaje</h1>"; } ?>
 	<?php echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
 
-  <?php echo form_open_multipart('mipanel/misnoticias/nuevo');?>
+  <?php echo form_open_multipart('mipanel/misnoticias/nueva');?>
 
   <div class="col-md-6">
 
@@ -71,18 +59,11 @@
     </div>    
   </div>
 
-</form>
+  </form>
   
-
-
 
   </div>
   <!-- /.box-body -->
-  
-  <div class="box-footer">
-    
-  </div>
-  <!-- /.box-footer-->
 
 </div>
 <!-- /.box -->

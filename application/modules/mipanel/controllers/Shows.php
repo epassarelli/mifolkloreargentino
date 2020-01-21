@@ -1,31 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Shows extends MX_Controller {
-
 function __construct(){
 	parent::__construct();
-
 	if (!$this->tank_auth->is_logged_in()){
 		redirect('/auth/login/');
 	} 
-
 	$this->load->model(array('Shows_model','Interpretes_model','admin/localidades_model'));
 	$_SESSION['seccion'] = "Shows";
-
 	if (ENVIRONMENT == 'development') {
 		$this->output->enable_profiler(TRUE);
 	}
 }
-
 public function index(){
 	
-	$data['title']      	= "Shows del Folklore Argentino";
+	$data['title']      	= "Shows Folklore Argentino";
 	$data['description']	= "Shows, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "Shows";
-
-
 	$rol = $this->tank_auth->get_user_profile();
-
 	switch ($rol) {
 			case '1':
 				# registrado...
@@ -43,7 +34,6 @@ public function index(){
 			$data['filas'] = $this->Shows_model->get_all();
 				break;
 		}	
-
 	$data['breadcrumb'] 	= array(
 								'Inicio' => base_url()
 								);		
@@ -51,31 +41,10 @@ public function index(){
 	//$data['sidebar']       	= 'interpretes_sidebar_view';
 	$this->load->view('layout.php', $data);
 }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> shows
 ####################################################
 ###			Nuevo Show del Artista
 ####################################################		
-
 public function nuevo(){
-<<<<<<< HEAD
-	$data['title'] 			= "Sugerir show folklorico";
-	$this->load->model('cartelera/Cartelera_model');
-	
-	$this->form_validation->set_rules('titulo', 'titulo', 'required|trim|min_length[5]');
-	$this->form_validation->set_rules('detalle', 'detalle', 'required|trim|min_length[5]');
-	$this->form_validation->set_rules('lugar', 'lugar', 'required|trim|min_length[5]');
-	$this->form_validation->set_rules('direccion', 'direccion', 'required|trim|min_length[5]');
-	
-	$this->form_validation->set_rules('provincia', 'provincia', 'required');
-	$this->form_validation->set_rules('localidad', 'localidad', 'required');
-	$this->form_validation->set_rules('fecha', 'fecha', 'required');
-	$this->form_validation->set_rules('hora', 'hora', 'required');
-		
-=======
 	$data['title'] = "Nuevo show folklorico";
 	
 	$this->form_validation->set_rules('titulo', 'evento', 'required|trim|min_length[5]');
@@ -88,7 +57,6 @@ public function nuevo(){
 	$this->form_validation->set_rules('detalle', 'detalle', 'required|trim|min_length[5]');
 	
 	
->>>>>>> shows
 	$this->form_validation->set_message('required', 'Debe introducir el campo "%s"');
 	$this->form_validation->set_message('min_length', 'El campo "%s" debe ser de al menos %s carcteres');	
 	
@@ -97,22 +65,13 @@ public function nuevo(){
 	{	
 			$this->load->model('admin/Provincias_model');
 			$data['provincias'] 	= $this->Provincias_model->get_all();
-<<<<<<< HEAD
-=======
 			$data['interpretes'] 	= $this->Interpretes_model->getMisAdministrados($this->tank_auth->get_user_id());
->>>>>>> shows
-
 			$data['breadcrumb'] = array(
 							'Inicio' => base_url()
 						);
 								
-<<<<<<< HEAD
-			$data['view'] 			= "cartelera_sugerir_shows_form_view";
-			$data['accion'] 		= "cartelera/evento/nuevo";
-=======
 			$data['view'] 			= "misshows_form_view";
 			$data['accion'] 		= "insertar";
->>>>>>> shows
 			$this->load->view('layout', $data);	
 	}
 	else
@@ -125,14 +84,6 @@ public function nuevo(){
 			$evento['even_lugar'] 		= $this->input->post('lugar');
 			$evento['even_direccion'] 	= $this->input->post('direccion');
 			$evento['even_detalle'] 	= $this->input->post('detalle');
-<<<<<<< HEAD
-			$evento['inte_id'] 			= $this->tank_auth->get_user_inte_id();
-			
-			// inserto el show	
-				
-						
-			if ($this->Cartelera_model->set('evento',$evento)){	
-=======
 			$evento['inte_id'] 			= $this->input->post('interprete');
 			$evento['even_estado']		= 1;
 			
@@ -157,14 +108,11 @@ public function nuevo(){
 			else{
 				$this->session->set_flashdata('mensaje', 'error');
 			}
-
 			$redirecta = base_url() . "mipanel/shows";
 			Header("Location: $redirecta"); 
 		}
 }
-
 public function editar($id=''){
-
 	$data['title'] = "Editar show folklorico";
 	
 	$this->form_validation->set_rules('titulo', 'evento', 'required|trim|min_length[5]');
@@ -200,7 +148,6 @@ public function editar($id=''){
 	else
 		{
 			$id = $this->input->post('show_id');
-
 			$evento['even_titulo'] 		= $this->input->post('titulo');
 			$evento['even_fecha'] 		= $this->input->post('fecha');
 			$evento['even_hora'] 		= $this->input->post('hora');
@@ -214,7 +161,6 @@ public function editar($id=''){
 			
 			// inserto el show	
 			if ($this->Shows_model->updateShow($id,$evento)){	
->>>>>>> shows
 			
 				if( $_SERVER['SERVER_NAME'] != 'localhost' ) {
 					// Mando un correo a los administradores
@@ -234,21 +180,12 @@ public function editar($id=''){
 			else{
 				$this->session->set_flashdata('mensaje', 'error');
 			}
-
-<<<<<<< HEAD
-			$redirecta = base_url() . "mipanel/misshows";
-=======
 			$redirecta = base_url() . "mipanel/shows";
->>>>>>> shows
 			Header("Location: $redirecta"); 
 		}
 }
-
-<<<<<<< HEAD
-=======
 public function eliminar($id)
 {
-
 	// inserto el show	
 	if ($this->Shows_model->deleteShow($id)){	
 			
@@ -270,11 +207,7 @@ public function eliminar($id)
 	else{
 		$this->session->set_flashdata('mensaje', 'errorDelete');
 	}
-
 	$redirecta = base_url() . "mipanel/shows";
 	Header("Location: $redirecta"); 
 }
-
->>>>>>> shows
-
 }

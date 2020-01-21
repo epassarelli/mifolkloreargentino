@@ -1,9 +1,7 @@
+<!-- Default box -->
+<div class="box">
 
-
-<div class="row">
-  <div class="col-md-12">
-
-  
+  <div class="box-body">  
 	<!-- <h4>Nuevo evento</h4> -->
 
 	<?php echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
@@ -98,5 +96,9 @@
 	
 	</form>
 
+  </div>
+  <!-- /.box-body -->
+  
+
 </div>
-</div>
+<!-- /.box -->
