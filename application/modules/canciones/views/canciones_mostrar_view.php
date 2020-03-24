@@ -18,7 +18,7 @@
     }
   </style>
 
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
 
 <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_letra_1_view"); }?>
 
@@ -47,7 +47,7 @@
                     <!-- start:cover video -->
                     <div class="head-video relative">
 
-                        <iframe width="100%" height="580" frameborder="0" src="http://www.youtube.com/embed/<?php echo $cancion->canc_youtube;?>?feature=oembed&amp;wmode=opaque" allowfullscreen="" style="height: 313.6px;">        
+                        <iframe width="100%" height="580" frameborder="0" src="https://www.youtube.com/embed/<?php echo $cancion->canc_youtube;?>?feature=oembed&amp;wmode=opaque" allowfullscreen="" style="height: 313.6px;">        
                         </iframe>
 
                     </div>
@@ -81,9 +81,9 @@
         <!-- /.box -->
 
 
-      <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
+
         
-      <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_view"); } ?>
+      <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_view"); } ?>
 
         
       <!-- Si tiene canciones relacionadas las muestro -->
@@ -113,9 +113,9 @@
                 <a href="<?php echo site_url('letras-de-canciones-de-'.$fila->inte_alias.'/'.$c->canc_alias)?>" class="product-title">
                     <?php echo $c->canc_titulo; ?>
                 </a>
-                <span class="product-description">
+                <!-- <span class="product-description">
                       <?php echo $fila->inte_nombre?>
-                </span>
+                </span> -->
 
             </li>
             <!-- /.item -->
@@ -161,7 +161,7 @@
 </div><!-- end:row -->
 
 
- 
+  <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
 
 
 <?php //$this->load->view("canciones_sugerir_form_view");  ?>

@@ -1,4 +1,4 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_enlaces_top_view"); } ?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_enlaces_top_view"); } ?>
 
 
 <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_view"); } ?>
@@ -28,7 +28,7 @@
 		<!-- /.box -->
 
 	
-		<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_enlaces_top_view"); } ?>
+		<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_enlaces_top_view"); } ?>
 
 
   	</div>

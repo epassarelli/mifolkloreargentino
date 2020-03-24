@@ -1,4 +1,4 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_home_1_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_home_1_view"); }?>
 
 <div class="row">
 
@@ -38,9 +38,9 @@
 			?> 
 
 		    <li class="item col-xs-12 col-sm-4 col-md-4">
-		      <div class="product-img">
+<!-- 		      <div class="product-img">
 		        <img src="<?php echo $foto?>" alt="<?php echo $fila->inte_nombre?>" width="50" heigth="50">
-		      </div>
+		      </div> -->
 		      <div class="product-info">
 		        <a href="<?php echo site_url('letras-de-canciones-de-'.$fila->inte_alias.'/'.$fila->canc_alias)?>" class="product-title">
 		        	<?php echo $fila->canc_titulo; ?>
@@ -92,9 +92,9 @@
 		?> 
 
 	    <li class="item col-xs-12 col-sm-4 col-md-4">
-	      <div class="product-img">
+<!-- 	      <div class="product-img">
 	        <img src="<?php echo $foto?>" alt="<?php echo $fila->inte_nombre?>" width="50" heigth="50">
-	      </div>
+	      </div> -->
 	      <div class="product-info">
 	        <a href="<?php echo site_url('letras-de-canciones-de-'.$fila->inte_alias.'/'.$fila->canc_alias)?>" class="product-title"><?php echo $fila->canc_titulo; ?>
 	        </a>

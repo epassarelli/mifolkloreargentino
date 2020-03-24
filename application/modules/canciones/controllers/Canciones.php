@@ -104,10 +104,11 @@ function mostrar($inte_alias, $canc_alias){
 	}
 	
 	$data['title'] 			= $data['fila']->inte_nombre . ", letra de " . $data['cancion']->canc_titulo ;
-	$data['description']	= $data['cancion']->canc_titulo . "-". $data['fila']->inte_nombre .", Cancionero popular de musica Folklorica Argentina";
+	$inicioLetra = substr(strip_tags(preg_replace('/\&(.)[^;]*;/', '\\1',$data['cancion']->canc_contenido)),0,100);
+	$data['description']	= "Letra de " . $data['cancion']->canc_titulo . ", ". $data['fila']->inte_nombre .", " . $inicioLetra;
+
 	$data['keywords']		= "letras,canciones,cancionero,popular,musica,folklorica".$data['cancion']->canc_titulo;	
-	//var_dump($data['filas']);die();
-	//var_dump($data['fila']);die();
+
 	// Tomo todos los interpretes para el SELECT
 	//$data['interpretes'] 	= $this->Canciones_model->getInterpretesConCanciones();
 	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');

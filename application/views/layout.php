@@ -57,16 +57,24 @@
           
           <!-- Control Sidebar Toggle Button -->
           <li>
+            
+
+
+                <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?>
             <a href="#" data-toggle="control-sidebar">
               <i class="fa fa-user"></i>
               <span>
-                <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?>
                  Publicar
-                <?php else: ?>
-                 Ingresar
-                <?php endif; ?>
               </span>
-            </a>
+            </a>            
+                <?php else: ?>
+            <a href="<?php echo site_url('auth/login'); ?>">
+              <i class="fa fa-user"></i>                  
+                 Ingresar
+              </span>
+            </a>   
+                <?php endif; ?>
+
           </li>
         </ul>
       </div>

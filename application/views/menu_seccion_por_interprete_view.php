@@ -7,7 +7,7 @@
 	
 	<div class="box box-warning">
 		<div class="box-body box-profile">
-		  <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre?>">
+		  <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre;?>" title="<?php echo $fila->inte_nombre?>">
 
 		  <h3 class="profile-username text-center"><?php echo $fila->inte_nombre?></h3>
 

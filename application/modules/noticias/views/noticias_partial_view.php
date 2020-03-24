@@ -23,10 +23,10 @@
 				  
 				    <li class="item">
 				      <div class="product-img">
-					    <a href="<?php echo site_url('noticias/ver/'.$n->noti_alias); ?>">
+					    <!-- <a href="<?php echo site_url('noticias/ver/'.$n->noti_alias); ?>">
 							<img class="img-responsive" src="<?php echo site_url('assets/upload/noticias/'.$n->noti_foto); ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>" width="80">
 						</a>
-				      </div>
+				      </div> -->
 				      <div class="product-info">
 				        <a href="<?php echo site_url('noticias/ver/'.$n->noti_alias); ?>">
 							<?php echo $n->noti_titulo; ?>

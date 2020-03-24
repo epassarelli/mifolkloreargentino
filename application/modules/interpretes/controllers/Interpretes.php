@@ -77,7 +77,11 @@ function mostrar($alias){
 	$data['fila']       	= $this->Interpretes_model->getInterprete($alias);
 	
 	$data['title']      	= "Biografia de " . $data['fila']->inte_nombre ;
-	$data['description']	= "Biografia de " . $data['fila']->inte_nombre . ". Tambien encontrara otras de Autores, Compositores, Grupos y Solistas";
+
+	$bio = substr(strip_tags(preg_replace('/\&(.)[^;]*;/', '\\1',$data['fila']->inte_biografia)),0,120);
+	//$data['description']	= "Letra de " . $data['cancion']->canc_titulo . ", ". $data['fila']->inte_nombre .", " . $inicioLetra;
+
+	$data['description']	= "Biografia de " . $data['fila']->inte_nombre . ", " .  $bio;
 	$data['keywords']   	= "interpretes, grupos, solistas, folklore, argentino, musica, cantores, payadores, biografias, artistas".$data['fila']->inte_nombre;
 
 	$data['interpretes'] 	= $this->Interpretes_model->getActivados();

@@ -1,4 +1,4 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
 
 <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_artista_1_view"); }?>
 
@@ -37,9 +37,9 @@
 	        <a href="<?php echo site_url('letras-de-canciones-de-'.$c->inte_alias.'/'.$c->canc_alias)?>" class="product-title">
 	        	<?php echo $c->canc_titulo; ?>
 	        </a>
-	        <span class="product-description">
+	        <!-- <span class="product-description">
 	              <?php echo $c->inte_nombre?>
-	        </span>
+	        </span> -->
 
 	    </li>
 	    <!-- /.item -->
@@ -58,7 +58,7 @@
 
 	</div>
 
-		<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
+		<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_enlaces_top_view"); }?>
 
 	</div>
 
