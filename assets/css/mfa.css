@@ -1,0 +1,11 @@
+.interpretes {
+	display: block;
+	height: 200px;
+}
+
+
+.interpretes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

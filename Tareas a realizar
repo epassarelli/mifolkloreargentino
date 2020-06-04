@@ -1,0 +1,64 @@
+rudi
+ex-chass
+busqueda interna
+
+
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `oauth_provider` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+ `oauth_uid` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+ `first_name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+ `last_name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+ `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+ `gender` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+ `locale` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+ `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+ `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+ALTER TABLE `fiestas` DROP `fies_tipo`, DROP `fies_longitud`, DROP `fies_latitud`;
+
+
+intranet
+viaticos
+costeo
+certificados
+cv
+censo
+tableros
+dwh
+
+
+Inteligencia de Negocios Con Power BI y Sql Server 2019
+
+Tu ID de cliente
+487147293916-ef937bj9b31vrh4oni1uvg3mic16dunc.apps.googleusercontent.com
+
+Tu secreto de cliente
+F4NJw0eBOKCO8cxEv2T2Na3i
+
+
+¿Queres agregar tu grupo folklorico en nuestro portal y difundir tus canciones, presentaciones y material discografico?
+
+Hola, te invitamos a que te registres en nuestro portal y publiques tus contenidos de forma gratuita
+https://www.mifolkloreargentino.com.ar/
+
+
+Hola, tu radio folclorica se encuentra en nuestro portal? Te invitamos a la incluyas y publiques tus contenidos de forma gratuita.
+
+https://www.mifolkloreargentino.com.ar/
+
+
+
+
+
+Actualizar datos desde otra tabla Joineada
+-----------------------------------------------------------------------
+update album
+inner join album_interprete on album.albu_id = album_interprete.albu_id
+set album.inte_id=album_interprete.inte_id
