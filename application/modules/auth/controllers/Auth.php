@@ -35,6 +35,7 @@ class Auth extends MX_Controller
 	 * @return void
 	 */
 	function login(){
+
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -109,6 +110,7 @@ class Auth extends MX_Controller
 			
 		// Get login URL
         $data['authUrl'] =  $this->facebook->login_url();
+        $data['authUrlGoogle'] =  $this->facebook->login_url();
 
 		$this->load->view('auth/login_form', $data);
 			
@@ -500,6 +502,10 @@ class Auth extends MX_Controller
 	function _send_email($type, $email, &$data)
 	{
 		$this->load->library('email');
+		$config['mailtype'] = 'html';
+
+		$this->email->initialize($config);
+		
 		$this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
 		$this->email->reply_to($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
 		$this->email->to($email);

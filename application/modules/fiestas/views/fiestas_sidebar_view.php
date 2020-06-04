@@ -65,7 +65,11 @@
 	<div class="col-xs-12 col-sm-4">
 		 
 		<h3 class="alert alert-warning">Sugerinos un Festival</h3>
-		<a class="btn btn-success btn-block" href="<?php echo base_url();?>admin/festivales/add" role="button">Sugerir un Festival</a>
+				<a class="btn btn-success btn-block" href="<?php echo site_url('admin/festivales/index/add');?>" role="button">
+		  <i class="fa fa-plus"></i> Agregar un festival
+		</a>
+
+		<br>
 	
 	</div>
 

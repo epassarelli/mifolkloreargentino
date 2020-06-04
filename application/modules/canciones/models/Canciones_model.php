@@ -87,7 +87,7 @@ function buscarCancion($aBuscar){
 
 
 function get_Ultimas($cantidad){
-	$this->db->select('i.inte_nombre,i.inte_alias,i.inte_foto,c.canc_titulo,c.canc_alias');
+	$this->db->select('i.inte_nombre,i.inte_alias,c.canc_titulo,c.canc_alias');
 	$this->db->from('canciones c');
 	$this->db->join('interprete i','c.inte_id = i.inte_id');
 	$this->db->where('c.canc_habilitado', 1);	
@@ -98,7 +98,7 @@ function get_Ultimas($cantidad){
 }
 
 function get_Ranking_Canciones($cantidad){
-	$this->db->select('i.inte_nombre,i.inte_alias,i.inte_foto,c.canc_titulo,c.canc_alias,c.canc_visitas');
+	$this->db->select('i.inte_nombre,i.inte_alias,c.canc_titulo,c.canc_alias,c.canc_visitas');
 	$this->db->from('canciones c');
 	$this->db->join('interprete i','c.inte_id = i.inte_id');	
 	$this->db->order_by('c.canc_visitas', 'desc');

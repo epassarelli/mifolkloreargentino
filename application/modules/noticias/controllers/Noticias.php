@@ -10,16 +10,19 @@ public function __construct(){
 	if (ENVIRONMENT == 'development') {
 		$this->output->enable_profiler(TRUE);
 	}
+	if(!isset($_SESSION['interpretes'])){
+		$_SESSION['interpretes'] 	= $this->Noticias_model->get_InterpretesCBox('interprete','inte_nombre');
+	}
 }
 
 ##############################################################
 
 public function index(){
-	$data['filas']      	= $this->Noticias_model->getUltimas(50);
-	$data['title']      	= "Noticias y actualidad del Folklore Argentino y los artistas que lo componen";
+	$data['filas']      	= $this->Noticias_model->getUltimas(15);
+	$data['title']      	= "Noticias del Folklore Argentino";
 	$data['description']	= "Noticias, prensa y gacetillas de los artistas de nuestro Folklore Argentino. Shows y festivales folkloricos de tus musicos favoritos";
     $data['keywords']   	= "interpretes,grupos,solistas,folklore,argentino,musica,cantores,payadores";
-	$data['interpretes'] 	= $this->Noticias_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "noticias-de-";
 	
 	$data['view']       	= 'noticias_home_view';
@@ -40,7 +43,7 @@ public function mostrar($slugArtista, $slugNoticia){
 	$data['description']	= "Noticias de " . $interprete->inte_nombre . ". Tambien encontrara otras de Autores, Compositores, Grupos y Solistas de nuestro folklore argentino";
 	$data['keywords']   	= "interpretes,grupos,solistas,folklore,argentino,musica,cantores,payadores,biografias,artistas".$interprete->inte_nombre;
 	
-	$data['interpretes'] 	= $this->Noticias_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "noticias-de-";		
 	$data['view']       	= "noticias_mostrar_view";
 	$data['breadcrumb'] = array(
@@ -60,7 +63,7 @@ public function artista($alias){
 	$data['description']	= "Noticias y gacetillas de " . $interprete->inte_nombre . ". Actualidad del Folklore Argentino. Sus shows y festivales";
 	$data['keywords']   	= "interpretes,grupos, solistas, folklore, argentino, musica, cantores,payadores, biografias,artistas".$interprete->inte_nombre;
 
-	$data['interpretes'] 	= $this->Noticias_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "noticias-de-";
 
 	$_SESSION['interprete'] = $interprete;
@@ -92,7 +95,7 @@ public function ver($slugNoticia){
 	$data['keywords']   	= "interpretes, grupos, solistas, folklore, argentino, musica, cantores, payadores,biografias, artistas";
 	
 	$data['noticias']      	= $this->Noticias_model->getUltimas(5);
-	$data['interpretes'] 	= $this->Noticias_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	
 	$data['redirigir']     	= "noticias-de-";		
 	$data['view']       	= "noticias_mostrar_view";

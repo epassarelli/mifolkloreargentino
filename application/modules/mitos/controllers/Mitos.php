@@ -3,16 +3,18 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Mitos extends MX_Controller {
 
-function __construct(){
+public function __construct(){
 	parent::__construct();
 	$this->load->model('Mitos_model');
-	$this->load->library('form_validation');
-		if (ENVIRONMENT == 'development') {
+		if (ENVIRONMENT == 'development') 
+		{
 			$this->output->enable_profiler(TRUE);
 		}
 }	
+
 #############################################################
-function index(){
+#
+public function index(){
 	$data['filas'] 			= $this->Mitos_model->getByLetra( 'mitos', 'titulo', 'A', 'titulo');
 	
 	$data['title'] 			= "Mitos y Leyendas | Supersticiones y Fabulas";
@@ -29,8 +31,11 @@ function index(){
 
 	$this->load->view('layout', $data);
 }
+
 #############################################################
-function mostrar($id){
+#
+public function mostrar($id)
+{
 	$data['filas']	= $this->Mitos_model->get($id);
 	//var_dump($data['filas']);die();
 	
@@ -47,8 +52,11 @@ function mostrar($id){
 	$data['sidebar']       	= 'mitos_sidebar_view';
 	$this->load->view('layout.php', $data);	
 }
+
 #############################################################
-function letra($letra){
+#
+public function letra($letra)
+{
 	$data['filas'] 		= $this->Mitos_model->getByLetra( 'mitos', 'titulo', $letra, 'titulo');
 	
 	$data['title'] = "Mitos y Leyendas del Folklore Argentino con la letra " . $letra;
@@ -65,24 +73,6 @@ function letra($letra){
 	$data['sidebar']       	= 'mitos_sidebar_view';
 	$this->load->view('layout', $data);
 }
-
-
-
-
-
-
-
-function sugerir(){
-	$data['title'] = "Mitos y Leyendas del Folklore Argentino";
-	$data['breadcrumb'] = array(
-						'Inicio' => base_url(),
-						'Mitos y Leyendas' => base_url() . 'mitos-y-leyendas',
-					);
-
-	$data['view'] 		= "mitos_sugerir_form_view";
-	$this->load->view('layout', $data);
-}
-
 
 
 }

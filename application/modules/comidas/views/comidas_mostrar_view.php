@@ -1,6 +1,4 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_enlaces_view"); }?>
-
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }?>
 
 
 <div class="row">
@@ -34,11 +32,9 @@
       </div><!-- /.box -->
 
 
-	<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_enlaces_view"); }?>
-
 	<?php $this->load->view('comidas_sidebar_view'); ?> 
 
-	<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }?>	
+	<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }?>	
 	
 	<div class="row">
 		<div class="col-xs-12">

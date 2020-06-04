@@ -56,5 +56,20 @@ class Interpretes_model extends MY_Model {
 	    return $query->row();	
 	}
 
+	#########################################################
+	####
+	#### Devuelve mis administrados para un Combo
+	#### 
+
+	public function getMisAdministradosCbox(){
+		$query = $this->db
+				->select('i.inte_id, i.inte_nombre')
+				->from('interprete i')
+		        ->join('user_interprete ui', 'i.inte_id = ui.inte_id')
+                ->where("ui.user_id", $this->tank_auth->get_user_id())
+                ->get();
+    	
+    	return $query->result(); 
+	}
 
 }

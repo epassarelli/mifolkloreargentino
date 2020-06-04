@@ -36,8 +36,8 @@ function getProximos($cantidad){
 				FROM
 				evento
 				INNER JOIN interprete ON interprete.inte_id = evento.inte_id
-				INNER JOIN provincia ON evento.prov_id = provincia.prov_id
-				INNER JOIN localidad ON evento.loca_id = localidad.loca_id
+				LEFT OUTER JOIN provincia ON evento.prov_id = provincia.prov_id
+				LEFT OUTER JOIN localidad ON evento.loca_id = localidad.loca_id
 			WHERE evento.even_fecha >= '" . date('Y-m-d',time()) . "'
 			AND evento.even_estado = 1 
 			ORDER BY evento.even_fecha

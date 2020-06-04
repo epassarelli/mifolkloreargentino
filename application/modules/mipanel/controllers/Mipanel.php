@@ -22,7 +22,7 @@ public function index(){
 
 
 	$rol = $this->tank_auth->get_user_profile();
-
+	//var_dump($rol);die();
 	// switch ($rol) {
 	// 		case '1':
 	// 			# registrado...

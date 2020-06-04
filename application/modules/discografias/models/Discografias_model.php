@@ -33,22 +33,12 @@ function getInterpretesConAlbunes(){
     return $query->result();
 }
 
+
 ##########################################################
 function getAlbunesPorInterprete($inte_id){
-	$sql = "SELECT 
-			a.albu_id, 
-			a.albu_titulo, 
-			a.albu_alias, 
-			a.albu_anio, 
-			a.albu_foto, 
-			i.inte_nombre, 
-			i.inte_alias   
-			FROM album a 
-			INNER JOIN album_interprete ai ON (a.albu_id = ai.albu_id)
-			INNER JOIN interprete i ON (ai.inte_id = i.inte_id)
-			WHERE a.albu_habilitado = 1 and
-			i.inte_id = " . $inte_id . " ORDER BY a.albu_anio desc";
-	$query = $this->db->query($sql);	
+	$this->db->where('inte_id', $inte_id);
+	$this->db->from('album');
+	$query = $this->db->get();	
     return $query->result();
 }
 
@@ -72,21 +62,28 @@ function getAlbumParticular($albu_id){
 }
 
 ##########################################################
-function getUltimosAlbunes($cantidad){
-    $sql = "SELECT
-			album.albu_id,
-			album.albu_titulo,
-			album.albu_anio,
-			album.albu_foto,
-			interprete.inte_id,
-			interprete.inte_nombre
-			FROM
-			album
-			INNER JOIN album_interprete ON album_interprete.albu_id = album.albu_id
-			INNER JOIN interprete ON album_interprete.inte_id = interprete.inte_id
-			ORDER BY album.albu_id desc 
-			LIMIT " . $cantidad;
-	$query = $this->db->query($sql);	
+function getUltimosDiscos($cantidad){
+    $this->db->select('albu_titulo, albu_alias, albu_foto, inte_nombre, inte_alias');
+    $this->db->from('album');
+    $this->db->join('interprete', 'interprete.inte_id = album.inte_id');
+    $this->db->where('albu_habilitado', 1);
+    $this->db->order_by('albu_id', 'desc');
+    $this->db->limit($cantidad);
+	
+	$query = $this->db->get();	
+    return $query->result();
+}
+
+##########################################################
+function getMasVisitados($cantidad){
+    $this->db->select('albu_titulo, albu_alias, albu_foto, albu_visitas, inte_nombre, inte_alias');
+    $this->db->from('album');
+    $this->db->join('interprete', 'interprete.inte_id = album.inte_id');
+    $this->db->where('albu_habilitado', 1);
+    $this->db->order_by('albu_visitas', 'desc');
+    $this->db->limit($cantidad);
+	
+	$query = $this->db->get();	
     return $query->result();
 }
 

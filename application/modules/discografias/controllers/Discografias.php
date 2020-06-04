@@ -9,17 +9,23 @@ function __construct(){
 	if (ENVIRONMENT == 'development') {
 		$this->output->enable_profiler(TRUE);
 	}
+	if(!isset($_SESSION['interpretes'])){
+		$this->load->model('interpretes/Interpretes_model');
+		$_SESSION['interpretes'] 	= $this->Interpretes_model->get_InterpretesCBox('interprete','inte_nombre');
+	}
 }
 
 ##############################################################
 function index(){
-	$data['interpretes']      = $this->Discografias_model->getInterpretesConAlbunes();
+	//$data['interpretes']      = $this->Discografias_model->getInterpretesConAlbunes();
+	$data['ultimos']  = $this->Discografias_model->getUltimosDiscos(12);
+	$data['populares']  = $this->Discografias_model->getMasVisitados(12);
 	
 	$data['title']      = "Discografias de Interpretes";
 	$data['description']= "Discografias de autores, compositores, grupos y solistas del Folklore Argentino";
     $data['keywords']   = "interpretes,grupos,solistas,folklore,argentino,musica,cantores,payadores,albunes,discos,cds,discografia";
 
-	//$data['interpretes'] 	= $this->Discografias_model->getInterpretesConAlbunes();
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "discografia-de-";
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(),

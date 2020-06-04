@@ -1,20 +1,27 @@
-Welcome to <?php echo $site_name; ?>,
+Bienvenid@ a <?php echo $site_name; ?>,
 
-Thanks for joining <?php echo $site_name; ?>. We listed your sign in details below. Make sure you keep them safe.
-Follow this link to login on the site:
+Gracias por unirte a <?php echo $site_name; ?>. 
+Incluimos los detalles de su inicio de sesión a continuación, asegúrate de mantenerlos a salvo.
+
+Siga este enlace para iniciar sesión en el sitio:
 
 <?php echo site_url('/auth/login/'); ?>
 
 <?php if (strlen($username) > 0) { ?>
 
-Your username: <?php echo $username; ?>
+Su usuario es: <?php echo $username; ?>
 <?php } ?>
 
-Your email address: <?php echo $email; ?>
+Su email: <?php echo $email; ?>
 
 <?php /* Your password: <?php echo $password; ?>
 
 */ ?>
 
-Have fun!
-The <?php echo $site_name; ?> Team
+Recuerde que como usuario registrado usted podra agregar contenidos en el sitio como:
+- Artistas
+- Letras de canciones
+- Peñas
+- Radios folkloricas y mucho más...
+
+El equipo de <?php echo $site_name; ?>

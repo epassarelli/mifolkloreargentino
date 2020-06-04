@@ -1,4 +1,4 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_home_superior_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_home_superior_view"); }?>
 
 
 <br>
@@ -22,10 +22,7 @@
 
         
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
-    <div class="thumbnail">
-      <a href="<?php echo site_url('letras-de-canciones'); ?>" itemprop="url">
-      <img class="img-responsive" alt="Letras de canciones" title="Letras de canciones" src="<?php echo base_url();?>assets/img/cancionero-folklorico.jpg" itemprop="image"> 
-      </a>         
+    <div class="thumbnail">       
       
       <div class="caption">
         <a href="<?php echo site_url('letras-de-canciones'); ?>" itemprop="url">
@@ -39,10 +36,7 @@
 
 
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
-    <div class="thumbnail">
-      <a href="<?php echo site_url('cartelera-folklorica'); ?>" itemprop="url">
-      <img class="img-responsive" alt="Cartelera folklorica" title="Cartelera folklorica" src="<?php echo base_url();?>assets/img/cartelera-folklorica.jpg" itemprop="image">    
-      </a>      
+    <div class="thumbnail">     
       
       <div class="caption">
         <a href="<?php echo site_url('cartelera-folklorica'); ?>" itemprop="url">
@@ -58,7 +52,7 @@
 </div>
 
 
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_medio_view');} ?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_medio_view');} ?>
 
 <br>
 
@@ -66,9 +60,6 @@
 	
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
         <div class="thumbnail">
-          <a href="<?php echo site_url('fiestas-tradicionales-argentina');?>" itemprop="url">
-          <img class="img-responsive" alt="Fiestas y Festivales Tradicionales" title="Fiestas y Festivales Tradicionales" src="<?php echo base_url();?>assets/upload/fiestas/e53ab-fiesta-jardines.jpg" itemprop="image">          
-          </a>
           <div class="caption">
             <a href="<?php echo site_url('fiestas-tradicionales-argentina');?>" itemprop="url">
             <h3 itemprop="name">Festivales Tradicionales</h3>
@@ -81,9 +72,6 @@
 				
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
         <div class="thumbnail">
-          <a href="<?php echo site_url('grupos-y-solistas'); ?>" itemprop="url">
-          <img class="img-responsive" alt="Biografías folklóricas" title="Biografías folklóricas" src="<?php echo base_url();?>assets/img/biografias-folkloricas.jpg" itemprop="image">          
-          </a>
 
           <div class="caption">
             <a href="<?php echo site_url('grupos-y-solistas'); ?>" itemprop="url">
@@ -97,9 +85,6 @@
 				
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
         <div class="thumbnail">
-          <a href="<?php echo site_url('radios-para-escuchar-folklore-argentino');?>" itemprop="url">
-          <img class="img-responsive" alt="Radios de Folklore" title="Radios de Folklore" src="<?php echo base_url();?>assets/img/radios-folkloricas.jpg" itemprop="image">         
-          </a>
           <div class="caption">
             <a href="<?php echo site_url('radios-para-escuchar-folklore-argentino');?>" itemprop="url">
             <h3 itemprop="name">Radios de Folklore</h3>
@@ -112,7 +97,7 @@
 </div>
 
 
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_inferior_view'); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_inferior_view'); }?>
 
 
 <div class="row">
@@ -145,10 +130,8 @@
     <!-- start:article.linkbox -->
 
         <div class="thumbnail">
-          <a href="<?php echo base_url().'recetas-de-comidas-tipicas'?>" itemprop="url">
-          <img class="img-responsive" alt="Comidas Tipicas Tradicionales" title="Comidas Tipicas Tradicionales" src="<?php echo base_url();?>assets/img/comidas-tipicas.jpg" itemprop="image">
           
-          </a><div class="caption"><a href="<?php echo base_url().'recetas-de-comidas-tipicas'?>" itemprop="url">
+          <div class="caption"><a href="<?php echo base_url().'recetas-de-comidas-tipicas'?>" itemprop="url">
             <h3 itemprop="name">Comidas Tipicas Tradicionales</h3></a>
             <p>La historia Argentina a través de su cocina tradicional con las recetas más antiguas y clásicas de nuestro folklore...</p>                   
           </div>
@@ -163,10 +146,8 @@
     <!-- start:article.linkbox -->
 
         <div class="thumbnail">
-          <a href="<?php echo base_url().'mitos-y-leyendas'?>" itemprop="url">
-          <img class="img-responsive" alt="Mitos, Leyendas y Fabulas" title="Mitos, Leyendas y Fabulas" src="<?php echo base_url();?>assets/img/mitos-leyendas-folklore.jpg" itemprop="image">
           
-          </a><div class="caption"><a href="<?php echo base_url().'mitos-y-leyendas'?>" itemprop="url">
+          <div class="caption"><a href="<?php echo base_url().'mitos-y-leyendas'?>" itemprop="url">
             <h3 itemprop="name">Mitos, Leyendas y Fabulas</h3></a>
             <p>El MITO, la LEYENDA y las FABULAS recopiladas de Argentina abarcando en la totalidad su territorio...</p>                   
           </div>

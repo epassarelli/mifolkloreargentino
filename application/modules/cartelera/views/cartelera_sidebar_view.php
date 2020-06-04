@@ -26,21 +26,25 @@
 </style>
 
 
+	<a class="btn btn-success btn-block" href="<?php echo site_url('admin/shows/index/add');?>" role="button">
+	  <i class="fa fa-plus"></i> Agregar una presentación
+	</a>
 
+	<br>
 
     <div class="box box-warning">
         <div class="box-header with-border">
           <h3 class="box-title">Agenda de shows</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
+          </div>
+        </div>
         <div class="box-body">
           <div id="cartelera">
 			<?php echo Modules::run('cartelera/getCalendario'); ?>
 		</div>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
+        </div>
+      </div>
 
 
 
@@ -49,15 +53,9 @@
           <h3 class="box-title">Buscar por artista</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
+          </div>
+        </div>
         <div class="box-body">
           <?php $this->load->view('buscar_por_interprete_view'); ?>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
-
-
-	<!--	
-	<a class="btn btn-success btn-block" href="<?php echo base_url();?>admin/shows/add" role="button">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Agregar un show</a>
-		 -->
+        </div>
+      </div>

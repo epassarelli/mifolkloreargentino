@@ -1,21 +1,17 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_discografias_view"); }?>
-
 <div class="row">
+
+  <div class="col-xs-12 col-sm-4 col-md-4">
+
+    <?php $this->load->view('menu_seccion_por_interprete_view'); ?>
+
+  </div>
+
 
 	<div class="col-xs-12 col-sm-8 col-md-8">
 
-
-      <!-- Disco a mostrar -->
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title"><?php echo $disco->albu_titulo;?></h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
         </div>
         <div class="box-body">          
         
@@ -52,20 +48,16 @@
 			</div>	  
 
         </div>
-        <!-- /.box-body -->
+        
         <div class="box-footer">
           Año <?php echo $disco->albu_anio;?> 
         </div>
-        <!-- /.box-footer-->
+        
       </div>
-      <!-- /. FIN de Disco a mostrar -->
 
-		
 
-	<!-- Discos relacionados del mismo interprete -->
 	<?php if(isset($relacionados)): ?>
 
-      <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Más discos de <?php echo $fila->inte_nombre; ?></h3>
@@ -87,13 +79,13 @@
                     
                         <?php if($i == 0): ?>
                             <div class="row">
-                            <!-- start:row -->  
+                              
                         <?php else: ?>
                             </div>
-                            <!-- end:row -->
+                            
 
                             <div class="row">
-                            <!-- start:row -->
+                            
                         <?php endif; ?>    
 
                     <?php endif; ?>
@@ -104,7 +96,7 @@
                   ?>
 
                     <div class="col-xs-12 col-sm-4 col-md-4">
-                    <!-- start:article -->
+                    
                         <div class="thumbnail">
                         <article class="thumb thumb-lay-two discografias" itemscope="" itemtype="http://schema.org/Article">
                             <div class="thumb-wrap relative">
@@ -115,7 +107,7 @@
                             <h4 itemprop="name"><a itemprop="url" href="<?php echo base_url()?>discografia-de-<?php echo $fila->inte_alias?>/<?php echo $fil->albu_alias?>"><?php echo $fil->albu_titulo?></a></h4>
                         </article>
                         </div>
-                    <!-- end:article -->
+                    
                     </div>
             
 
@@ -125,37 +117,22 @@
 
             </div>
 
-
         </div>
-        <!-- /.box-body -->
+        
         <div class="box-footer">
           
         </div>
-        <!-- /.box-footer-->
+        
       </div>
-      <!-- /.box -->
+
 
 	<?php endif; ?>
-	<!-- /. FIN de Discos relacionados del mismo interprete -->
-
-
 	
 	</div>
 
 
 
-	<div class="col-xs-12 col-sm-4 col-md-4">
 
-		<?php $this->load->view('menu_seccion_por_interprete_view'); ?>
 
-		<?php echo Modules::run( 'canciones/masVistoPorArtista', $fila->inte_id, 5 ); ?>
-
-		<?php echo Modules::run( 'cartelera/ultimosPorArtista', $fila->inte_id, 'even_visitas', 3, 'evento' ); ?>
-
-		<?php echo Modules::run( 'noticias/ultimasPorArtista', $fila->inte_id, 'noti_visitas', 3, 'noticia' ); ?>
-
-		<?php $this->load->view($sidebar); ?> 
-
-	</div>
-
+    <?php $this->load->view($sidebar); ?> 
 </div>

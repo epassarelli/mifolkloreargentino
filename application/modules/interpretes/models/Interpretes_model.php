@@ -177,7 +177,8 @@ function getUltimosActivos($cantidad){
 	$sql = "SELECT
 			inte_nombre,
 			inte_alias,
-			IFNULL(inte_foto, '') AS inte_foto
+			inte_foto,
+			inte_visitas
 			FROM
 			interprete
 			WHERE
@@ -194,8 +195,8 @@ function getVisitados($cantidad){
 	$sql = "SELECT
 			inte_nombre,
 			inte_alias,
-			inte_visitas,
-			IFNULL(inte_foto, '') AS inte_foto
+			inte_foto,
+			inte_visitas
 			FROM
 			interprete
 			WHERE inte_habilitado = 1

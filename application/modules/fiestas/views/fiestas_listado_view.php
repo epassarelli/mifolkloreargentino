@@ -42,12 +42,6 @@
     
     <div class="col-xs-12 col-sm-4 col-md-4">
         
-        <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { 
-            $this->load->view("adsense/adsense_fiestas_tradicionales_view"); 
-            } ?>
-
-          
-
           <h2 class="titulo alert alert-warning">Festivales mas visitados</h2>
 
           <?php if(isset($fiestasMasVisitadas)): ?>
@@ -71,8 +65,4 @@
 
     </div>
 
-
-
-
 </div>
-

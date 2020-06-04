@@ -82,7 +82,12 @@ class MY_Model extends CI_Model{
   return $query->result();
   }
 
-
+  function get_InterpretesCBox($tabla, $orden){
+      $this->db->select('inte_nombre, inte_alias');
+      $this->db->order_by($orden);    
+      $query = $this->db->get($tabla);
+    return $query->result();
+  } 
 
 
 

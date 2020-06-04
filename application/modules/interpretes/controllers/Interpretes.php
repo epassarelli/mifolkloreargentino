@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Interpretes extends MX_Controller {
 
@@ -9,20 +10,19 @@ function __construct(){
 	if (ENVIRONMENT == 'development') {
 		$this->output->enable_profiler(TRUE);
 	}
+	if(!isset($_SESSION['interpretes'])){
+		$_SESSION['interpretes'] 	= $this->Interpretes_model->get_InterpretesCBox('interprete','inte_nombre');
+	}
 }
 
-function index(){
-	
+function index(){	
 	$data['title']      	= "Grupos y Solistas del Folklore Argentino";
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
-	$data['keywords']   	= "interpretes,grupos,solistas,folklore,argentino,musica,cantores,abel,pintos,horacio,guarany,palavecino,mercedes,sosa,atahualpa,yupanki,nocheros,luciano,soledad";
-	
+	$data['keywords']   	= "interpretes,grupos,solistas,folklore,argentino,musica,cantores,abel,pintos,horacio,guarany,palavecino,mercedes,sosa,atahualpa,yupanki,nocheros,luciano,soledad";	
 	$data['ultimos']      	= $this->Interpretes_model->getUltimosActivos(16);
-	$data['populares']      = $this->Interpretes_model->getVisitados(16);	
-		
-	$data['interpretes'] 	= $this->Interpretes_model->getActivados();
+	$data['populares']      = $this->Interpretes_model->getVisitados(16);			
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "biografia-de-";	
-
 	$data['pagina']     	= "grupos-y-solistas";
 	$data['breadcrumb'] 	= array(
 								'Inicio' => base_url()
@@ -30,7 +30,6 @@ function index(){
 	$data['view']       	= 'interpretes_home_view';
 	$data['sidebar']       	= 'interpretes_sidebar_view';
 	$this->load->view('layout.php', $data);
-
 }
 
 ############################################################
@@ -39,9 +38,7 @@ function index(){
 ###
 
 function ultimos($cant){
-	//echo "Hola";
 	$data['interpretes'] = $this->Interpretes_model->get_Ultimos($cant);
-	//var_dump($data['interpretes']);die();
 	$data['titulo'] 	 = "Ultimos " . $cant ." artistas";
 	$this->load->view('interpretes_partial_view', $data);
 }
@@ -57,16 +54,13 @@ function letra($letra){
 	$data['description'] 	= "Grupos y Solistas del Folklore Argentino";	
 	$data['keywords']		= "grupos,solistas";	
 	$data['pagina']     	= "grupos-y-solistas";
-	$data['letra'] 			= $letra;
-	
-	$data['interpretes'] 	= $this->Interpretes_model->getActivados();
+	$data['letra'] 			= $letra;	
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "biografia-de-";	
-
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(), 
 						'Grupos y Solistas' => base_url().'grupos-y-solistas'
 					);	
-
 	$data['view'] 			= "interpretes_por_letra_view";
 	$data['sidebar']       	= 'interpretes_sidebar_view';
 	$this->load->view('layout', $data);
@@ -74,24 +68,17 @@ function letra($letra){
 
 ##############################################################
 function mostrar($alias){
-	$data['fila']       	= $this->Interpretes_model->getInterprete($alias);
-	
+	$data['fila']       	= $this->Interpretes_model->getInterprete($alias);	
 	$data['title']      	= "Biografia de " . $data['fila']->inte_nombre ;
-
 	$bio = substr(strip_tags(preg_replace('/\&(.)[^;]*;/', '\\1',$data['fila']->inte_biografia)),0,120);
-	//$data['description']	= "Letra de " . $data['cancion']->canc_titulo . ", ". $data['fila']->inte_nombre .", " . $inicioLetra;
-
 	$data['description']	= "Biografia de " . $data['fila']->inte_nombre . ", " .  $bio;
 	$data['keywords']   	= "interpretes, grupos, solistas, folklore, argentino, musica, cantores, payadores, biografias, artistas".$data['fila']->inte_nombre;
-
-	$data['interpretes'] 	= $this->Interpretes_model->getActivados();
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "biografia-de-";
-
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(), 
 						'Grupos y Solistas' => base_url().'grupos-y-solistas'
-					);	
-	
+					);		
 	$data['pagina']     	= "grupos-y-solistas";	
 	$data['view']       	= "interpretes_mostrar_view";
 	$data['sidebar']       	= 'interpretes_sidebar_view';

@@ -9,31 +9,30 @@ function __construct(){
 	parent::__construct();
 	$this->load->model('Canciones_model');
 	$_SESSION['seccion'] = "Canciones";
-	$this->output->enable_profiler(FALSE);
+	if(ENVIRONMENT == 'development'){
+		$this->output->enable_profiler(TRUE);
+	}
+	if(!isset($_SESSION['interpretes'])){
+		$_SESSION['interpretes'] 	= $this->Canciones_model->get_InterpretesCBox('interprete','inte_nombre');
+	}
+	
 }
 
 ##############################################################
 
 function index(){
-	//$data['interpretes'] 	= $this->Canciones_model->getInterpretesConCanciones();
-	
 	$data['title'] 			= "Letras de canciones del Folklore Argentino";
 	$data['description']	= "Letras de canciones Folklore Argentino, Abel Pintos, Horacio Guarany, chamame";
-	$data['keywords']		= "letras, canciones,folkloricas, cancionero, musica, popular, abel,pintos, soledad, palavecino, galleguillo, guarany, pereyra, carabajal, sacheros, manseros";	
-	
+	$data['keywords']		= "letras, canciones, folkloricas, cancionero, musica, popular, abel,pintos, soledad, palavecino, galleguillo, guarany, pereyra, carabajal, sacheros, manseros";		
 	$data['redirigir']     	= "letras-de-canciones-de-";
-
 	$data['letras']       	= range('A', 'Z');
 	$data['ultimas']   		= $this->Canciones_model->get_Ultimas(16);
 	$data['xvisitas']   	= $this->Canciones_model->get_Ranking_Canciones(16);
-
-	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');
-
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(),
 						'Letras de canciones' => site_url('letras-de-canciones')
 					);
-
 	$data['view']       	= 'canciones_home_view';
 	$data['sidebar']       	= 'canciones_sidebar_view';
 	$this->load->view('layout', $data);
@@ -44,26 +43,21 @@ function index(){
 function artista($inte_alias){
 	$data['fila']     		= $this->Canciones_model->getOneBy('interprete','inte_alias',$inte_alias);
 	$inte_id				= $data['fila']->inte_id;
-	$data['filas'] 			= $this->Canciones_model->getPorInterprete($inte_id);
-	
+	$data['filas'] 			= $this->Canciones_model->getPorInterprete($inte_id);	
 	$data['title']      	= $data['fila']->inte_nombre . ", Letras de canciones";
 	$data['description']	= "Letras de canciones " . $data['fila']->inte_nombre . ". El Folklore Argentino a través de sus letras";
 	$data['keywords']   	= "canciones, letras, folklore, argentino, musica, cantores, ".$data['fila']->inte_nombre;
 	
-	//$data['interpretes'] 	= $this->Canciones_model->getInterpretesConCanciones();
-	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');
-
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(),
 						'Letras de Canciones' => base_url().'letras-de-canciones',
 						$data['fila']->inte_nombre => ''
-
 					);
 	
 	$data['redirigir']     	= "letras-de-canciones-de-";
 	$data['view']       	= "canciones_por_interprete_view";
-	$data['sidebar']       	= 'canciones_sidebar_view';
-	
+	$data['sidebar']       	= 'canciones_sidebar_view';	
 	$this->load->view('layout', $data);
 }
 
@@ -75,7 +69,7 @@ function porDisco($albu_id){
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
 	$data['keywords']		= "letras,canciones";
 	$data['letra']			= $letra;	
-	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "letras-de-canciones-de-";
 	$data['view'] 			= 'canciones_por_letra_view';
 	$data['sidebar']       	= 'canciones_sidebar_view';
@@ -87,45 +81,31 @@ function porDisco($albu_id){
 function mostrar($inte_alias, $canc_alias){
 	// Traigo todos los datos del interprete
 	$data['fila']     = $this->Canciones_model->getOneBy('interprete','inte_alias',$inte_alias);
-
 	$inte_id				= $data['fila']->inte_id;
-	//var_dump($data['fila']);die();
 	// Cancion para mostrar
-	$data['cancion'] 			= $this->Canciones_model->getCancion($inte_id, $canc_alias);
-	
-	//var_dump($data['cancion']);die();
+	$data['cancion'] 			= $this->Canciones_model->getCancion($inte_id, $canc_alias);	
 	// Canciones del interprete
-	//$data['filas'] 			= $this->Canciones_model->getPorInterprete($inte_id);
-
 	// Traigo otras canciones del interprete si es que tiene
 	$otrasCanciones 		= $this->Canciones_model->getOtrasCanciones($inte_id, $data['cancion']->canc_id);
 	if(count($otrasCanciones ) > 0){
 		$data['relacionadas'] = $otrasCanciones;
-	}
-	
+	}	
 	$data['title'] 			= $data['fila']->inte_nombre . ", letra de " . $data['cancion']->canc_titulo ;
 	$inicioLetra = substr(strip_tags(preg_replace('/\&(.)[^;]*;/', '\\1',$data['cancion']->canc_contenido)),0,100);
 	$data['description']	= "Letra de " . $data['cancion']->canc_titulo . ", ". $data['fila']->inte_nombre .", " . $inicioLetra;
-
 	$data['keywords']		= "letras,canciones,cancionero,popular,musica,folklorica".$data['cancion']->canc_titulo;	
-
 	// Tomo todos los interpretes para el SELECT
 	//$data['interpretes'] 	= $this->Canciones_model->getInterpretesConCanciones();
-	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "letras-de-canciones-de-";
 
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(),
 						'Letras de Canciones' => base_url().'letras-de-canciones',
 						$data['fila']->inte_nombre => base_url() . 'letras-de-canciones-de-' . $data['fila']->inte_alias,
-					);
-	
-	//$this->load->model('videos/Videos_model');
-	//$data['video'] 			= $this->Videos_model->get_video($inte_alias , $canc_alias);
-	
+					);	
 	$data['view'] 			= "canciones_mostrar_view";
 	$data['sidebar']       	= 'canciones_sidebar_view';
-
 	$this->load->view('layout', $data);
 }
 
@@ -160,7 +140,7 @@ function _porLetra($letra){
 	$data['title'] 			= "Letras de Canciones con " . $letra;
 	$data['description']	= "Letras de Canciones con " . $letra . ", cancionero de musica folklorica y popular";
 	$data['keywords']		= "letras,canciones,musica,folklorica,popular,cancionero,folklore,argentina";
-	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "letras-de-canciones-de-";	
 	$data['letra']			= $letra;	
 	$data['view'] 			= 'canciones_por_letra_view';
@@ -218,7 +198,7 @@ function interpetesPorLetra($inte_letra){
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
 	$data['keywords']		= "letras,canciones";
 
-	$data['interpretes'] 	= $this->Canciones_model->get_todos('interprete','inte_nombre');
+	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "letras-de-canciones-de-";
 
 	$data['letra']			= $inte_letra;	

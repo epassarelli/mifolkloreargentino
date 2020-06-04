@@ -8,7 +8,7 @@
 |--------------------------------------------------------------------------
 */
 $config['website_name'] = 'Mi Folklore Argentino';
-$config['webmaster_email'] = 'epassarelli@gmail.com';
+$config['webmaster_email'] = 'info@mifolkloreargentino.com.ar';
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +40,11 @@ $config['phpass_hash_strength'] = 8;
 |--------------------------------------------------------------------------
 */
 $config['allow_registration'] = TRUE;
-$config['captcha_registration'] = TRUE;
+$config['captcha_registration'] = FALSE;
 $config['email_activation'] = TRUE;
 $config['email_activation_expire'] = 60*60*24*2;
 $config['email_account_details'] = TRUE;
-$config['use_username'] = TRUE;
+$config['use_username'] = FALSE;
 
 $config['username_min_length'] = 4;
 $config['username_max_length'] = 20;
@@ -109,12 +109,12 @@ $config['forgot_password_expire'] = 60*15;
 | 'captcha_case_sensitive' = Captcha case sensitive or not.
 |--------------------------------------------------------------------------
 */
-$config['captcha_path'] = 'assets/captcha/';
-$config['captcha_fonts_path'] = 'assets/captcha/fonts/2.ttf';
-$config['captcha_width'] = 300;
-$config['captcha_height'] = 80;
-$config['captcha_font_size'] = 14;
-$config['captcha_grid'] = TRUE;
+$config['captcha_path'] = './assets/captcha/';
+$config['captcha_fonts_path'] = './assets/captcha/fonts/2.ttf';
+$config['captcha_width'] = 350;
+$config['captcha_height'] = 100;
+$config['captcha_font_size'] = 30;
+$config['captcha_grid'] = FALSE;
 $config['captcha_expire'] = 180;
 $config['captcha_case_sensitive'] = FALSE;
 

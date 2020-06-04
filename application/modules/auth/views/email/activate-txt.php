@@ -1,24 +1,30 @@
-Welcome to <?php echo $site_name; ?>,
+Bienvenid@ a <?php echo $site_name; ?>,
 
-Thanks for joining <?php echo $site_name; ?>. We listed your sign in details below, make sure you keep them safe.
-To verify your email address, please follow this link:
+Gracias por registrarse en <?php echo $site_name; ?>.
+Incluimos los detalles de su inicio de sesión a continuación, asegúrate de mantenerlos a salvo.
+
+Verifique su correo registrado haciendo click en el siguiente link:
 
 <?php echo site_url('/auth/activate/'.$user_id.'/'.$new_email_key); ?>
 
 
-Please verify your email within <?php echo $activation_period; ?> hours, otherwise your registration will become invalid and you will have to register again.
+Verifique su correo electrónico dentro de las <?php echo $activation_period; ?> horas, de lo contrario su registro será inválido y tendrá que registrarse nuevamente. 
+
 <?php if (strlen($username) > 0) { ?>
 
-Your username: <?php echo $username; ?>
+Su usuario: <?php echo $username; ?>
 <?php } ?>
 
-Your email address: <?php echo $email; ?>
+Su email: <?php echo $email; ?>
 <?php if (isset($password)) { /* ?>
 
 Your password: <?php echo $password; ?>
 <?php */ } ?>
 
+Recuerde que como usuario registrado usted podra agregar contenidos en el sitio como:
+- Artistas
+- Letras de canciones
+- Peñas
+- Radios folkloricas y mucho más...
 
-
-Have fun!
-The <?php echo $site_name; ?> Team
+El equipo de <?php echo $site_name; ?>

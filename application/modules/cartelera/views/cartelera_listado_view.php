@@ -1,11 +1,9 @@
 <?php $this->load->view($sidebar); ?> 
 
-
-<!-- start:row -->
 <div class="row">
 <div class="col-xs-12 col-sm-8 col-md-8">
     
-<!--Columna izq-->
+
 <h1>Eventos folkloricos para el dia <?php echo $dia;?></h1>
 
 <?php if(isset($filas)): ?>
@@ -39,4 +37,4 @@
 
 </div>
 
-</div><!-- end:row -->    
+</div> 

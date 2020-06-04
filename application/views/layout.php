@@ -8,9 +8,26 @@
   <meta name="description" content="<?php if(isset($description)) echo $description; ?>">
   <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords; ?>">  
 
-  <title><?php  if(strlen($title) < 70){ $titulo = $title . ' | Folklore Argentino'; echo $titulo; }; ?></title>
+  <title>
+    <?php 
+
+
+
+      if (isset($title)){
+          $title = $title; //'Mi panel';
+        }
+        else{
+           $title = "MFA";
+           //echo $title;
+        }
+      
+      if(strlen($title) < 70){ 
+        $titulo = $title . ' | Folklore Argentino'; 
+        echo $titulo; }; ?>
     
-  <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
+  </title>
+    
+  <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
   <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("google_analitycs_view"); } ?>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -20,49 +37,41 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" disabled>
+<!--   <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" disabled> -->
 </head>
 
 <body class="hold-transition skin-yellow sidebar-mini">
 
-<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
+<?php 
+
+    //var_dump($title);die();
+
+//if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
   
 <div class="wrapper">
 
-  <?php //$this->load->view('front/header_front_view'); ?> 
 
-  <!-- Main Header -->
   <header class="main-header">
 
-    <!-- Logo -->
     <a href="<?php echo base_url(); ?>" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>MF</b>A</span>
-      <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Mi </b>Folklore Argentino</span>
     </a>
 
-    <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigacion</span>
       </a>
       
-      <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           
-          <!-- Control Sidebar Toggle Button -->
           <li>
             
-
-
-                <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?>
+          <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?>
             <a href="#" data-toggle="control-sidebar">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-user"></i> 
               <span>
                  Publicar
               </span>
@@ -73,9 +82,52 @@
                  Ingresar
               </span>
             </a>   
-                <?php endif; ?>
+        
+
+          <?php endif; ?>
 
           </li>
+
+
+          <?php if ($this->session->userdata('user_profile') == 3): ?>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+              Administrar <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/interpretes'); ?>">interpretes</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/gacetillas'); ?>">gacetillas</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/shows'); ?>">shows</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/discos'); ?>">discos</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/canciones'); ?>">canciones</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/festivales'); ?>">festivales</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/efemerides'); ?>">efemerides</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/comidas'); ?>">comidas</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/radios'); ?>">radios</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/penias'); ?>">penias</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/mitos'); ?>">mitos</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/avisos'); ?>">avisos</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/videos'); ?>">videos</a></li>
+              
+              <li role="presentation" class="divider"></li>
+
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/usuarios'); ?>">usuarios</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/contactos'); ?>">contactos</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/cancionessugeridas'); ?>">cancionessugeridas</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/provincias'); ?>">provincias</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/localidades'); ?>">localidades</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/faqscategorias'); ?>">faqscategorias</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/faqs'); ?>">faqs</a></li>              
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/guias'); ?>">guias</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/rubros'); ?>">rubros</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/meses'); ?>">meses</a></li>                            
+            </ul>
+          </li>
+
+
+          <?php endif; ?>
+
         </ul>
       </div>
     </nav>
@@ -83,36 +135,30 @@
   </header>
 
 
-  <?php $this->load->view('front/aside_front_view'); ?>  
+  <?php $this->load->view('aside_menu_principal_view'); ?>  
 
-  <!-- Content Wrapper. Contains page content -->
+  <?php $this->load->view('aside_publicar_view'); ?>
+
   <div class="content-wrapper">
-    <!-- Content Header (Page header)-->
     <section class="content-header">
 
     <?php if(isset($breadcrumb)): ?>
       <ol class="breadcrumb hidden-xs">
         <?php 
         foreach ($breadcrumb as $key => $value) {
-          # code...
           echo "<li><a href='$value''>$key</a></li>";
         }; 
         ?>
-        <!--         
-        <li class="hidden-xs">
-         <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_like_count_view"); } ?>
-        </li> 
-        -->
     </ol>
     <?php endif; ?>      
 
-      <h1><?php echo $title; ?></h1>
+      <h1>
+        <?php echo $title; ?>        
+      </h1>
 
     </section>
 
-    <!-- Main content -->
     <section class="content container-fluid">
-      <!-- | Your Page Content Here | -->
       	<?php 
       	if (isset($output)){
       		echo $output;
@@ -122,262 +168,189 @@
       	}
       	?>
     </section>
-    <!-- /.content -->
+
+    <section class="content container-fluid">
+        <?php //$this->load->view('social_share_view'); ?>
+    </section>
 
   </div>
-  <!-- /.content-wrapper -->
 
-  <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
     <div class="pull-right hidden-xs">
       Contacto
     </div>
-    <!-- Default to the left -->
     <strong>Copyright &copy; 2009-<?php echo date('Y',time()); ?> - <a href="http://webpass.com.ar" target="_blank">Dise&ntilde;o y Desarrollo Web</a>.</strong> Todos los derechos reservados.
   </footer>
 
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
   
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        
-        <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?> 
 
-    <div class="tab-pane active" id="control-sidebar-home-tab">
-        <ul class="control-sidebar-menu">
-          
-          <li>
-            <a href="<?php echo site_url('mipanel/interpretes');?>">
-              <i class="menu-icon fa fa-user bg-red"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Mis administrados</h4>
-                <p>Datos de artistas</p>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo site_url('mipanel/noticias');?>">
-              <i class="menu-icon fa fa-bullhorn bg-yellow"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Noticias</h4>
-                <p>Gacetillas de prensa</p>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo site_url('mipanel/shows');?>">
-              <i class="menu-icon fa fa-calendar bg-light-blue"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Shows / Agenda</h4>
-                <p>Cartelera de artistas</p>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo site_url('mipanel/discos');?>">
-              <i class="menu-icon fa fa-bullseye bg-green"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Discos</h4>
-                <p>Datos de sus discos</p>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo site_url('mipanel/canciones');?>">
-              <i class="menu-icon fa fa-music bg-red"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Canciones</h4>
-                <p>Letras y videos de canciones </p>
-              </div>
-            </a>
-          </li>
-          
-          <!--
-          <li>
-            <a href="<?php echo site_url('mipanel/festivales');?>">
-              <i class="menu-icon fa fa-map bg-yellow"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Festivales</h4>
-                <p>...</p>
-              </div>
-            </a>
-          </li>
-          
-          <li>
-            <a href="<?php echo site_url('mipanel/penias');?>">
-              <i class="menu-icon fa fa-map-marker bg-light-blue"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Peñas</h4>
-                <p>...</p>
-              </div>
-            </a>
-          </li>
-          
-          <li>
-            <a href="<?php echo site_url('mipanel/radios');?>">
-              <i class="menu-icon fa fa-volume-up bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Radios</h4>
-                <p>...</p>
-              </div>
-            </a>
-          </li>
-
-                     
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Clasificados</h4>
-
-                <p>...</p>
-              </div>
-            </a>
-          </li> 
-          -->
-
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-
-
-
-       
-
-      <a href="<?php echo site_url('auth/logout');?>">Salir</a>
-          
-          <?php else: ?>
-
-            <?php //$this->load->view('auth/login_form', $data); //echo Modules::run('auth','login'); ?>
-
-            <div class="form-group">
-              <label class="control-sidebar-subheading">
-                
-                <a href="<?php echo base_url();?>auth/login"><i class="fa fa-user"></i> Iniciar sesion
-              </a>
-              </label>
-                <h4 class="control-sidebar-heading">¿Por qué registrarme?</h4>
-                <p>Al registrarse e iniciar sesion usted puede agregar contenidos como nuevos artistas, fechas de shows, gacetillas de prensa, letras de canciones y mucho más.</p>
-            </div>
-
-          <?php endif; ?>
-
-      </div>
-      <!-- /.tab-pane -->
-
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <?php echo Modules::run('contacto',''); ?>
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
 
-  <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- DataTables -->
-  <!--
-  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>"> -->
-  <!-- Theme style -->
+  <?php if (!isset($output)): ?>
+    <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <?php endif; ?>
+
+<link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/AdminLTE.min.css'); ?>">
-  <!-- AdminLTE Skins.  -->
   <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/skins/skin-yellow.min.css'); ?>">
 
-  <!-- Font Awesome -->
 <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/font-awesome/css/font-awesome.min.css">
- <!-- Ionicons -->
-<!--   <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/Ionicons/css/ionicons.min.css"> -->
+<link rel="stylesheet" href="<?php echo site_url('assets/css/mfa.css');?>">
  
   <?php if(isset($css_files)): ?>
     <?php foreach($css_files as $file): ?>
-      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" disabled>
+      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>">
     <?php endforeach; ?>
   <?php endif; ?>
 
-<!-- REQUIRED JS SCRIPTS -->
-<script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
+
+  <?php if (!isset($output)): ?>
+    <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
+  <?php endif; ?>
 
 <input type="hidden" id="url" value="<?php echo site_url();?>">
-<?php if(isset($js_files)): ?>
 
-  <?php foreach($js_files as $file): ?>
-  	
-    <script src="<?php echo $file; ?>"></script>
+  <?php if(isset($js_files)): ?>
+    <?php foreach($js_files as $file): ?>
+      <script src="<?php echo $file; ?>"></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
 
-  <?php endforeach; ?>
+  <script async src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
+  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- <script async src="<?php echo base_url();?>assets/js/scripts.js"></script> -->
+  <script>  
+    $(document).ready(function() {
+      let urlBase = $('#url').val();
+      
+      // bind change event to select
+      $('#interprete').bind('change', function () {
+        var url = $(this).val(); // get selected value
+        if (url) { // require a URL
+            window.location = url; // redirect
+        }
+        return false;
+      });
+
+      // bind change event to select
+      $('#provincia-fiesta').bind('change', function () {
+        var url = $(this).val(); // get selected value
+        if (url) { // require a URL
+            window.location = url; // redirect
+        }
+        return false;
+      });
+
+      // bind change event to select
+      $('#mes-fiesta').bind('change', function () {
+        var url = $(this).val(); // get selected value
+        if (url) { // require a URL
+            window.location = url; // redirect
+        }
+        return false;
+      });
+
+      // //habilitamos el combo en la edicion
+      // if (localidad.length > 0) {
+      //   localidad.disabled = false;
+      // }
+
+      // // Llena de localidades el combo dependiente
+      // $("#provincia").change( function() {
+      //   $("#provincia option:selected").each( function() {
+      //           provincia = $('#provincia').val();
+                
+      //     $.post( 
+      //       urlBase+"admin/localidades/getLocalidadesForm", 
+      //       { provincia : provincia }, 
+      //       function(data) {
+      //         localidad.disabled = false;
+      //                 $("#localidad").html(data);
+      //           });
+          
+      //       });
+            
+      // });
+
+
+
+
+///////////////////////////// SCRIPT ////////////////////////////////
+
+    $('#EnviarP').click(function (e) { 
+        e.preventDefault();
+        //tomamos el valor del boton para saber cual estado enviar el .object va asociado al data, si el atributo de html es data-pirulo la cosntante del objeto finaliza con .pirulo: e.target.dataset.pirulo
+        const Objeto = e.target.dataset.object;
+        //alert(Objeto);
+        enviarobjeto(Objeto)
+      });
+
+    function enviarobjeto(Objeto) { 
+      $.ajax({  
+          url: 'http://localhost/mifolkloreargentino/admin/sugerir',
+          method:"POST",  
+          //Metodo para tomar datos sin archivos
+          data:{
+              Objeto: Objeto
+          },  
+          //respuesta del envio
+          dataType: "json",
+          success: function(response) {
+              //Aqui dependiedo de lo que quieras hacer condicionas ó si no haras ninguna accion coloca un return para que salga de la funcion
+              alert(Objeto);
+            }  // success
+          });  //Ajax
+     }
+
+    //En el metodo de CI tomas el valor con:  ...input->post(Objeto)
+
+          
+      // Carga de nueva letra
+      $("#send").click(function(){       
+       letra = $("#letra").val();
+       cancion_id = '<?php if(isset($cancion->canc_id)){ echo $cancion->canc_id; } else { echo "1";}; ?>';
+       $.ajax({
+           type: "post",
+           url: "<?php echo base_url('canciones/sugerirLetra'); ?>", 
+           data: {letra: letra, cancion_id: cancion_id},
+           dataType: "text",  
+           cache:false,
+           success: 
+                function(devuelto){
+                  flag = parseInt(devuelto);
+                  if(flag == 1){
+                    $( '#error' ).empty();
+                    $( '#mensaje' ).html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Felicitaciones!</h4>Se sugerido exitosamente la letra de dicha canción.</div>');
+                  }
+                  else{
+                    alert('La letra sugerida no tiene la suficiente cantidad de caracteres');
+                    $( '#error' ).html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Atención!</h4>La letra sugerida no tiene la suficiente cantidad de caracteres necesarios.</div>');
+                  }
+                }
+            });
+       return false;
+      });
+
+
+  });
+  </script>
+
+<?php if($this->tank_auth->get_user_profile() !== '3'): ?>
+  
+  <script>
+    $(document).ready(function() {
+      $("#user_id_field_box").hide();
+      $("#inte_alias_field_box").hide();
+      $("#albu_alias_field_box").hide();
+      $("#canc_alias_field_box").hide();
+      $("#fies_alias_field_box").hide();    
+    });
+  </script>
 
 <?php endif; ?>
 
-  <!-- AdminLTE App -->
-  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
-     
-  <!-- Bootstrap 3.3.7 -->
-  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script src="<?php echo base_url();?>assets/js/scripts.js" defer></script>
-
-<script type="text/javascript">  
-
-    $("#send").click(function(){       
-      
-     letra = $("#letra").val();
-     cancion_id = <?php if(isset($cancion->canc_id)){ echo $cancion->canc_id; } else { echo "1";} ?>;
-     //alert(letra + ' - ' + cancion_id);
-     $.ajax({
-         type: "post",
-         url: "<?php echo base_url('canciones/sugerirLetra'); ?>", 
-         //data: {letra: , cancion_id: },
-         data: {letra: letra, cancion_id: cancion_id},
-         dataType: "text",  
-         cache:false,
-         success: 
-              function(devuelto){
-                //console.log(devuelto);
-                flag = parseInt(devuelto);
-                if(flag == 1){
-                  $( '#error' ).empty();
-                  $( '#mensaje' ).html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Felicitaciones!</h4>Se sugerido exitosamente la letra de dicha canción.</div>');
-                }
-                else{
-                  alert('La letra sugerida no tiene la suficiente cantidad de caracteres');
-                  
-                  $( '#error' ).html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Atención!</h4>La letra sugerida no tiene la suficiente cantidad de caracteres necesarios.</div>');
-                }
-                
-                //alert(devuelto);  //as a debugging message.
-              }
-          });// you have missed this bracket
-     return false;
- });
-
-</script>   
+  <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
+ 
 </body>
 </html>

@@ -13,12 +13,12 @@
 	
     <!-- Stylesheets
     ============================================= -->
-	<link rel="stylesheet" href="http://www.mifolkloreargentino.com.ar/assets/css/bootstrap.min.css" defer>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,500italic,400italic,700,700italic%7CRoboto+Condensed:400,700%7CRoboto+Slab' rel='stylesheet' type='text/css' async>
+	<link rel="stylesheet" href="https://www.mifolkloreargentino.com.ar/assets/css/bootstrap.min.css" defer>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,500italic,400italic,700,700italic%7CRoboto+Condensed:400,700%7CRoboto+Slab' rel='stylesheet' type='text/css' async>
 
     <!-- end:web fonts -->
-	<link rel="stylesheet" href="http://www.mifolkloreargentino.com.ar/assets/css/bootstrap-social.css" async>
-	<link rel="stylesheet" href="http://www.mifolkloreargentino.com.ar/assets/css/font-awesome.min.css" async>
+	<link rel="stylesheet" href="https://www.mifolkloreargentino.com.ar/assets/css/bootstrap-social.css" async>
+	<link rel="stylesheet" href="https://www.mifolkloreargentino.com.ar/assets/css/font-awesome.min.css" async>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +32,6 @@
 		body {
 		  padding-top: 50px;
 		  padding-bottom: 0px;
-		 /*background-color: #683914;*/
 		}
 		
 		#page-footer{
@@ -77,34 +76,8 @@
 
 	</style>
 
-
-    <link href="http://www.mifolkloreargentino.com.ar/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-    <!-- Document Title
-    ============================================= -->
     <title>Mi Folklore Argentino - Grupos y Solistas, Festivales, Show, Letras</title>
     
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-7042088525718719",
-    enable_page_level_ads: true
-  });
-</script>
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-17368837-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-	<script src='https://www.google.com/recaptcha/api.js' async></script>
-
-	
 </head>
 
 <body>
@@ -129,35 +102,34 @@
     <span class="icon-bar"></span>
     </button>
     
-    <a class="navbar-brand" href="http://www.mifolkloreargentino.com.ar/">
+    <a class="navbar-brand" href="https://www.mifolkloreargentino.com.ar/">
       <span aria-hidden="true" class="glyphicon glyphicon-home"></span>
     </a>
     <span class="navbar-brand hidden-sm hidden-md hidden-lg">
       <!-- Modulo de Facebook
 <div class="fb-like" data-href="" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div> -->
 
-<div class="fb-like" data-href="http://www.mifolkloreargentino.com.ar/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>    </span>
+<div class="fb-like" data-href="https://www.mifolkloreargentino.com.ar/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>    </span>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <!--<li><a href="http://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino">Radios</a></li>-->
       
-      <li><a href="http://www.mifolkloreargentino.com.ar/noticias">Noticias</a></li> 
-      <li><a href="http://www.mifolkloreargentino.com.ar/grupos-y-solistas">Interpretes</a></li>
-      <li><a href="http://www.mifolkloreargentino.com.ar/letras-de-canciones">Canciones</a></li>
-      <li><a href="http://www.mifolkloreargentino.com.ar/cartelera-folklorica">Cartelera</a></li>
-      <li><a href="http://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina">Festivales</a></li>
+      <li><a href="https://www.mifolkloreargentino.com.ar/noticias">Noticias</a></li> 
+      <li><a href="https://www.mifolkloreargentino.com.ar/grupos-y-solistas">Interpretes</a></li>
+      <li><a href="https://www.mifolkloreargentino.com.ar/letras-de-canciones">Canciones</a></li>
+      <li><a href="https://www.mifolkloreargentino.com.ar/cartelera-folklorica">Cartelera</a></li>
+      <li><a href="https://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina">Festivales</a></li>
       
-      <li><a href="http://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino">Radios</a></li>
-      <li><a href="http://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas">Comidas</a></li>        
-      <li><a href="http://www.mifolkloreargentino.com.ar/mitos-y-leyendas">Mitos</a></li>
+      <li><a href="https://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino">Radios</a></li>
+      <li><a href="https://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas">Comidas</a></li>        
+      <li><a href="https://www.mifolkloreargentino.com.ar/mitos-y-leyendas">Mitos</a></li>
             
     </ul>
     <ul class="nav navbar-nav navbar-right">
 
-              <li><a href="http://www.mifolkloreargentino.com.ar/auth/login">Ingresar <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a></li>
+              <li><a href="https://www.mifolkloreargentino.com.ar/auth/login">Ingresar <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a></li>
             
       
     </ul>
@@ -167,11 +139,11 @@
 	<!-- Header
 	============================================= -->
 	    <ol class="breadcrumb">
-    	<li><a href='http://www.mifolkloreargentino.com.ar/''>Inicio</a></li>    	<li class="hidden-xs">
+    	<li><a href='https://www.mifolkloreargentino.com.ar/'>Inicio</a></li>    	<li class="hidden-xs">
     	 <!-- Modulo de Facebook
 <div class="fb-like" data-href="" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div> -->
 
-<div class="fb-like" data-href="http://www.mifolkloreargentino.com.ar/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>    	</li>
+<div class="fb-like" data-href="https://www.mifolkloreargentino.com.ar/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>    	</li>
 	</ol>
 	
 
@@ -180,18 +152,6 @@
 	<div class="container">
 	    
 		<div class="col-md-12">		
-		
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MFA - Home superior -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7042088525718719"
-     data-ad-slot="4139602469"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
           
 <div class="row">     
   
@@ -215,12 +175,12 @@
         
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
     <div class="thumbnail">
-      <a href="http://www.mifolkloreargentino.com.ar/letras-de-canciones" itemprop="url">
-      <img class="img-responsive" alt="Letras de canciones" title="Letras de canciones" src="http://www.mifolkloreargentino.com.ar/assets/img/cancionero-folklorico.jpg" itemprop="image"> 
+      <a href="https://www.mifolkloreargentino.com.ar/letras-de-canciones" itemprop="url">
+      <img class="img-responsive" alt="Letras de canciones" title="Letras de canciones" src="https://www.mifolkloreargentino.com.ar/assets/img/cancionero-folklorico.jpg" itemprop="image"> 
       </a>         
       
       <div class="caption">
-        <a href="http://www.mifolkloreargentino.com.ar/letras-de-canciones" itemprop="url">
+        <a href="https://www.mifolkloreargentino.com.ar/letras-de-canciones" itemprop="url">
           <h3 itemprop="name">Letras de Canciones</h3>
         </a>
         <p>Todas las letras de canciones folkloricas de tus interpretes favoritos en un solo lugar.</p>                   
@@ -232,12 +192,12 @@
 
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
     <div class="thumbnail">
-      <a href="http://www.mifolkloreargentino.com.ar/cartelera-folklorica" itemprop="url">
-      <img class="img-responsive" alt="Cartelera folklorica" title="Cartelera folklorica" src="http://www.mifolkloreargentino.com.ar/assets/img/cartelera-folklorica.jpg" itemprop="image">    
+      <a href="https://www.mifolkloreargentino.com.ar/cartelera-folklorica" itemprop="url">
+      <img class="img-responsive" alt="Cartelera folklorica" title="Cartelera folklorica" src="https://www.mifolkloreargentino.com.ar/assets/img/cartelera-folklorica.jpg" itemprop="image">    
       </a>      
       
       <div class="caption">
-        <a href="http://www.mifolkloreargentino.com.ar/cartelera-folklorica" itemprop="url">
+        <a href="https://www.mifolkloreargentino.com.ar/cartelera-folklorica" itemprop="url">
         <h3 itemprop="name">Cartelera Folklorica</h3>
         </a>
         <p>En la agenda de shows y eventos folkloricos de Argentina encontrarás a dónde ir.</p> 
@@ -250,27 +210,15 @@
 </div>
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MFA - Home medio -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7042088525718719"
-     data-ad-slot="7639398868"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 <div class="row">			
 	
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
         <div class="thumbnail">
-          <a href="http://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina" itemprop="url">
-          <img class="img-responsive" alt="Fiestas y Festivales Tradicionales" title="Fiestas y Festivales Tradicionales" src="http://www.mifolkloreargentino.com.ar/assets/upload/fiestas/e53ab-fiesta-jardines.jpg" itemprop="image">          
+          <a href="https://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina" itemprop="url">
+          <img class="img-responsive" alt="Fiestas y Festivales Tradicionales" title="Fiestas y Festivales Tradicionales" src="https://www.mifolkloreargentino.com.ar/assets/upload/fiestas/e53ab-fiesta-jardines.jpg" itemprop="image">          
           </a>
           <div class="caption">
-            <a href="http://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina" itemprop="url">
+            <a href="https://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina" itemprop="url">
             <h3 itemprop="name">Festivales Tradicionales</h3>
             </a>
             <p>Fiestas tradicionales y festivales folklóricos a lo largo del país.</p>                   
@@ -281,12 +229,12 @@
 				
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
         <div class="thumbnail">
-          <a href="http://www.mifolkloreargentino.com.ar/grupos-y-solistas" itemprop="url">
-          <img class="img-responsive" alt="Biografías folklóricas" title="Biografías folklóricas" src="http://www.mifolkloreargentino.com.ar/assets/img/biografias-folkloricas.jpg" itemprop="image">          
+          <a href="https://www.mifolkloreargentino.com.ar/grupos-y-solistas" itemprop="url">
+          <img class="img-responsive" alt="Biografías folklóricas" title="Biografías folklóricas" src="https://www.mifolkloreargentino.com.ar/assets/img/biografias-folkloricas.jpg" itemprop="image">          
           </a>
 
           <div class="caption">
-            <a href="http://www.mifolkloreargentino.com.ar/grupos-y-solistas" itemprop="url">
+            <a href="https://www.mifolkloreargentino.com.ar/grupos-y-solistas" itemprop="url">
             <h3 itemprop="name">Biografías folklóricas</h3>
             </a>
             <p>Los artistas del Folklore Argentino con sus biografías y trayectoria.</p>                   
@@ -297,11 +245,11 @@
 				
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
         <div class="thumbnail">
-          <a href="http://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino" itemprop="url">
-          <img class="img-responsive" alt="Radios de Folklore" title="Radios de Folklore" src="http://www.mifolkloreargentino.com.ar/assets/img/radios-folkloricas.jpg" itemprop="image">         
+          <a href="https://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino" itemprop="url">
+          <img class="img-responsive" alt="Radios de Folklore" title="Radios de Folklore" src="https://www.mifolkloreargentino.com.ar/assets/img/radios-folkloricas.jpg" itemprop="image">         
           </a>
           <div class="caption">
-            <a href="http://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino" itemprop="url">
+            <a href="https://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino" itemprop="url">
             <h3 itemprop="name">Radios de Folklore</h3>
             </a>
             <p>Encontrá tu radio folklórica de la zona o escuchálas a través de internet.</p>                   
@@ -312,17 +260,6 @@
 </div>
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MFA - Home inferior -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7042088525718719"
-     data-ad-slot="5295808460"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 <div class="row">
 
@@ -354,10 +291,10 @@
     <!-- start:article.linkbox -->
 
         <div class="thumbnail">
-          <a href="http://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas" itemprop="url">
-          <img class="img-responsive" alt="Comidas Tipicas Tradicionales" title="Comidas Tipicas Tradicionales" src="http://www.mifolkloreargentino.com.ar/assets/img/comidas-tipicas.jpg" itemprop="image">
+          <a href="https://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas" itemprop="url">
+          <img class="img-responsive" alt="Comidas Tipicas Tradicionales" title="Comidas Tipicas Tradicionales" src="https://www.mifolkloreargentino.com.ar/assets/img/comidas-tipicas.jpg" itemprop="image">
           
-          </a><div class="caption"><a href="http://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas" itemprop="url">
+          </a><div class="caption"><a href="https://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas" itemprop="url">
             <h3 itemprop="name">Comidas Tipicas Tradicionales</h3></a>
             <p>La historia Argentina a través de su cocina tradicional con las recetas más antiguas y clásicas de nuestro folklore...</p>                   
           </div>
@@ -372,10 +309,10 @@
     <!-- start:article.linkbox -->
 
         <div class="thumbnail">
-          <a href="http://www.mifolkloreargentino.com.ar/mitos-y-leyendas" itemprop="url">
-          <img class="img-responsive" alt="Mitos, Leyendas y Fabulas" title="Mitos, Leyendas y Fabulas" src="http://www.mifolkloreargentino.com.ar/assets/img/mitos-leyendas-folklore.jpg" itemprop="image">
+          <a href="https://www.mifolkloreargentino.com.ar/mitos-y-leyendas" itemprop="url">
+          <img class="img-responsive" alt="Mitos, Leyendas y Fabulas" title="Mitos, Leyendas y Fabulas" src="https://www.mifolkloreargentino.com.ar/assets/img/mitos-leyendas-folklore.jpg" itemprop="image">
           
-          </a><div class="caption"><a href="http://www.mifolkloreargentino.com.ar/mitos-y-leyendas" itemprop="url">
+          </a><div class="caption"><a href="https://www.mifolkloreargentino.com.ar/mitos-y-leyendas" itemprop="url">
             <h3 itemprop="name">Mitos, Leyendas y Fabulas</h3></a>
             <p>El MITO, la LEYENDA y las FABULAS recopiladas de Argentina abarcando en la totalidad su territorio...</p>                   
           </div>
@@ -402,10 +339,10 @@
 	
 	<b>Compartir en: </b>
 	
-	<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.mifolkloreargentino.com.ar%2F" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);this.href, 'weeklywin', 'left=50,top=50,width=600,height=360,toolbar=0'); return false; ">
+	<a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.mifolkloreargentino.com.ar%2F" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);this.href, 'weeklywin', 'left=50,top=50,width=600,height=360,toolbar=0'); return false; ">
 	<span class="fa fa-facebook"></span></a>
 
-	<a class="btn btn-social-icon btn-google" href="http://plus.google.com/share?url=http%3A%2F%2Fwww.mifolkloreargentino.com.ar%2F" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);this.href, 'weeklywin', 'left=50,top=50,width=600,height=360,toolbar=0'); return false; "><span class="fa fa-google"></span></a>
+	<a class="btn btn-social-icon btn-google" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.mifolkloreargentino.com.ar%2F" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);this.href, 'weeklywin', 'left=50,top=50,width=600,height=360,toolbar=0'); return false; "><span class="fa fa-google"></span></a>
 	
 	<a class="btn btn-social-icon btn-instagram" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-instagram']); this.href, 'weeklywin', 'left=50,top=50,width=600,height=360,toolbar=0'); return false; ">
 	<span class="fa fa-instagram"></span></a>
@@ -426,23 +363,17 @@
     <div class="copyright row">
 
         <div class="col-xs-12 col-sm-10">
-            <!--
-            <a href="http://www.mifolkloreargentino.com.ar/biografias">Biografias</a> | 
-            <a href="http://www.mifolkloreargentino.com.ar/discografias">Discografias</a> | 
-            -->
-            <a href="http://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino">Radios</a> |  
-            <a href="http://www.mifolkloreargentino.com.ar/grupos-y-solistas">Artistas</a> | 
-            <a href="http://www.mifolkloreargentino.com.ar/letras-de-canciones">Canciones</a> | 
-            <!--
-            <a href="http://www.mifolkloreargentino.com.ar/videos">Videos</a> | 
-            <a href="http://www.mifolkloreargentino.com.ar/fotos">Fotos</a> | 
-            -->
-            <a href="http://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina">Festivales</a> | 
-            <a href="http://www.mifolkloreargentino.com.ar/cartelera-folklorica">Cartelera</a> | 
-            <a href="http://www.mifolkloreargentino.com.ar/penias-folkloricas">Pe&ntilde;as</a> |     
-            <a href="http://www.mifolkloreargentino.com.ar/mitos-y-leyendas">Mitos</a> | 
-            <a href="http://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas">Comidas</a> |  
-            <a href="http://www.mifolkloreargentino.com.ar/contacto">Contacto</a> |   
+            
+            <a href="https://www.mifolkloreargentino.com.ar/radios-para-escuchar-folklore-argentino">Radios</a> |  
+            <a href="https://www.mifolkloreargentino.com.ar/grupos-y-solistas">Artistas</a> | 
+            <a href="https://www.mifolkloreargentino.com.ar/letras-de-canciones">Canciones</a> | 
+            
+            <a href="https://www.mifolkloreargentino.com.ar/fiestas-tradicionales-argentina">Festivales</a> | 
+            <a href="https://www.mifolkloreargentino.com.ar/cartelera-folklorica">Cartelera</a> | 
+            <a href="https://www.mifolkloreargentino.com.ar/penias-folkloricas">Pe&ntilde;as</a> |     
+            <a href="https://www.mifolkloreargentino.com.ar/mitos-y-leyendas">Mitos</a> | 
+            <a href="https://www.mifolkloreargentino.com.ar/recetas-de-comidas-tipicas">Comidas</a> |  
+            <a href="https://www.mifolkloreargentino.com.ar/contacto">Contacto</a> |   
         </div>
 
         <div class="col-xs-12 col-sm-2 text-right">
@@ -462,9 +393,9 @@
 
     <!-- External JavaScripts
     ============================================= -->
-    <script src="http://www.mifolkloreargentino.com.ar/assets/js/jquery.min.js" defer></script>	
-	<script src="http://www.mifolkloreargentino.com.ar/assets/js/bootstrap.min.js" async></script>
-	<script src="http://www.mifolkloreargentino.com.ar/assets/js/scripts.js" async></script>
+    <script src="https://www.mifolkloreargentino.com.ar/assets/js/jquery.min.js" defer></script>	
+	<script src="https://www.mifolkloreargentino.com.ar/assets/js/bootstrap.min.js" async></script>
+	<script src="https://www.mifolkloreargentino.com.ar/assets/js/scripts.js" async></script>
 
 </body>
 

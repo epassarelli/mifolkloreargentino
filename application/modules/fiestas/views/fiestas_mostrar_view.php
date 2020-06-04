@@ -1,5 +1,3 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_fiestas_tradicionales_view"); }?>
-
 <?php $this->load->view($sidebar); ?> 
 
 <div class="row">
@@ -15,7 +13,7 @@
 
         <?php echo $festival->fies_detalle;?>
 
-        <!-- start:tags -->
+
         <aside class="tags">
             <ol class="breadcrumb">
                 <li><a href="<?php echo base_url()?>fiestas-tradicionales-argentina">Fiestas Tradicionales</a></li>
@@ -23,18 +21,12 @@
                 <li><a href="<?php echo base_url()?>fiestas-tradicionales-argentina-provincia-<?php echo $festival->fies_provincia;?>"><?php echo ucwords(str_replace("-", " ", $festival->fies_provincia));?></a></li>
             </ol>
         </aside>
-        <!-- end:tags -->
+
 
     </div>
 
 
     <div class="col-xs-12 col-sm-4 col-md-4">
-        
-        <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { 
-            $this->load->view("adsense/adsense_fiestas_tradicionales_view"); 
-            } ?>
-
-          
 
           <h2 class="titulo alert alert-warning">Festivales mas visitados</h2>
 
@@ -58,6 +50,5 @@
           <?php endif; ?>
 
     </div>
-
 
 </div>

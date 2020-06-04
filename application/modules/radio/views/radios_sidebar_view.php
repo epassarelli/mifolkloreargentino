@@ -1,4 +1,5 @@
-<a class="btn btn-success btn-block" href="<?php echo base_url();?>admin/radios/add" role="button">Sugerir NUEVA Radio</a>
+<a class="btn btn-success btn-block" href="<?php echo site_url('admin/radios/index/add');?>" role="button">
+  <i class="fa fa-plus"></i> Sugerir una Radio
+</a>
 
-
-<?php $this->load->view('adsense/adsense_adaptable_view');  ?> 
+<br>

@@ -1,4 +1,4 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_adaptable_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_adaptable_view"); }?>
 
 
 <div class="row">
@@ -65,8 +65,9 @@
 
 
 	<div class="col-sx-12 col-sm-4 col-md-3">
+		
 		<?php $this->load->view('penias_sidebar_view'); ?> 
-		<a class="btn btn-success btn-block" href="<?php echo base_url();?>admin/penias/add" role="button">Sugerir Pe&ntilde;a Folklorica</a> 
+
 	</div>
 
 </div>

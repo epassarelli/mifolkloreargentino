@@ -1,7 +1,3 @@
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_fiestas_tradicionales_view"); }?>
-
-<br>
-
 <?php $this->load->view($sidebar); ?>
 
 <div class="row">
@@ -25,13 +21,6 @@
     <div class="box-header with-border">
       <h3 class="box-title">Ultimos festivales agregados</h3>
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-        </button>
-        <!--
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      -->
-      </div>
     </div>
 
     <div class="box-body">
@@ -69,13 +58,6 @@
     <div class="box-header with-border">
       <h3 class="box-title">Festivales mas visitados</h3>
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-        </button>
-        <!--
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      -->
-      </div>
     </div>
 
     <div class="box-body">
@@ -116,13 +98,6 @@
     <div class="box-header with-border">
       <h3 class="box-title">Festivales de este mes</h3>
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-        </button>
-        <!--
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      -->
-      </div>
     </div>
 
     <div class="box-body">
@@ -150,6 +125,4 @@
 </div>
 
 
-</div> <!-- End Row -->
-
-
+</div>

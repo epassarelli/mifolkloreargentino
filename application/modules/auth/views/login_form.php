@@ -5,13 +5,13 @@
         'value' => set_value('login'),
         'maxlength'	=> 80,
         'size'	=> 30,
-		'placeholder' => 'Email o usuario',
+		'placeholder' => 'Email',
 		'class' => 'form-control input-sm',
     );
     
     if (@$login_by_username AND $login_by_email) 
     {
-        $login_label = 'Email o usuario';
+        $login_label = 'Email';
         } 
         else if ( @$login_by_username) 
             {
@@ -90,6 +90,8 @@
     <div class="social-auth-links text-center">
         <p>- Ingresar con mi red social -</p>
         <a href="<?php echo $authUrl; ?>" class="btn btn-lg btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresar con Facebook</a>
+
+        <!-- <a href="<?php echo $authUrlGoogle; ?>" class="btn btn-lg btn-block btn-social btn-google btn-flat"><i class="fa fa-google"></i> Ingresar con Google</a> -->
     </div>
 
     <?php echo form_open($this->uri->uri_string()); ?>
