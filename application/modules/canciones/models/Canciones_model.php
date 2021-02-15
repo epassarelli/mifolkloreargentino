@@ -15,6 +15,7 @@ class Canciones_model extends MY_Model {
 
 ######################################################		  
 ##   Devuelve todas las canciones de un Album
+#
 
 function getByAlbum($albu_id){
 	$sql = "SELECT * FROM album a INNER JOIN album_cancion ac ON (a.albu_id = ac.albu_id) INNER JOIN canciones c ON (ac.canc_id = c.canc_id) Where a.albu_id = " . $albu_id;
@@ -42,8 +43,6 @@ function getPorInterprete($inte_id){
 ###
 ###
 ###
-
-
 
 function get_Cancion($inte_id,$canc_alias){
 
@@ -84,10 +83,13 @@ function buscarCancion($aBuscar){
     return $query->result();	
 }
 
-
+###############################################################
+##
+##
+##
 
 function get_Ultimas($cantidad){
-	$this->db->select('i.inte_nombre,i.inte_alias,c.canc_titulo,c.canc_alias');
+	$this->db->select('i.inte_nombre,i.inte_alias,c.canc_titulo,c.canc_alias,i.inte_foto');
 	$this->db->from('canciones c');
 	$this->db->join('interprete i','c.inte_id = i.inte_id');
 	$this->db->where('c.canc_habilitado', 1);	
@@ -97,8 +99,14 @@ function get_Ultimas($cantidad){
     return $query->result();
 }
 
+###############################################################
+##
+##
+##
+
+
 function get_Ranking_Canciones($cantidad){
-	$this->db->select('i.inte_nombre,i.inte_alias,c.canc_titulo,c.canc_alias,c.canc_visitas');
+	$this->db->select('i.inte_nombre,i.inte_alias,c.canc_titulo,c.canc_alias,c.canc_visitas,i.inte_foto');
 	$this->db->from('canciones c');
 	$this->db->join('interprete i','c.inte_id = i.inte_id');	
 	$this->db->order_by('c.canc_visitas', 'desc');
@@ -108,7 +116,10 @@ function get_Ranking_Canciones($cantidad){
 }
 
 
-#################################################################################################
+###############################################################
+##
+##
+##
 
 function agregar($cancion, $inte_id){
 	// Inserto la cancion
@@ -165,6 +176,10 @@ function getInterpretesConCanciones(){
 	
 }
 
+###############################################################
+##
+##
+##
 
 function getCancionesMasVistasPorArtista($inte_id, $cantidad){
 

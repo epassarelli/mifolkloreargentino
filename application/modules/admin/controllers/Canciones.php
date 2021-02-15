@@ -3,7 +3,7 @@
 class Canciones extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{
@@ -45,9 +45,7 @@ class Canciones extends MX_Controller {
 		$crud->set_relation('inte_id','interprete','inte_nombre');
 		$crud->set_relation_n_n('discos', 'album_cancion', 'album', 'canc_id', 'albu_id', 'albu_titulo');
 
-		switch ($this->session->userdata('user_profile')) {
-			case 1: 
-				// Usuario
+
 				$crud->where('canciones.user_id', $this->session->userdata('user_id'));
 				$crud->columns('inte_id','canc_titulo','canc_youtube','canc_habilitado');
 				$crud->fields('user_id', 'inte_id','canc_titulo','canc_alias','canc_contenido','canc_youtube');
@@ -56,24 +54,7 @@ class Canciones extends MX_Controller {
 
 				$crud->change_field_type('user_id','invisible');
 				$crud->change_field_type('canc_alias','invisible');	
-				break;
 
-			case 2: 
-				// Prensa
-				
-				break;
-
-			case 3:
-				// Admin MFA
-				$crud->set_theme('flexigrid');
-				//$crud->columns('canc_id','inte_id','canc_titulo','canc_youtube','canc_habilitado');
-				$crud->fields('user_id', 'inte_id','canc_titulo','canc_alias','canc_contenido','canc_youtube');
-				break;
-
-			default:
-				// Sin loguearse
-				break;
-		}
 
 		$crud->unset_clone();
 		$crud->unset_print();

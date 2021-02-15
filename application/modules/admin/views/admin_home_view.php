@@ -1,93 +1,251 @@
-<div class="container">
-	<div class="row">
-		
-		<div class="col-xs-12 col-sm-6 col-md-4">
+<div class="row">
+<!-- 	<div class="col-xs-12">
+		<p>Los contenidos vertidos por los usuarios del sitio durante las primeras publicaciones quedan pendientes de aprobación por parte del administrador del sitio.<br>
+		Una vez verificado que el mismo es quien maneja el área de prensa del artista los mismo se publicarán de forma automática sin requerir una validación posterior. <br>
+		Mi Folklore Argentino se reserva el derecho de publicar aquellos contenidos que infrinjan algunas de las politicas del portal.</p>
+		<p></p>
+	</div> -->
 
-		<h1>Dashboard</h1>
-
-		<p>Estado de contenidos por aprobar</p>	
-
-		<table class="table table-striped">
-
-		<tr>
-			<td>Avisos clasificados</td>
-			<td><?php echo "0"; //$interpretes; ?></td>
-		</tr>
-			
-		<tr>
-			<td>Usuarios de Facebook</td>
-			<td><?php echo $usuarios; ?></td>
-		</tr>
-
-		<tr>
-			<td>Interpretes por validar</td>
-			<td><?php echo $interpretes; ?></td>
-		</tr>
-
-		<tr>
-			<td>Discos por validar</td>
-			<td><?php echo $discos; ?></td>
-		</tr>
-
-		<tr>
-			<td>Canciones por validar</td>
-			<td><?php echo $canciones; ?></td>
-		</tr>
-
-		<tr>
-			<td>Noticias por validar</td>
-			<td><?php echo $noticias; ?></td>
-		</tr>
-
-		<tr>
-			<td>Shows por validar</td>
-			<td><?php echo $shows; ?></td>
-		</tr>
-
-		<tr>
-			<td>Peñas por validar</td>
-			<td><?php echo $penias; ?></td>
-		</tr>
-
-		<tr>
-			<td>Radios por validar</td>
-			<td><?php echo $radios; ?></td>
-		</tr>
-
-		<tr>
-			<td>Festivales por validar</td>
-			<td><?php echo $festivales; ?></td>
-		</tr>
-
-		<tr>
-			<td>Comidas por validar</td>
-			<td><?php echo $comidas; ?></td>
-		</tr>
-
-		<tr>
-			<td>Mitos por validar</td>
-			<td><?php echo $mitos; ?></td>
-		</tr>
-
-		</table>
-
-		</div>
-
-		<div class="col-xs-12 col-sm-6 col-md-4">
-
-			<h1>Administración</h1>
-
-			<p>Gestión de contenidos internos</p>	
-
-			<ul class="li"><a href="<?php echo site_url('admin/faqscategorias'); ?>">Categorias FAQs</a></ul>
-			<ul class="li"><a href="<?php echo site_url('admin/faqs'); ?>">Preguntas Frecuentes</a></ul>
-			<ul class="li"><a href="<?php echo site_url('admin/provincias'); ?>">Provincias</a></ul>
-			<ul class="li"><a href="<?php echo site_url('admin/localidad'); ?>">Localidades</a></ul>
-			<ul class="li"><a href="<?php echo site_url('admin/guias'); ?>">Guias</a></ul>
-			<ul class="li"><a href="<?php echo site_url('admin/rubros'); ?>">Rubros</a></ul>
-		</div>
-
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis</span>
+	          <span class="info-box-number">Artistas</span>
+	          <span><a href="<?php echo site_url('admin/interpretes');?>">+ Ver más</a></span>
+	        </div>
+	      </div>		
 	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-yellow"><i class="fa fa-calendar"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Shows</span>
+	          <span><a href="<?php echo site_url('admin/shows');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>	
+
+	<div class="col-sm-3">
+		<div class="info-box">
+        
+        <span class="info-box-icon bg-purple"><i class="fa fa-bullhorn"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Mis </span>
+          <span class="info-box-number">Noticias</span>
+          <span><a href="<?php echo site_url('admin/noticias');?>">+ Ver más</a></span>
+        </div>
+      </div>		
+	</div>
+	
+
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-red"><i class="fa fa-bullseye"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Discos</span>
+	          <span><a href="<?php echo site_url('admin/discos');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
+	<div class="col-sm-3">
+		<div class="info-box">
+	        
+	        <span class="info-box-icon bg-green"><i class="fa fa-music"></i></span>
+	        <div class="info-box-content">
+	          <span class="info-box-text">Mis </span>
+	          <span class="info-box-number">Canciones</span>
+	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	        </div>
+	    </div>		
+	</div>
+
 </div>
-
-

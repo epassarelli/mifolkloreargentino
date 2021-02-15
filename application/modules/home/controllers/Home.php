@@ -14,6 +14,10 @@ class Home extends MX_Controller {
 	}
 
 	public function index(){
+	    if(isset($_GET['code'])){
+	    	redirect('auth/login?code='.$_GET['code'],'refresh');
+	    }
+
 	    $data['noticia']	= $this->Noticias_model->getUltimas(1);
 		$data['title'] 		= 'Mi Folklore Argentino - Grupos y Solistas, Festivales, Show, Letras';
 		$data['description']	= "El Folklore Argentino en un solo lugar, biografías, interpretes, cartelera de eventos y letras de canciones";

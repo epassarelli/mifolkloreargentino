@@ -3,7 +3,7 @@
 class Shows extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{
@@ -49,33 +49,13 @@ class Shows extends MX_Controller {
 			
 		$crud->required_fields('even_fecha','even_titulo');
 
-		switch ($this->session->userdata('user_profile')) {
-			case 1: 
-				// Usuario
+
 				$crud->where('evento.user_id', $this->session->userdata('user_id'));
 				$crud->columns('even_fecha','inte_id','even_titulo','even_lugar');
 				$crud->fields('user_id','inte_id','even_fecha','even_hora','even_titulo','even_lugar','even_direccion','prov_id','loca_id','even_detalle');
 											
 				$crud->unset_clone();
 				$crud->unset_delete();
-				break;
-
-			case 2: 
-				// Prensa
-				$crud->unset_clone();
-				break;
-
-			case 3:
-				// Admin MFA
-				$crud->set_theme('flexigrid');
-				$crud->columns('even_fecha','inte_id','even_titulo','even_lugar','even_estado');
-				$crud->fields('inte_id','even_fecha','even_hora','even_titulo','even_lugar','even_direccion','prov_id','loca_id','even_detalle','even_estado');	
-				break;
-
-			default:
-				// Sin loguearse
-				break;
-		}
 
 		$crud->set_field_upload('even_foto','assets/upload/eventos');
 

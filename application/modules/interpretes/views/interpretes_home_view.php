@@ -1,3 +1,5 @@
+<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_view"); } ?>
+
 <div class="row">
 
   <div class="col-xs-12">
@@ -6,8 +8,10 @@
     <p>Si conocés un grupo folklorico que no se encuentra en nuestro sitio o formás parte de el te invitamos a que lo agregues vos mismo.</p>
   
   </div>
+
+
   
-  <div class="col-xs-12 col-sm-6 col-md-6">
+  <div class="col-xs-12">
 
       <div class="box box-warning">
         
@@ -28,7 +32,7 @@
 
           ?> 
             
-            <div class="col-xs-6 col-sm-6 col-md-3 interpretes">
+            <div class="col-xs-12 col-sm-4 col-md-2 interpretes">
               
               <a href="<?php echo base_url();?>biografia-de-<?php echo $fila->inte_alias;?>">
                 
@@ -38,8 +42,6 @@
 
               </a>
 
-              <!-- <p class="text-muted text-center"><?php echo $fila->inte_visitas;?> visitas</p> -->
-
             </div>
             
           <?php endforeach; ?>
@@ -48,9 +50,12 @@
         
       </div>
 
-</div>
+  </div>
 
-  <div class="col-xs-12 col-sm-6 col-md-6">      
+
+
+
+  <div class="col-xs-12">      
 
       <div class="box box-warning">
         
@@ -71,7 +76,7 @@
 
           ?> 
             
-            <div class="col-xs-12 col-sm-6 col-md-3 interpretes">
+            <div class="col-xs-12 col-sm-4 col-md-2 interpretes">
               
               <a href="<?php echo base_url();?>biografia-de-<?php echo $fila->inte_alias;?>">
                 

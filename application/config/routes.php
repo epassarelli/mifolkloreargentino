@@ -80,6 +80,7 @@ $route['fiestas-tradicionales-argentina-provincia-(:any)'] 	= 'fiestas/listado_p
 $route['fiestas-tradicionales-y-festivales-en-(:any)'] 	= 'fiestas/listado_por_mes/$1';
 
 $route['radios-para-escuchar-folklore-argentino'] 		= 'radio';
+$route['politicas-de-privacidad'] 		= 'privacidad';
 
 ##########################################################################################
 ###

@@ -5,7 +5,7 @@
     </div>
 
     <div class="box-body">
-      <p>Si no encuentra la respuesta a su pregunta por favor contactese con nosotros a través de nuestro formulario de contacto - <a href="<?php echo './contacto'; ?>">
+      <p>Si no encuentra la respuesta a su pregunta por favor contactese con nosotros a través de nuestro formulario de contacto - <a href="<?php echo site_url('contacto'); ?>">
         <i class="fa fa-arrow-right"></i> Ir al formulario</a>
       </p>
 

@@ -3,7 +3,7 @@
 class Noticias extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{
@@ -43,30 +43,12 @@ class Noticias extends MX_Controller {
 
 		$crud->set_relation('inte_id','interprete','inte_nombre');
 
-		switch ($this->session->userdata('user_profile')) {
-			case 1: 
-				// Usuario
-				$crud->where('noticia.user_id', $this->session->userdata('user_id'));
-				$crud->columns('inte_id','noti_titulo');
-				$crud->fields('user_id','noti_alias','inte_id','noti_titulo','noti_detalle','noti_fecha');   
-				$crud->unset_delete();							
-				break;
+	    $crud->required_fields('noti_titulo','noti_foto','noti_detalle');
 
-			case 2: 
-				// Prensa
-				$crud->unset_clone();
-				break;
-
-			case 3:
-				// Admin MFA
-				$crud->columns('noti_foto','noti_fecha','inte_id','noti_titulo','noti_visitas','noti_habilitado');
-				$crud->fields('inte_id','noti_fecha','noti_titulo','noti_alias','noti_foto','noti_detalle','noti_habilitado');  
-				break;
-
-			default:
-				// Sin loguearse
-				break;
-		}
+		$crud->where('noticia.user_id', $this->session->userdata('user_id'));
+		$crud->columns('inte_id','noti_titulo');
+		$crud->fields('user_id','noti_alias','inte_id','noti_titulo','noti_foto','noti_detalle','noti_fecha');   
+		$crud->unset_delete();							
 
 		$crud->unset_clone();
 		$crud->unset_print();
@@ -77,6 +59,7 @@ class Noticias extends MX_Controller {
 		$crud->change_field_type('noti_fecha','invisible');
 		
 		$crud->set_field_upload('noti_foto','assets/upload/noticias');
+
 
 		$crud->callback_before_insert(array($this,'noticias_before_insert'));
 		$crud->callback_after_insert(array($this, 'notifica_after_insert_noticia'));

@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Interpretes extends MX_Controller {
 
-function __construct(){
+##############################################################
+
+public function __construct(){
 	parent::__construct();
 	$this->load->model('Interpretes_model');
 	$_SESSION['seccion'] = "Biografias";
@@ -15,12 +17,14 @@ function __construct(){
 	}
 }
 
-function index(){	
+##############################################################
+
+public function index(){	
 	$data['title']      	= "Grupos y Solistas del Folklore Argentino";
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes,grupos,solistas,folklore,argentino,musica,cantores,abel,pintos,horacio,guarany,palavecino,mercedes,sosa,atahualpa,yupanki,nocheros,luciano,soledad";	
-	$data['ultimos']      	= $this->Interpretes_model->getUltimosActivos(16);
-	$data['populares']      = $this->Interpretes_model->getVisitados(16);			
+	$data['ultimos']      	= $this->Interpretes_model->getUltimosActivos(12);
+	$data['populares']      = $this->Interpretes_model->getVisitados(30);			
 	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['redirigir']     	= "biografia-de-";	
 	$data['pagina']     	= "grupos-y-solistas";
@@ -37,7 +41,7 @@ function index(){
 ###			Arma una vista parcial de las X ultimas canciones
 ###
 
-function ultimos($cant){
+public function ultimos($cant){
 	$data['interpretes'] = $this->Interpretes_model->get_Ultimos($cant);
 	$data['titulo'] 	 = "Ultimos " . $cant ." artistas";
 	$this->load->view('interpretes_partial_view', $data);
@@ -48,7 +52,7 @@ function ultimos($cant){
 ###		Interpretes con la Letra N
 ###
 
-function letra($letra){
+public function letra($letra){
 	$data['filas'] 			= $this->Interpretes_model->getInterpretesPorLetra( 'interprete', 'inte_nombre', $letra, 'inte_nombre');
 	$data['title'] 			= "Grupos y Solistas del Folklore Argentino con letra $letra";
 	$data['description'] 	= "Grupos y Solistas del Folklore Argentino";	
@@ -67,7 +71,7 @@ function letra($letra){
 }
 
 ##############################################################
-function mostrar($alias){
+public function mostrar($alias){
 	$data['fila']       	= $this->Interpretes_model->getInterprete($alias);	
 	$data['title']      	= "Biografia de " . $data['fila']->inte_nombre ;
 	$bio = substr(strip_tags(preg_replace('/\&(.)[^;]*;/', '\\1',$data['fila']->inte_biografia)),0,120);
@@ -89,7 +93,7 @@ function mostrar($alias){
 ##
 ##  Vista de sugerido de interprete OK
 
-function sugerido(){
+public function sugerido(){
 	$data['title']      	= 'Interprete sugerido' ;
 	$data['description']	= 'Se ha sugerido el interprete de forma correcta. Solo resta la validacion de los datos por parte del Administrador del sitio';
 	$data['keywords']   	= 'interpretes, grupos, solistas, folklore, argentino, musica, cantores, payadores, biografias, artistas';
@@ -103,7 +107,7 @@ function sugerido(){
 ##
 ##  Validación del CAPTCHA
 
-function validate_captcha() {
+public function validate_captcha() {
     $captcha = $this->input->post('g-recaptcha-response');
      $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=your secret key here &response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
     if ($response . 'success' == false) {
@@ -127,7 +131,7 @@ function validate_captcha() {
 ## 		Sugerir un Artista
 ##
 
-function sugerir(){
+public function sugerir(){
 	$data['title'] 			= "Sugerir Interprete del Folklore Argentino";
 	$data['mensaje'] = '';
 	
@@ -237,7 +241,7 @@ function sugerir(){
 
 
     //FUNCIÓN PARA SUBIR LA IMAGEN Y VALIDAR EL TÍTULO
-    function do_upload() {
+    public function do_upload() {
 		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[4]');
 		$this->form_validation->set_rules('biografia', 'biografia', 'required|trim|min_length[25]');
         // SI EL FORMULARIO PASA LA VALIDACIÓN HACEMOS TODO LO QUE SIGUE
@@ -276,7 +280,7 @@ function sugerir(){
     }
 
 // FUNCIÓN PARA CREAR LA MINIATURA A LA MEDIDA QUE LE DIGAMOS
-function _create_thumbnail($filename){
+public function _create_thumbnail($filename){
     $config['image_library']  = 'gd2';
     // CARPETA EN LA QUE ESTÁ LA IMAGEN A REDIMENSIONAR
     $config['source_image']   = './upload/interpretes/'.$filename;
@@ -295,8 +299,8 @@ function _create_thumbnail($filename){
 ## 		Editar una Biografía
 ##
 
-function editar(){
-	if (!$this->tank_auth->is_logged_in()){
+public function editar(){
+	if (!$this->ion_auth->logged_in()){
 		redirect('/auth/login/');
 	} 
 	else{
@@ -314,8 +318,8 @@ function editar(){
 ## 		Sugerir un Artista
 ##
 
-function soicitarAdministrarlo(){
-	if (!$this->tank_auth->is_logged_in()){
+public function soicitarAdministrarlo(){
+	if (!$this->ion_auth->logged_in()){
 		redirect('/auth/login/');
 	} 
 	else{
@@ -386,8 +390,8 @@ function soicitarAdministrarlo(){
 ###		Retorna los interpretes sugeridos
 ###
 
-function sugeridos(){
-	if (!$this->tank_auth->is_logged_in()){ 
+public function sugeridos(){
+	if (!$this->ion_auth->logged_in()){ 
 		redirect('/auth/login/'); 
 	} 
 	else{ 
@@ -400,8 +404,8 @@ function sugeridos(){
 
 
 
-function aprobar($inte_id){
-	if (!$this->tank_auth->is_logged_in()){ redirect('/auth/login/'); } 
+public function aprobar($inte_id){
+	if (!$this->ion_auth->logged_in()){ redirect('/auth/login/'); } 
 	else{ 
 		// Si Apruebo el Interprete OK
 		if ($this->Interpretes_model->aprobar($inte_id))
@@ -438,32 +442,32 @@ function aprobar($inte_id){
 
 
 /* Este método lo podemos usar para direccionar el sistema a la vista donde se van a recolectar los datos(probablemente con un formulario) para después almacenarlos en un registro nuevo, usualmente redirige al index. */
-function create(){
+public function create(){
 
 }
 
 /*Aquí podemos hacer una consulta de un elemento de la base de datos o de todos los elementos o registros por medio del modelo para realizar una descripción.*/
-function show(){
+public function show(){
 
 }
 
 /*Este método es similar al de create porque lo podemos usar para mostrar una vista que recolecta los datos pero a diferencia de create es con el fin de actualizar un registro.*/
-function edit(){
+public function edit(){
 
 }
 
 /*Aquí es donde se guarda un registro que proviene del método create y normalmente redirige al index.*/
-function store(){
+public function store(){
 
 } 
 
 /*Al igual que el store, solo que en vez de provenir de create proviene de edit y en vez de crear un nuevo registro, busca un existente y lo modifica, tambien suele redirigir al index.*/
-function update(){
+public function update(){
 
 }
 
 /*En este método usualmente se destruye o elimina un registro y la petición puede provenir de donde sea siempre y cuando sea llamado con el método DELETE, después puede redirigir al index o a otro sitio dependiendo si logro eliminar o no.*/
-function destroy(){
+public function destroy(){
 
 }
 

@@ -14,7 +14,14 @@
 			  <div class="box-body">
 			    
 			    <a href="<?php echo site_url('noticias/ver/'.$n->noti_alias); ?>">
-					<img class="img-responsive" src="<?php echo site_url('assets/upload/noticias/'.$n->noti_foto); ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>">
+					<?php
+					$foto = "assets/upload/noticias/" . $n->noti_foto;
+            			if (is_dir($foto)) 
+                  		{ 
+                  			$foto = "assets/img/noticiasinimagen.jpg"; 
+                  		}
+                  	?>
+					<img class="img-responsive" src="<?php echo $foto; ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>">
 				</a>
 
 			    	<a href="<?php echo site_url('noticias/ver/'.$n->noti_alias); ?>">
@@ -37,7 +44,7 @@
 		
 		
 		
-		<div class="col-xs-12">
+		<div class="col-xs-12 col-sm-6">
 			
 			<ul class="products-list product-list-in-box">
 			<div class="box">

@@ -3,7 +3,7 @@
 class Discos extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{
@@ -46,34 +46,15 @@ class Discos extends MX_Controller {
 		$crud->set_relation_n_n('canciones', 'album_cancion', 'canciones', 'albu_id', 'canc_id', 'canc_titulo');
 		//$crud->set_relation_n_n('interpretes', 'album_interprete', 'interprete', 'albu_id', 'inte_id', 'inte_nombre');	  
 		//
-	  $crud->required_fields('albu_titulo','albu_anio');
+	  	$crud->required_fields('albu_foto','albu_titulo','albu_anio');
 		$crud->set_field_upload('albu_foto','assets/upload/albunes');
 
-		switch ($this->session->userdata('user_profile')) {
-			case 1: 
-				// Usuario
 				$crud->where('album.user_id', $this->session->userdata('user_id'));
 				$crud->columns('albu_foto','albu_anio','inte_id','albu_titulo','albu_habilitado');
 				$crud->fields('inte_id','albu_foto','albu_anio','albu_titulo','albu_alias','user_id');
 											
 				$crud->unset_clone();
 				$crud->unset_delete();
-				break;
-
-			case 2: 
-				// Prensa
-				$crud->unset_clone();
-				break;
-
-			case 3:
-				// Admin MFA
-				$crud->set_theme('flexigrid');
-				break;
-
-			default:
-				// Sin loguearse
-				break;
-		}
 
 		$crud->change_field_type('user_id','invisible');
 		$crud->change_field_type('albu_alias','invisible');	

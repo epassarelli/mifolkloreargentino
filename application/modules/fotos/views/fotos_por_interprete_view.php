@@ -1,12 +1,25 @@
-<?php $this->load->view('menu_seccion_por_interprete_view'); ?>
-
-
 <div class="row">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <?php if(isset($filas)): ?>
+
+  <div class="col-xs-12 col-sm-4 col-md-4">
+    
+    <?php $this->load->view('menu_seccion_por_interprete_view'); ?>
+    
+  </div>
+
+
+<div class="col-xs-12 col-sm-8">
+
+  <div class="box box-warning">
+  
+  <div class="box-header with-border">
+    <h3 class="box-title">Fotos de <strong><?php echo $fila->inte_nombre ?></strong></h3>
+  </div>
+
+  <div class="box-body">
+
+      <?php if(count($filas) > 0): ?>
       
-      <div class="col-sx-12 col-sm-8">
+
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <!-- Wrapper for slides -->
@@ -32,13 +45,10 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      </div>
+
       
-      <div class="col-sx-12 col-sm-4">
-        <?php $this->load->view('adsense/adsense_fotos_view');  ?> 
-      </div>
       <?php else: ?>
-      <div class="alert alert-danger" role="alert">Aun no tenemos fotos por mostrar en nuestra base del interprete deseado</div>
+        <div class="alert alert-danger" role="alert">Aun no tenemos fotos por mostrar en nuestra base del interprete deseado</div>
       <?php endif; ?>
       
       <?php //$this->load->view('fb_comentarios_view'); ?>

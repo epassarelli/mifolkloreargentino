@@ -1,1 +1,0 @@
-Bienvenido, <strong><?php echo $username; ?></strong>! usted ha iniciado su sesion. <?php echo anchor('/auth/logout/', 'Salir'); ?>

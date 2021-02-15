@@ -1,4 +1,26 @@
-<a class="btn btn-success btn-block" href="<?php echo base_url();?>admin/videos/add" role="button">Sugerir Video</a>
-<?php $this->load->view('buscar_por_interprete_view');    ?> 
-<?php $this->load->view('adsense/adsense_videos_view');    ?> 
-<?php //echo Modules::run( 'videos/ultimos', '10' ); ?>
+<div class="col-xs-12 col-sm-8">
+  
+  <?php echo Modules::run( 'ayuda/index', '2' ); ?>
+
+</div>
+
+
+<div class="col-xs-12 col-sm-4">
+
+  <div class="box box-warning">
+    
+    <div class="box-header with-border">
+
+      <h3 class="box-title">Buscar videos por interprete</h3>
+
+    </div>
+
+    <div class="box-body">
+
+      <?php $this->load->view('buscar_por_interprete_view'); ?>
+
+    </div>
+
+  </div>
+
+</div>

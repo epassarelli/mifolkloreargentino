@@ -103,7 +103,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -523,4 +523,50 @@ $config['rewrite_short_tags'] = FALSE;
 | Comma-separated:	'10.0.1.200,192.168.5.0/24'
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
+
+/* 
+| ----------------------------------------------- --------------------------- 
+| Modo de mantenimiento 
+| ----------------------------------------------- --------------------------- 
+| 
+| Por la razón que sea, a veces es necesario desconectar un sitio. 
+| Establezca $ config ['maintenance_mode'] en TRUE si el sitio tiene que estar fuera de línea 
+| 
+| $ config ['maintenance_mode'] = TRUE; // el sitio está desconectado 
+| $ config ['maintenance_mode'] = FALSE; // el sitio está en línea 
+*/ 
+
+$config['maintenance_mode'] =  FALSE ;
+
+
+
+
 $config['proxy_ips'] = '';
+
+//customized configuration for facebook
+$config['facebook_app_id']                = '2928466020540894';
+$config['facebook_app_secret']            = '113e196b88ea523f979cc7872de3635d';
+$config['facebook_login_redirect_url']    = 'auth/login';
+$config['facebook_logout_redirect_url']   = 'auth/logout';
+$config['facebook_login_type']            = 'web';
+$config['facebook_permissions']           = array('email');
+$config['facebook_graph_version']         = 'v4.0';
+$config['facebook_auth_on_load']          = TRUE;
+
+//customized configuration for google
+$config['google']['client_id']        = '487147293916-ef937bj9b31vrh4oni1uvg3mic16dunc.apps.googleusercontent.com';
+$config['google']['client_secret']    = 'F4NJw0eBOKCO8cxEv2T2Na3i';
+
+if( $_SERVER['SERVER_NAME'] == 'localhost' ) 
+	{
+	$config['google']['redirect_uri']     = 'http://localhost/mifolkloreargentino/auth/login';
+	}
+	else
+	{
+		$config['google']['redirect_uri']     = 'https://www.mifolkloreargentino.com.ar/auth/login';
+	}
+
+//$config['google']['redirect_uri']     = 'http://localhost/mifolkloreargentino/auth/login';
+$config['google']['application_name'] = 'Login MFA';
+$config['google']['api_key']          = '';
+$config['google']['scopes']           = array();

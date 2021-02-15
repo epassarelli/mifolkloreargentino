@@ -3,7 +3,7 @@
 class Avisos extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{

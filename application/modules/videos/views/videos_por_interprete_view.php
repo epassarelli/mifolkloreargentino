@@ -1,65 +1,84 @@
-<?php $this->load->view('videos_sidebar_view'); ?>
-
-<?php $this->load->view('menu_seccion_por_interprete_view'); ?> 
-
 <section class="videos">
-<div class="row">
-<div class="panel panel-default">
-  <div class="panel-body">
 
-	<?php if(isset($filas)): ?>
-	<?php $i = 0; ?>
-	<?php foreach($filas as $v): ?>
-		
-		<?php if ($i % 3 == 0): ?>
-		
-			<?php if($i == 0): ?>
-		        <div class="row">
-		        <!-- start:row -->	
-			<?php else: ?>
-		        </div>
-		        <!-- end:row -->
+	<div class="row">
 
-		        <div class="row">
-		        <!-- start:row -->
-			<?php endif; ?>    
+	  	<div class="col-xs-12 col-sm-4">
+	    
+	    	<?php $this->load->view('menu_seccion_por_interprete_view'); ?>
+	    
+	  	</div>
 
-		<?php endif; ?>
 
-        <div class="col-md-4 col-sm-6 col-xs-12">
-        <!-- start:article -->
 
-        <div class="media">
-          
-          <div class="media-left">
-            <a href="<?php echo base_url()?>videos-de-<?php echo $fila->inte_alias;?>">
-              <img class="media-object" src="<?php echo base_url()?>assets/upload/interpretes/<?php echo $fila->inte_foto?>" alt="<?php echo $fila->inte_nombre?>">
-            </a>
-          </div>
-          
-          <div class="media-body">
-            <span><a href="<?php echo base_url()?>videos-de-<?php echo $fila->inte_alias;?>">Videos de <?php echo $fila->inte_nombre?></a></span>
-            <a href="<?php echo base_url()?>videos-de-<?php echo $fila->inte_alias;?>/<?php echo $v->canc_alias?>">
-            <h5 class="media-heading"><?php echo $v->canc_titulo?></h5></a>            
-          </div>
-          
-        </div>
+		<div class="col-xs-12 col-sm-8">
 
+			<div class="box box-warning">
+
+			<div class="box-header with-border">
+			  <h3 class="box-title">Presentaciones de <strong><?php echo $fila->inte_nombre ?></strong></h3>
+			</div>
+
+			<div class="box-body">
+
+				<?php if(count($filas) > 0): ?>
+				<?php $i = 0; ?>
+
+				<ul class="products-list product-list-in-box">
+				
+
+				<?php 
+					foreach($filas as $v): 
+
+		              	$foto = "assets/upload/interpretes/" . $fila->inte_foto;
+		              
+		              	if (is_dir($foto)) 
+		                	{ $foto = "assets/upload/sin_foto.jpg"; }
+				?> 
+
+
+
+					<li class="item col-xs-12 col-sm-4 col-md-3">
+						<a href="<?php echo base_url()?>videos-de-<?php echo $fila->inte_alias;?>/<?php echo $v->canc_alias?>">
+			              
+			              <div class="product-img">
+			                <img src="<?php echo $foto; ?>" alt="<?php echo $fila->canc_titulo; ?>">
+			              </div>
+			              
+			              <div class="product-info">
+			                <?php echo $v->canc_titulo; ?>
+
+			                <span class="product-description">
+			                    <?php echo $fila->inte_nombre?>
+			                </span>
+			                
+			              </div>
+
+			            </a>
+			        </li>
+			          
+
+
+
+					<?php endforeach; ?>
+
+				</ul>
+
+				<?php else: ?>
+
+					<div class="alert alert-danger" role="alert">Aun no tenemos videos por mostrar en nuestra base del artista solicitado.</div>
+
+				<?php endif; ?>
+				
+				<?php //$this->load->view('fb_comentarios_view'); ?>
+
+			  </div>
+			</div>
+			</div>
 		</div>
 
-        <?php $i++; ?>
 
-		<?php endforeach; ?>
+	<?php $this->load->view('videos_sidebar_view'); ?>
 
-	<?php else: ?>
+	</div>
 
-		<div class="alert alert-danger" role="alert">Aun no tenemos videos por mostrar en nuestra base del artista solicitado.</div>
-
-	<?php endif; ?>
-	
-	<?php //$this->load->view('fb_comentarios_view'); ?>
-
-  </div>
-</div>
-</div>
 </section>

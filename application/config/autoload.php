@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('email', 'session', 'tank_auth', 'form_validation', 'facebook', 'recaptcha');
+$autoload['libraries'] = array('email', 'session', 'ion_auth', 'form_validation','facebook','google');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array('url');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('recaptcha');
+$autoload['config'] = array();
 
 /*
 | -------------------------------------------------------------------

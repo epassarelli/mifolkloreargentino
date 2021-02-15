@@ -107,7 +107,7 @@ function vistos($cant){
 ###		Formulario para sugerir videos
 
 function sugerir(){
-if (!$this->tank_auth->is_logged_in()){
+if (!$this->ion_auth->logged_in()){
 		redirect('/auth/login/');
 	} 
 	else{

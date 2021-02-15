@@ -5,7 +5,7 @@ class Canciones extends MX_Controller {
 
 ##############################################################
 
-function __construct(){
+public function __construct(){
 	parent::__construct();
 	$this->load->model('Canciones_model');
 	$_SESSION['seccion'] = "Canciones";
@@ -14,20 +14,19 @@ function __construct(){
 	}
 	if(!isset($_SESSION['interpretes'])){
 		$_SESSION['interpretes'] 	= $this->Canciones_model->get_InterpretesCBox('interprete','inte_nombre');
-	}
-	
+	}	
 }
 
 ##############################################################
 
-function index(){
+public function index(){
 	$data['title'] 			= "Letras de canciones del Folklore Argentino";
 	$data['description']	= "Letras de canciones Folklore Argentino, Abel Pintos, Horacio Guarany, chamame";
 	$data['keywords']		= "letras, canciones, folkloricas, cancionero, musica, popular, abel,pintos, soledad, palavecino, galleguillo, guarany, pereyra, carabajal, sacheros, manseros";		
 	$data['redirigir']     	= "letras-de-canciones-de-";
 	$data['letras']       	= range('A', 'Z');
-	$data['ultimas']   		= $this->Canciones_model->get_Ultimas(16);
-	$data['xvisitas']   	= $this->Canciones_model->get_Ranking_Canciones(16);
+	$data['ultimas']   		= $this->Canciones_model->get_Ultimas(12);
+	$data['xvisitas']   	= $this->Canciones_model->get_Ranking_Canciones(30);
 	$data['interpretes'] 	= $_SESSION['interpretes'];
 	$data['breadcrumb'] = array(
 						'Inicio' => base_url(),
@@ -40,7 +39,7 @@ function index(){
 
 ##############################################################
 
-function artista($inte_alias){
+public function artista($inte_alias){
 	$data['fila']     		= $this->Canciones_model->getOneBy('interprete','inte_alias',$inte_alias);
 	$inte_id				= $data['fila']->inte_id;
 	$data['filas'] 			= $this->Canciones_model->getPorInterprete($inte_id);	
@@ -63,7 +62,7 @@ function artista($inte_alias){
 
 ##############################################################
 
-function porDisco($albu_id){
+public function porDisco($albu_id){
 	$data['filas'] 			= $this->Canciones_model->getByLetra('cancion','canc_titulo',$letra);
 	$data['title'] 			= "Letras de Canciones del Folklore Argentino";
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
@@ -78,7 +77,7 @@ function porDisco($albu_id){
 
 ##############################################################
 
-function mostrar($inte_alias, $canc_alias){
+public function mostrar($inte_alias, $canc_alias){
 	// Traigo todos los datos del interprete
 	$data['fila']     = $this->Canciones_model->getOneBy('interprete','inte_alias',$inte_alias);
 	$inte_id				= $data['fila']->inte_id;
@@ -111,7 +110,7 @@ function mostrar($inte_alias, $canc_alias){
 
 ##############################################################
 
-function buscar(){
+public function buscar(){
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules('aBuscar', 'aBuscar', 'trim|required');
 	if($this->form_validation->run()){
@@ -135,7 +134,7 @@ function buscar(){
 
 ##############################################################
 
-function _porLetra($letra){
+public function _porLetra($letra){
 	$data['filas'] 			= $this->Canciones_model->getByLetra('cancion','canc_titulo', $letra, 'canc_titulo');
 	$data['title'] 			= "Letras de Canciones con " . $letra;
 	$data['description']	= "Letras de Canciones con " . $letra . ", cancionero de musica folklorica y popular";
@@ -150,7 +149,7 @@ function _porLetra($letra){
 
 ##############################################################
 
-function _deUnInterprete($canc_id){
+public function _deUnInterprete($canc_id){
 	$data['cancion'] 		= $this->Canciones_model->getByID('cancion','canc_id',$canc_id);
 	$data['interpretes'] 	= $this->Canciones_model->getInterpretesConCanciones();	
 	$data['title'] 			= "Letras de Canciones del Folklore Argentino";
@@ -165,7 +164,7 @@ function _deUnInterprete($canc_id){
 
 ##############################################################
 
-function _porInterprete($inte_alias){
+public function _porInterprete($inte_alias){
 	$data['filas'] 			= $this->Canciones_model->getPorInterprete($inte_alias);
 	$data['fila'] 			= $this->Canciones_model->getByID('interprete', 'inte_id', $inte_id);
 	$data['title'] 			= "Letras de Canciones de " . $data['fila']->inte_nombre;
@@ -190,7 +189,7 @@ function _porInterprete($inte_alias){
 
 ############################################################
 
-function interpetesPorLetra($inte_letra){
+public function interpetesPorLetra($inte_letra){
 	$this->load->model('interpretes/Interpretes_model');
 	$data['filas'] 			= $this->Interpretes_model->getByLetra('interprete','inte_nombre',$inte_letra);
 
@@ -219,7 +218,7 @@ function interpetesPorLetra($inte_letra){
 ###			Arma una vista parcial de las X ultimas canciones
 ###
 
-function ultimas($cant){
+public function ultimas($cant){
 	$data['canciones']   	= $this->Canciones_model->get_Ultimas($cant);
 	$data['titulo'] 		= "Ultimas " . $cant ." canciones";
 	$this->load->view('canciones_partial_view', $data);
@@ -230,9 +229,9 @@ function ultimas($cant){
 
 
 ############################################################
-function sugerir_old(){
+public function sugerir_old(){
 
-if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 	redirect('/auth/login/');
 } 
 else{
@@ -307,7 +306,7 @@ else{
 	
 }
 ############################################################
-function sugerida(){
+public function sugerida(){
 	$data['title'] 			= "Letras de Canciones del Folklore Argentino";
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
 	$data['keywords']		= "letras,canciones";
@@ -316,7 +315,7 @@ function sugerida(){
 	$this->load->view('layout', $data);
 }
 ############################################################
-function agregar(){
+public function agregar(){
 	$data['title'] 			= "Letras de Canciones del Folklore Argentino";
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
 	$data['keywords']		= "letras,canciones";
@@ -367,7 +366,7 @@ function agregar(){
 		}
 }
 ############################################################
-function agregada(){
+public function agregada(){
 	$data['title'] 			= "Letras de Canciones del Folklore Argentino";
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
 	$data['keywords']		= "letras,canciones";
@@ -382,12 +381,12 @@ function agregada(){
 ####
 ####   Muestra un listado con todas mis uejas
 
-function miscanciones(){
+public function miscanciones(){
 	$data['title'] 			= "Letras de Canciones del Folklore Argentino";
 	$data['description']	= "Letras de Canciones del Folklore Argentino";
 	$data['keywords']		= "letras,canciones";
 		
-	if (!$this->tank_auth->is_logged_in()){
+	if (!$this->ion_auth->logged_in()){
 		redirect('/auth/login/');
 	} 
 	else{
@@ -402,7 +401,7 @@ function miscanciones(){
 ####	2018-01-30
 ####	Muestra un listado con todas mis uejas
 
-function masVistoPorArtista($inte_id, $cantidad){
+public function masVistoPorArtista($inte_id, $cantidad){
 	$data['canciones']	= $this->Canciones_model->getCancionesMasVistasPorArtista($inte_id, $cantidad);
 	$this->load->view('canciones_partial_view', $data);
 }
@@ -420,7 +419,7 @@ function masVistoPorArtista($inte_id, $cantidad){
 ###  Sugerir cancion sin loguearse
 ###
 
-function sugerir2(){
+public function sugerir2(){
 
 
 
@@ -517,7 +516,7 @@ function sugerir2(){
 ###  Sugerir letra de cancion sin loguearse
 ###
 
-function sugerirLetra(){
+public function sugerirLetra(){
 
     if(strlen($this->input->post('letra')) < 10)
 	    {

@@ -3,13 +3,18 @@
 class Admin extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		
+		//print_r($this->session->userdata()); die;
+		
+		if (!$this->ion_auth->logged_in()){
+			
 			redirect('/auth/login/');
 		} 
-		else{
+		else{ 
 			parent::__construct();
 			$this->load->library('Grocery_crud', 'recaptcha');
 			$this->load->helper('url');
+
 		}
 
 		if (ENVIRONMENT == 'development') {
@@ -32,21 +37,29 @@ class Admin extends MX_Controller {
 	
 	public function index(){
 		$this->load->model('Admin_model');
-		
-		$data['usuarios'] 		= $this->Admin_model->get_usuarios_facebook();
-		$data['interpretes'] 	= $this->Admin_model->get_interpretes_sugeridos();
-		$data['discos'] 		= $this->Admin_model->get_discos_sugeridos();
-		$data['canciones'] 		= $this->Admin_model->get_canciones_sugeridas();
-		$data['fotos'] 			= $this->Admin_model->get_fotos_sugeridas();
-		$data['noticias'] 		= $this->Admin_model->get_noticias_sugeridas();
-		$data['shows'] 			= $this->Admin_model->get_shows_sugeridas();
-		$data['comidas'] 		= $this->Admin_model->get_comidas_sugeridas();
-		$data['mitos'] 			= $this->Admin_model->get_mitos_sugeridos();
-		$data['videos'] 		= $this->Admin_model->get_videos_sugeridas();
-		$data['penias'] 		= $this->Admin_model->get_penias_sugeridas();
-		$data['radios'] 		= $this->Admin_model->get_radios_sugeridas();
-		$data['festivales'] 	= $this->Admin_model->get_festivales_sugeridas();
-		$data['festivales'] 	= $this->Admin_model->get_efemerides_sugeridas();
+		$data['title'] = 'Mi panel de administración';		
+		if (!$this->ion_auth->is_admin())
+		{
+			$data['view'] = 'admin_home_view';
+		}
+		else
+		{
+			$data['usuarios'] 		= $this->Admin_model->get_usuarios_facebook();
+			$data['interpretes'] 	= $this->Admin_model->get_interpretes_sugeridos();
+			$data['discos'] 		= $this->Admin_model->get_discos_sugeridos();
+			$data['canciones'] 		= $this->Admin_model->get_canciones_sugeridas();
+			$data['fotos'] 			= $this->Admin_model->get_fotos_sugeridas();
+			$data['noticias'] 		= $this->Admin_model->get_noticias_sugeridas();
+			$data['shows'] 			= $this->Admin_model->get_shows_sugeridas();
+			$data['comidas'] 		= $this->Admin_model->get_comidas_sugeridas();
+			$data['mitos'] 			= $this->Admin_model->get_mitos_sugeridos();
+			$data['videos'] 		= $this->Admin_model->get_videos_sugeridas();
+			$data['penias'] 		= $this->Admin_model->get_penias_sugeridas();
+			$data['radios'] 		= $this->Admin_model->get_radios_sugeridas();
+			$data['festivales'] 	= $this->Admin_model->get_festivales_sugeridas();
+			$data['festivales'] 	= $this->Admin_model->get_efemerides_sugeridas();			
+			$data['view'] = 'admin_home_pendientes_view';
+		}
 
 		$data['view'] = 'admin_home_view';
 		$this->load->view('layout',$data);

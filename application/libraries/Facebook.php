@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Facebook PHP SDK v5 for CodeIgniter 3.x
  *
@@ -7,18 +9,18 @@
  *
  * This library requires the Facebook PHP SDK v5 and it should be placed in libraries folder.
  *
- * It also requires facebook configuration file and it should be placed in the config directory.
+ * It also requires social configuration file and it should be placed in the config directory.
  *
  * @package     CodeIgniter
  * @category    Libraries
  * @author      CodexWorld
  * @license     http://www.codexworld.com/license/
  * @link        http://www.codexworld.com
- * @version     2.0
+ * @version     3.0
  */
 
 // Include the autoloader provided in the SDK
-require_once 'facebook-php-sdk/autoload.php'; 
+require_once APPPATH.'third_party/facebook-php-graph-sdk/autoload.php'; 
 
 use Facebook\Facebook as FB;
 use Facebook\Authentication\AccessToken;
@@ -42,7 +44,7 @@ Class Facebook
      */
     public function __construct(){
         // Load fb config
-        $this->load->config('facebook');
+        $this->load->config('config');
         // Load required libraries and helpers
         $this->load->library('session');
         $this->load->helper('url');

@@ -10,9 +10,6 @@
 
   <title>
     <?php 
-
-
-
       if (isset($title)){
           $title = $title; //'Mi panel';
         }
@@ -23,11 +20,12 @@
       
       if(strlen($title) < 70){ 
         $titulo = $title . ' | Folklore Argentino'; 
-        echo $titulo; }; ?>
+        echo $titulo; }; 
+    ?>
     
   </title>
     
-  <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
+  <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
   <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("google_analitycs_view"); } ?>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,9 +43,7 @@
 
 <?php 
 
-    //var_dump($title);die();
-
-//if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
+// if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
   
 <div class="wrapper">
 
@@ -67,15 +63,21 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           
-          <li>
+          <li class="dropdown user user-menu">
             
-          <?php if ($this->facebook->is_authenticated() OR $this->tank_auth->is_logged_in()): ?>
-            <a href="#" data-toggle="control-sidebar">
-              <i class="fa fa-user"></i> 
-              <span>
-                 Publicar
-              </span>
-            </a>            
+          <?php 
+            if ($this->ion_auth->logged_in()): 
+              $user = $this->ion_auth->user()->row();
+          
+          ?>
+
+
+            <a href="#" class="dropdown-toggle" data-toggle="control-sidebar">
+              <img src="<?php echo $user->picture_url; ?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $user->first_name.', '.$user->last_name; ?></span>
+            </a>
+
+
                 <?php else: ?>
             <a href="<?php echo site_url('auth/login'); ?>">
               <i class="fa fa-user"></i>                  
@@ -89,7 +91,7 @@
           </li>
 
 
-          <?php if ($this->session->userdata('user_profile') == 3): ?>
+          <?php if ($this->ion_auth->is_admin()): ?>
 
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -112,7 +114,8 @@
               
               <li role="presentation" class="divider"></li>
 
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/usuarios'); ?>">usuarios</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/usuarios'); ?>">Usuarios</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/permisos'); ?>">Permisos</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/contactos'); ?>">contactos</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/cancionessugeridas'); ?>">cancionessugeridas</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('wpanel/provincias'); ?>">provincias</a></li>
@@ -170,14 +173,15 @@
     </section>
 
     <section class="content container-fluid">
-        <?php //$this->load->view('social_share_view'); ?>
+        <?php $this->load->view('social_share_view'); ?>
     </section>
 
   </div>
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      Contacto
+
+      <a href="<?php echo site_url('contacto'); ?>">Contactarnos</a>
     </div>
     <strong>Copyright &copy; 2009-<?php echo date('Y',time()); ?> - <a href="http://webpass.com.ar" target="_blank">Dise&ntilde;o y Desarrollo Web</a>.</strong> Todos los derechos reservados.
   </footer>
@@ -336,8 +340,7 @@
   });
   </script>
 
-<?php if($this->tank_auth->get_user_profile() !== '3'): ?>
-  
+<?php if (!$this->ion_auth->is_admin()): ?>  
   <script>
     $(document).ready(function() {
       $("#user_id_field_box").hide();
@@ -347,8 +350,7 @@
       $("#fies_alias_field_box").hide();    
     });
   </script>
-
-<?php endif; ?>
+<?php endif;   ?>
 
   <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
  

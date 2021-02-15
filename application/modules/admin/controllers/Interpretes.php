@@ -3,7 +3,7 @@
 class Interpretes extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{
@@ -49,40 +49,18 @@ class Interpretes extends MX_Controller {
 			->display_as('inte_visitas','Visitas')
 			->display_as('inte_habilitado','Estado');
 		    
-	    $crud->required_fields('inte_nombre','inte_biografia');
+	    $crud->required_fields('inte_nombre','inte_biografia','inte_foto');
 		$crud->set_field_upload('inte_foto','assets/upload/interpretes');
 
 		
-		switch ($this->session->userdata('user_profile')) {
-			case 1: 
-				// Usuario
-				$crud->where('user_id', $this->session->userdata('user_id'));
-				$crud->columns('inte_foto','inte_nombre','inte_correo','inte_visitas','inte_habilitado');
-				$crud->fields('user_id','inte_foto','inte_nombre','inte_biografia','inte_correo','inte_telefono','inte_facebook','inte_twitter','inte_instagram','inte_alias');
+
+		// Usuario
+		$crud->where('user_id', $this->session->userdata('user_id'));
+		$crud->columns('inte_foto','inte_nombre','inte_correo','inte_visitas','inte_habilitado');
+		$crud->fields('user_id','inte_foto','inte_nombre','inte_biografia','inte_correo','inte_telefono','inte_facebook','inte_twitter','inte_instagram','inte_alias');
+
 		
-				
-				$crud->unset_delete();
-				break;
-
-			case 2: 
-				// Prensa
-				$crud->where('user_id', $this->session->userdata('user_id'));
-				$crud->columns('inte_foto','inte_nombre','inte_correo','inte_facebook');
-				$crud->fields('user_id','inte_foto','inte_nombre','inte_biografia','inte_correo','inte_telefono','inte_facebook','inte_twitter','inte_instagram','inte_alias');
-
-				break;
-
-			case 3:
-				// Admin MFA
-				$crud->set_theme('flexigrid');
-				$crud->columns('inte_id','inte_foto','inte_nombre','inte_correo','inte_visitas','inte_habilitado');
-				break;
-
-			default:
-				// Sin loguearse
-				break;
-		}
-
+		$crud->unset_delete();
 		$crud->unset_clone();
 		$crud->unset_print();
 		$crud->unset_export();

@@ -3,7 +3,7 @@
 class Wpanel extends MX_Controller {
 
 	function __construct(){
-		if (!$this->tank_auth->is_logged_in() AND !$this->facebook->is_authenticated()){
+		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
 			redirect('/auth/login/');
 		} 
 		else{
@@ -202,6 +202,7 @@ class Wpanel extends MX_Controller {
 
 		
 		$crud->set_relation('inte_id','interprete','inte_nombre');
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');
 		$crud->set_relation_n_n('discos', 'album_cancion', 'album', 'canc_id', 'albu_id', 'albu_titulo');
 
 		$crud->unset_clone();
@@ -257,9 +258,9 @@ class Wpanel extends MX_Controller {
 			->display_as('inte_facebook','Facebook')
 			->display_as('inte_visitas','Visitas')
 			->display_as('inte_habilitado','Estado');
-		$crud->columns('inte_foto','inte_nombre','inte_correo','inte_visitas','inte_habilitado');
+		$crud->columns('inte_foto','inte_nombre','user_id','inte_correo','inte_visitas','inte_habilitado');
 		$crud->order_by('inte_id','desc');
-		$crud->set_relation('user_id','users','username');
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');
 		$crud->set_field_upload('inte_foto','assets/upload/interpretes');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -283,10 +284,10 @@ class Wpanel extends MX_Controller {
 			->display_as('noti_visitas','Visitas')
 			->display_as('inte_id','Artista')	
 			->display_as('noti_habilitado','Estado');
-		$crud->columns('noti_foto','noti_fecha','inte_id','noti_titulo','noti_visitas','noti_habilitado');
+		$crud->columns('noti_foto','noti_fecha','inte_id','noti_titulo','user_id','noti_visitas','noti_habilitado');
 		$crud->order_by('noti_id','desc');
 		$crud->set_relation('inte_id','interprete','inte_nombre');
-		$crud->set_relation('user_id','users','username');			
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');			
 		$crud->set_field_upload('noti_foto','assets/upload/noticias');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -305,7 +306,8 @@ class Wpanel extends MX_Controller {
 		$crud->set_theme('flexigrid');
 		$crud->set_relation('loca_id','localidad','loca_nombre');
 		$crud->set_relation('prov_id','provincia','prov_nombre');
-		$crud->set_relation('inte_id','interprete','inte_nombre');		
+		$crud->set_relation('inte_id','interprete','inte_nombre');	
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');	
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
@@ -330,6 +332,7 @@ class Wpanel extends MX_Controller {
 			->display_as('albu_habilitado','Estado');		
 		$crud->set_field_upload('albu_foto','assets/upload/albunes');		
 		$crud->set_relation('inte_id','interprete','inte_nombre');
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
@@ -343,7 +346,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('fiestas');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Festival');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -353,7 +356,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('efemeride');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Efemeride');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -363,7 +366,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('comidas');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Comida');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -373,7 +376,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('radios');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Radio');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -383,7 +386,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('penia');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Peña');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -393,7 +396,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('mitos');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Mito');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -403,7 +406,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('meses');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Mes');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -413,8 +416,11 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('video');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Video');
 		$crud->set_theme('flexigrid');
+		$crud->set_relation('inte_id','interprete','inte_nombre');
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');
+
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
@@ -423,7 +429,7 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('contactos');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Mensaje');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -433,13 +439,33 @@ class Wpanel extends MX_Controller {
 
 		$crud = new Grocery_crud();
 		$crud->set_table('users');
-		$crud->set_subject('Artista');
+		$crud->set_subject('Usuario');
 		$crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
 
+	###################################################
+	#
+	# FAQS
+	#
 
+	public function permisos(){
+
+		$crud = new Grocery_crud();
+		$crud->set_table('users_groups');
+		$crud->set_subject('Permiso');
+		$crud->set_theme('flexigrid');
+
+		$crud->display_as('user_id','Usuario')
+			->display_as('group_id','Permiso');
+
+		$crud->set_relation('user_id','users','{first_name}, {last_name} | {email} | {oauth_provider}');
+		$crud->set_relation('group_id','groups','name');
+
+		$output = $crud->render();
+		$this->_example_output($output);
+	}
 
 
 }
