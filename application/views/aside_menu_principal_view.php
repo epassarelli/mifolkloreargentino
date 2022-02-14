@@ -16,8 +16,7 @@
         <a href="<?php echo site_url('cartelera-folklorica');?>"><i class="fa fa-calendar"></i> <span>Cartelera</span></a></li> 
       
       <li <?php if($this->uri->segment(2) == 'comidas') echo "class='active'"; ?> >
-        <a href="<?php echo site_url('recetas-de-comidas-tipicas');?>"><i class="fa fa-cutlery"></i> <span>Comidas</span></a></li>         
-      
+        <a href="<?php echo site_url('recetas-de-comidas-tipicas');?>"><i class="fa fa-cutlery"></i> <span>Comidas</span></a></li>            
       <li <?php if($this->uri->segment(2) == 'discos') echo "class='active'"; ?> >
         <a href="<?php echo site_url('discografias');?>"><i class="fa fa-bullseye"></i> <span>Discos</span></a></li> 
       <li <?php if($this->uri->segment(2) == 'festivales') echo "class='active'"; ?> >
@@ -32,5 +31,7 @@
       <li <?php if($this->uri->segment(2) == 'radios') echo "class='active'"; ?> >
         <a href="<?php echo site_url('radios-para-escuchar-folklore-argentino');?>"><i class="fa fa-volume-up"></i> <span>Radios</span></a></li>          
     </ul>
+
   </section>
+  
 </aside>

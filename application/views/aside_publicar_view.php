@@ -7,8 +7,7 @@
 
     <div class="tab-pane active" id="control-sidebar-home-tab">
         <ul class="control-sidebar-menu">
-
-          
+       
           <li>
             <a href="<?php echo site_url('admin/interpretes');?>">
               <i class="menu-icon fa fa-user bg-light-blue"></i>
@@ -18,7 +17,6 @@
               </div>
             </a>
           </li>
-
 
           <li>
             <a href="<?php echo site_url('admin/shows');?>">
@@ -30,7 +28,6 @@
             </a>
           </li>
 
-
           <li>
             <a href="<?php echo site_url('admin/noticias');?>">
               <i class="menu-icon fa fa-bullhorn bg-purple"></i>
@@ -40,9 +37,6 @@
               </div>
             </a>
           </li>
-
-
-
 
           <li>
             <a href="<?php echo site_url('admin/discos');?>">
@@ -64,98 +58,6 @@
               </div>
             </a>
           </li>
-
-<!--            
-          
-
-          <li>
-            <a href="<?php echo site_url('admin/avisos');?>">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Avisos clasificados</h4>
-                <p>Mis avisos</p>
-              </div>
-            </a>
-          </li>
-
-
-
-          <li>
-            <a href="<?php echo site_url('admin/comidas');?>">
-              <i class="menu-icon fa fa-music bg-purple"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Comidas</h4>
-                <p>Comidas típicas</p>
-              </div>
-            </a>
-          </li>
-
-
-
-
-
-
-          <li>
-            <a href="<?php echo site_url('admin/efemerides');?>">
-              <i class="menu-icon fa fa-bullhorn bg-light-blue"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Efemerides</h4>
-                <p>Un día como hoy...</p>
-              </div>
-            </a>
-          </li>
-    
-
-          <li>
-            <a href="<?php echo site_url('admin/festivales');?>">
-              <i class="menu-icon fa fa-bullhorn bg-yellow"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Festivales</h4>
-                <p>Gacetillas de prensa</p>
-              </div>
-            </a>
-          </li>
-
-
-          <li>
-            <a href="<?php echo site_url('admin/mitos');?>">
-              <i class="menu-icon fa fa-volume-up bg-green"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Mitos</h4>
-                <p>Mitos y leyendas</p>
-              </div>
-            </a>
-          </li> 
-
-
-
-
-          <li>
-            <a href="<?php echo site_url('admin/penias');?>">
-              <i class="menu-icon fa fa-map-marker bg-red"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Peñas</h4>
-                <p>Peñas folkloricas</p>
-              </div>
-            </a>
-          </li>
-
-
-
-          <li>
-            <a href="<?php echo site_url('admin/radios');?>">
-              <i class="menu-icon fa fa-volume-up bg-light-blue"></i>
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Radios</h4>
-                <p>Radios folkloricas</p>
-              </div>
-            </a>
-          </li>    
--->       
-
-
-
-
 
         </ul>
 

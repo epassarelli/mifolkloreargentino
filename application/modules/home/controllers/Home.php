@@ -5,8 +5,13 @@ class Home extends MX_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('noticias/Noticias_model');
-		$this->load->model('interpretes/Interpretes_model');
+		$this->load->model(
+			array(
+				'noticias/Noticias_model',
+				'interpretes/Interpretes_model',
+				'canciones/Canciones_model',
+				'cartelera/Cartelera_model'
+				));
 		if (ENVIRONMENT == 'development') {
 			$this->output->enable_profiler(TRUE);
 		}
@@ -18,9 +23,15 @@ class Home extends MX_Controller {
 	    	redirect('auth/login?code='.$_GET['code'],'refresh');
 	    }
 
-	    $data['noticia']	= $this->Noticias_model->getUltimas(1);
-		$data['title'] 		= 'Mi Folklore Argentino - Grupos y Solistas, Festivales, Show, Letras';
-		$data['description']	= "El Folklore Argentino en un solo lugar, biografías, interpretes, cartelera de eventos y letras de canciones";
+	    $data['noticias']	= $this->Noticias_model->getUltimas(3);
+	    $data['canciones']  = $this->Canciones_model->get_Ultimas(6);
+	    $data['shows'] 		= $this->Cartelera_model->getProximos(4);
+	    $data['interpretes']= $this->Interpretes_model->getUltimosActivos(6);
+
+
+		$data['title'] 		= 'Noticias del Folklore Argentino, cartelera, festivales, letras';
+		$data['description']	= "Folklore Argentino con noticias, cartelera de eventos, fiestas y festivales, peñas, biografías, interpretes y letras de canciones";
+		$data['keywords']	= "folklore, argentino, noticias, cartelera, eventos, fiestas, festivales, peñas, biografías, interpretes, letras, canciones";
 
 		$data['breadcrumb'] = array(
 							'Inicio' => base_url()

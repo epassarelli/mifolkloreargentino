@@ -3,14 +3,14 @@
 class Noticias extends MX_Controller {
 
 	function __construct(){
-		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
-			redirect('/auth/login/');
-		} 
-		else{
+		// if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
+		// 	redirect('/auth/login/');
+		// } 
+		// else{
 			parent::__construct();
 			$this->load->library('Grocery_crud', 'recaptcha');
 			$this->load->helper('url');
-		}
+		// }
 
 		if (ENVIRONMENT == 'development') {
 			$this->output->enable_profiler(TRUE);
@@ -92,8 +92,8 @@ class Noticias extends MX_Controller {
 	{
 	    $this->load->library('email');
 
-		$this->email->from('info@mifolkloreargentino.com.ar', 'MFA');
-		$this->email->to('info@mifolkloreargentino.com.ar');
+		$this->email->from('info@mifolkloreargentino.com', 'MFA');
+		$this->email->to('info@mifolkloreargentino.com');
 		$this->email->cc('epassarelli@gmail.com');
 		 
 		$this->email->subject('MFA - Agregaron una gacetilla');

@@ -3,14 +3,14 @@
 class Wpanel extends MX_Controller {
 
 	function __construct(){
-		if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
-			redirect('/auth/login/');
-		} 
-		else{
+		// if (!$this->ion_auth->logged_in() AND !$this->facebook->is_authenticated()){
+		// 	redirect('/auth/login/');
+		// } 
+		// else{
 			parent::__construct();
 			$this->load->library('Grocery_crud', 'recaptcha');
 			$this->load->helper('url');
-		}
+		// }
 
 		if (ENVIRONMENT == 'development') {
 			$this->output->enable_profiler(TRUE);
@@ -198,6 +198,7 @@ class Wpanel extends MX_Controller {
 			->display_as('canc_spotify','Spotify')
 			->display_as('canc_visitas','Visitas')
 			->display_as('canc_habilitado','Estado')
+			->display_as('canc_id','Cod')
 			->display_as('canc_contenido','Contenido');
 
 		
@@ -209,7 +210,7 @@ class Wpanel extends MX_Controller {
 		$crud->unset_print();
 		$crud->unset_export();
 
-		//$crud->columns('inte_id','canc_titulo','canc_youtube','canc_habilitado');
+		$crud->columns('canc_id','inte_id','canc_titulo','canc_visitas','canc_youtube','discos','canc_habilitado');
 		//$crud->fields('user_id', 'inte_id','canc_titulo','canc_alias','canc_contenido','canc_youtube');
 		
 		$crud->required_fields('inte_id','canc_titulo','canc_contenido');

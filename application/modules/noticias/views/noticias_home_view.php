@@ -1,3 +1,5 @@
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_noticias_view"); }?>
+
 <div class="row">
 	
 	<?php 

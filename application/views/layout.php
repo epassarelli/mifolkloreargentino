@@ -3,7 +3,7 @@
 <head>  
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="google-site-verification" content="b4e3xgPWj0Fwb1N4ggo93LYs33S1uZ7EAUnyEaIGP90" />
+  <meta name="google-site-verification" content="jVJRpZZXbfAo0RHiah6NGTfuHwJaAFWule00UR5surQ" />
   <meta name="author" content="WebPass" />
   <meta name="description" content="<?php if(isset($description)) echo $description; ?>">
   <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords; ?>">  
@@ -14,19 +14,15 @@
           $title = $title; //'Mi panel';
         }
         else{
-           $title = "MFA";
-           //echo $title;
+           $title = "Folklore Argentino";
         }
-      
-      if(strlen($title) < 70){ 
-        $titulo = $title . ' | Folklore Argentino'; 
-        echo $titulo; }; 
-    ?>
-    
+
+      echo $title;
+    ?>    
   </title>
     
-  <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
-  <?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("google_analitycs_view"); } ?>
+  <?php //if( $_SERVER['SERVER_NAME'] !== 'localhost' ) { $this->load->view("adsense/adsense_head_view"); } ?>
+  <?php if( $_SERVER['SERVER_NAME'] !== 'localhost' ) { $this->load->view("google_analitycs_view"); } ?>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,9 +37,7 @@
 
 <body class="hold-transition skin-yellow sidebar-mini">
 
-<?php 
-
-// if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
+<?php //if( $_SERVER['SERVER_NAME'] !== 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
   
 <div class="wrapper">
 
@@ -59,7 +53,8 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigacion</span>
       </a>
-      
+
+
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           
@@ -155,9 +150,9 @@
     </ol>
     <?php endif; ?>      
 
-      <h1>
-        <?php echo $title; ?>        
-      </h1>
+      <h1><?php echo $title; ?></h1>
+      <?php //if( $_SERVER['SERVER_NAME'] !== 'localhost' ) { $this->load->view("facebook/fb_like_count_view"); } ?>
+
 
     </section>
 
@@ -194,13 +189,12 @@
   <?php if (!isset($output)): ?>
     <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
   <?php endif; ?>
-
-<link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/AdminLTE.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/skins/skin-yellow.min.css'); ?>">
-
-<link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="<?php echo site_url('assets/css/mfa.css');?>">
+    
+    <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/AdminLTE.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/skins/skin-yellow.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo site_url('assets/css/mfa.css');?>">
  
   <?php if(isset($css_files)): ?>
     <?php foreach($css_files as $file): ?>
@@ -255,30 +249,6 @@
         return false;
       });
 
-      // //habilitamos el combo en la edicion
-      // if (localidad.length > 0) {
-      //   localidad.disabled = false;
-      // }
-
-      // // Llena de localidades el combo dependiente
-      // $("#provincia").change( function() {
-      //   $("#provincia option:selected").each( function() {
-      //           provincia = $('#provincia').val();
-                
-      //     $.post( 
-      //       urlBase+"admin/localidades/getLocalidadesForm", 
-      //       { provincia : provincia }, 
-      //       function(data) {
-      //         localidad.disabled = false;
-      //                 $("#localidad").html(data);
-      //           });
-          
-      //       });
-            
-      // });
-
-
-
 
 ///////////////////////////// SCRIPT ////////////////////////////////
 
@@ -294,22 +264,20 @@
       $.ajax({  
           url: 'http://localhost/mifolkloreargentino/admin/sugerir',
           method:"POST",  
-          //Metodo para tomar datos sin archivos
+          // Metodo para tomar datos sin archivos
           data:{
               Objeto: Objeto
           },  
-          //respuesta del envio
+          // respuesta del envio
           dataType: "json",
           success: function(response) {
-              //Aqui dependiedo de lo que quieras hacer condicionas ó si no haras ninguna accion coloca un return para que salga de la funcion
+              // Aqui dependiedo de lo que quieras hacer condicionas ó si no haras ninguna accion coloca un return para que salga de la funcion
               alert(Objeto);
             }  // success
-          });  //Ajax
+          });  // Ajax
      }
 
-    //En el metodo de CI tomas el valor con:  ...input->post(Objeto)
-
-          
+      // En el metodo de CI tomas el valor con:  ...input->post(Objeto)          
       // Carga de nueva letra
       $("#send").click(function(){       
        letra = $("#letra").val();
@@ -339,20 +307,6 @@
 
   });
   </script>
-
-<?php if (!$this->ion_auth->is_admin()): ?>  
-  <script>
-    $(document).ready(function() {
-      $("#user_id_field_box").hide();
-      $("#inte_alias_field_box").hide();
-      $("#albu_alias_field_box").hide();
-      $("#canc_alias_field_box").hide();
-      $("#fies_alias_field_box").hide();    
-    });
-  </script>
-<?php endif;   ?>
-
-  <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
  
 </body>
 </html>

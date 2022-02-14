@@ -34,46 +34,17 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Logueate para comenzar tu sesión</p>
+    <p class="login-box-msg">Iniciar sesión</p>
 
-<?php    echo form_open('auth/login', ['id' => 'login']); ?>
-
-      <div class="form-group has-feedback">
-        <!-- <input type="email" class="form-control" placeholder="Email"> -->
-        <?php echo form_input(['name' => 'identity', 'class' => 'form-control']); ?>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <?php echo form_input(['type' => 'password', 'name' => 'password', 'class' => 'form-control']); ?>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Recordarme
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <?php echo form_submit('submit', 'Ingresar', "class='btn btn-primary btn-block btn-flat'"); ?>
-          <!-- <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button> -->
-        </div>
-        <!-- /.col -->
-      </div>
-    <?php echo form_close(); ?>
 
     <div class="social-auth-links text-center">
-      <p>- OR -</p>
+
       <a href="<?php echo $fb_url; ?>" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresar con Facebook</a>
       <a href="<?php echo $ga_url; ?>" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Ingresar con Google+</a>
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="<?php echo site_url('auth/forgot_password'); ?>">Olvidé mi password</a><br>
-    <a href="<?php echo site_url('auth/register'); ?>" class="text-center">Registrarme</a>
-
+    <p><a href="https://mifolkloreargentino.com.ar/contacto">Solicitar ayuda</a></p>
   </div>
   <!-- /.login-box-body -->
 </div>

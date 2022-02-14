@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if( $_SERVER['SERVER_NAME'] == 'localhost' ) {
 	$config['base_url']	= 'http://localhost/mifolkloreargentino';
 	}else{
-		$config['base_url']	= 'https://www.mifolkloreargentino.com.ar';
+		$config['base_url']	= 'https://mifolkloreargentino.com';
 		}
 /*
 |--------------------------------------------------------------------------
@@ -563,7 +563,7 @@ if( $_SERVER['SERVER_NAME'] == 'localhost' )
 	}
 	else
 	{
-		$config['google']['redirect_uri']     = 'https://www.mifolkloreargentino.com.ar/auth/login';
+		$config['google']['redirect_uri']     = 'https://www.mifolkloreargentino.com/auth/login';
 	}
 
 //$config['google']['redirect_uri']     = 'http://localhost/mifolkloreargentino/auth/login';

@@ -42,7 +42,7 @@
             { $foto = "assets/upload/sin_foto.jpg"; }
 
           $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-          $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+          $meses = array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
            
           $dia  = (int) date("d", strtotime($e->even_fecha));
           $mes  = date("m", strtotime($e->even_fecha));
