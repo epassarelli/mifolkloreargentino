@@ -1,3 +1,5 @@
+<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_biografias_view"); } ?>
+
 <div class="row">
 
 	<div class="col-xs-12 col-sm-4 col-md-4">
