@@ -23,9 +23,10 @@ public function index(){
 	$data['title']      	= "Mis administrados";
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes";
-	//$data['js_files'] = array('assets/templates/adminlte242/bower_components/datatables.net/js/jquery.dataTables.min.js?v=' . rand(), );
+
 	$data['files_js'] = array('datatables.min.js' );
 	$data['files_css'] = array('datatables.min.css');
+	
 	$user_id = $this->session->userdata('user_id');
 
 	if($this->ion_auth->in_group(1)){
@@ -35,31 +36,11 @@ public function index(){
 	{
 		$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
 	}
-	$rol=1;
-	// $user_id = 1;
-	// switch ($rol) {
-	// 	case '1':
-	// 		# registrado...				
-	// 		$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-	// 		break;
-	// 	case '2':
-	// 		# admin banda...
-	// 		$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-	// 		break;			
-	// 	case '3':
-	// 		# admin mfa...
-	// 		$data['filas'] = $this->Interpretes_model->get_all();
-	// 		break;
-	// 	default:
-	// 		# code...
-	// 		break;
-	// }	
 
 	$data['breadcrumb'] 	= array(
 								'Mi panel' => base_url('mipanel'),
 								);		
 	$data['view']       	= 'misadministrados_view';
-	//$data['sidebar']       	= 'interpretes_sidebar_view';
 	$this->load->view('layout.php', $data);
 }
 

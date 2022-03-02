@@ -4,9 +4,11 @@ class Canciones extends MX_Controller {
 
 function __construct(){
 	parent::__construct();
-	// if (!$this->ion_auth->logged_in()){
-	// 	redirect('/auth/login/');
-	// } 
+
+	if (!$this->ion_auth->logged_in()){
+		redirect('/auth/login/');
+	} 
+
 	$this->load->model('Canciones_model');
 	$_SESSION['seccion'] = "Canciones";
 	if (ENVIRONMENT == 'development') {
@@ -25,11 +27,11 @@ public function index(){
 	$user_id = $this->session->userdata('user_id');
 
 	if($this->ion_auth->in_group(1)){
-		$data['filas'] = $this->Canciones_model->get_all();		
+		$data['filas'] = $this->Canciones_model->getAllBackend();		
 	}
 		else
 		{
-			$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados();
+			$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados($user_id);
 		}
 
 
