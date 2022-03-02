@@ -2,9 +2,9 @@
 class Shows extends MX_Controller {
 function __construct(){
 	parent::__construct();
-	if (!$this->ion_auth->logged_in()){
-		redirect('/auth/login/');
-	} 
+	// if (!$this->ion_auth->logged_in()){
+	// 	redirect('/auth/login/');
+	// } 
 	$this->load->model(array('Shows_model','Interpretes_model','admin/localidades_model'));
 	$_SESSION['seccion'] = "Shows";
 	if (ENVIRONMENT == 'development') {

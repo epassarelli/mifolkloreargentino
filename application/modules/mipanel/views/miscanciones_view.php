@@ -7,7 +7,7 @@
     <hr>
     <?php if(isset($filas)): ?>
 
-    <table id="interpretes" class="table table-bordered table-striped datatable">
+    <table id="ABM" class="table table-bordered table-striped">
 
      <thead>
       <tr>

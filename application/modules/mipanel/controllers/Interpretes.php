@@ -3,7 +3,6 @@
 class Interpretes extends MX_Controller {
 
 
-
 public function __construct(){
 	parent::__construct();
 	if (!$this->ion_auth->logged_in()){
@@ -24,27 +23,37 @@ public function index(){
 	$data['title']      	= "Mis administrados";
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes";
+	//$data['js_files'] = array('assets/templates/adminlte242/bower_components/datatables.net/js/jquery.dataTables.min.js?v=' . rand(), );
+	$data['files_js'] = array('datatables.min.js' );
+	$data['files_css'] = array('datatables.min.css');
+	$user_id = $this->session->userdata('user_id');
 
-	$rol = $this->tank_auth->get_user_profile();
-	$user_id = $this->tank_auth->get_user_id();
-
-	switch ($rol) {
-		case '1':
-			# registrado...				
-			$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-			break;
-		case '2':
-			# admin banda...
-			$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-			break;			
-		case '3':
-			# admin mfa...
-			$data['filas'] = $this->Interpretes_model->get_all();
-			break;
-		default:
-			# code...
-			break;
-	}	
+	if($this->ion_auth->in_group(1)){
+		$data['filas'] = $this->Interpretes_model->get_all();		
+	}
+	else
+	{
+		$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
+	}
+	$rol=1;
+	// $user_id = 1;
+	// switch ($rol) {
+	// 	case '1':
+	// 		# registrado...				
+	// 		$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
+	// 		break;
+	// 	case '2':
+	// 		# admin banda...
+	// 		$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
+	// 		break;			
+	// 	case '3':
+	// 		# admin mfa...
+	// 		$data['filas'] = $this->Interpretes_model->get_all();
+	// 		break;
+	// 	default:
+	// 		# code...
+	// 		break;
+	// }	
 
 	$data['breadcrumb'] 	= array(
 								'Mi panel' => base_url('mipanel'),

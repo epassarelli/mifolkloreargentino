@@ -9,13 +9,13 @@
       <li>Sino, puede agregarlo y de ésta forma usted ya es el administrador del mismo.</li>
       <li>Si aparece en el listado pero no da la posibilidad de solicitar su administración es porque aún no ha sido validada la información del artista.</li>
     </ul>
-    
+
     <a class="btn btn-primary" href="<?php echo base_url();?>mipanel/interpretes/solicitar" role="button"><i class="fa fa-user"></i> Solicitar administrar uno existente</a>
     <a class="btn btn-success" href="<?php echo base_url();?>mipanel/interpretes/nuevo" role="button"><i class="fa fa-plus"></i> Nuevo interprete</a>  
     
     <?php if(isset($filas)): ?>
-
-    <table id="interpretes" class="table table-bordered table-striped datatable">
+    <h3>Listado de artistas</h3>
+    <table id="ABM" class="table table-bordered table-striped">
 
      <thead>
       <tr>
@@ -33,11 +33,11 @@
         <td class="pull-right">
           <?php $id = $fila->inte_id; ?>
           <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary" title="Ver"><i class="fa fa-fw fa-eye"></i></a>
-          <!-- <?php if($fila->habilitado == 1): ?>
+          <?php if($fila->inte_habilitado == 1): ?>
             <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success" title="Editar"><i class="fa fa-fw fa-edit"></i>
             </a>
-          <?php endif; ?> -->
-          <!-- <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i></a> -->
+          <?php endif; ?>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i></a>
         </td>   
       </tr>      
      <?php endforeach; ?>
@@ -58,3 +58,4 @@
 
 </div>
 <!-- /.box -->
+

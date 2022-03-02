@@ -17,5 +17,14 @@ function __construct() {
     	return $query->result();
 	}
 
+	public function get_all()
+	{
+		$this->db->select('c.canc_id, c.canc_titulo, i.inte_nombre')
+					->from('canciones c')
+					->join('interprete i', 'c.inte_id = i.inte_id')
+					->where('c.canc_habilitado', 1);
+		$query = $this->db->get();
+    return $query->result();
+	}
 
 }

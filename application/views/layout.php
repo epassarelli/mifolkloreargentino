@@ -198,7 +198,14 @@
  
   <?php if(isset($css_files)): ?>
     <?php foreach($css_files as $file): ?>
-      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>">
+      
+    <?php endforeach; ?>
+  <?php endif; ?>
+
+  <?php if(isset($files_css)): ?>
+    <?php foreach($files_css as $file): ?>
+      <link type="text/css" rel="stylesheet" href="<?php echo site_url('assets/css/'.$file); ?>">
+      <!-- <script src="<?php echo site_url($file); ?>"></script> -->
     <?php endforeach; ?>
   <?php endif; ?>
 
@@ -209,15 +216,25 @@
 
 <input type="hidden" id="url" value="<?php echo site_url();?>">
 
-  <?php if(isset($js_files)): ?>
-    <?php foreach($js_files as $file): ?>
-      <script src="<?php echo $file; ?>"></script>
-    <?php endforeach; ?>
-  <?php endif; ?>
+
 
   <script async src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- <script async src="<?php echo base_url();?>assets/js/scripts.js"></script> -->
+  
+
+  <?php if(isset($js_files)): ?>
+    <?php foreach($js_files as $file): ?>
+      <script src="<?php echo site_url($file); ?>"></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
+
+  <?php if(isset($files_js)): ?>
+    <?php foreach($files_js as $file): ?>
+      <script src="<?php echo site_url('assets/js/'.$file); ?>"></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
+
   <script>  
     $(document).ready(function() {
       let urlBase = $('#url').val();
@@ -307,6 +324,14 @@
 
   });
   </script>
- 
+<script type="text/javascript" charset="utf-8">
+  $(document).ready( function () {
+      $('#ABM').dataTable( {
+            "language": {
+                "url": "<?php echo site_url('assets/js/datatablesSpanish.lang'); ?>"
+            }
+        } );    
+  } );
+</script> 
 </body>
 </html>

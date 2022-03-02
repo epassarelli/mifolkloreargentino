@@ -4,9 +4,9 @@ class Mipanel extends MX_Controller {
 
 function __construct(){
 	parent::__construct();
-	if (!$this->ion_auth->logged_in()){
-		redirect('/auth/login/');
-	} 
+	// if (!$this->ion_auth->logged_in()){
+	// 	redirect('/auth/login/');
+	// } 
 	// $this->load->model('interpretes/Interpretes_model');
 	// $_SESSION['seccion'] = "Biografias";
 	if (ENVIRONMENT == 'development') {
@@ -21,7 +21,7 @@ public function index(){
 	$data['keywords']   	= "panel";
 
 
-	$rol = $this->tank_auth->get_user_profile();
+	//$rol = $this->tank_auth->get_user_profile();
 	//var_dump($rol);die();
 	// switch ($rol) {
 	// 		case '1':

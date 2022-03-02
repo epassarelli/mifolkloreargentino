@@ -563,7 +563,7 @@ if( $_SERVER['SERVER_NAME'] == 'localhost' )
 	}
 	else
 	{
-		$config['google']['redirect_uri']     = 'https://www.mifolkloreargentino.com/auth/login';
+		$config['google']['redirect_uri']     = 'https://mifolkloreargentino.com/auth/login';
 	}
 
 //$config['google']['redirect_uri']     = 'http://localhost/mifolkloreargentino/auth/login';

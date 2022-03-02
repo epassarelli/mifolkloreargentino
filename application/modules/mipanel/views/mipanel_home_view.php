@@ -7,7 +7,7 @@
 	        <div class="info-box-content">
 	          <span class="info-box-text">Mis</span>
 	          <span class="info-box-number">Artistas</span>
-	          <span><a href="<?php echo site_url('admin/interpretes');?>">+ Ver más</a></span>
+	          <span><a href="<?php echo site_url('mipanel/interpretes');?>">+ Ver más</a></span>
 	        </div>
 	      </div>		
 	</div>
@@ -19,7 +19,7 @@
         <div class="info-box-content">
           <span class="info-box-text">Mis Noticias</span>
           <span class="info-box-number">9</span>
-          <span><a href="<?php echo site_url('admin/noticias');?>">+ Ver más</a></span>
+          <span><a href="<?php echo site_url('mipanel/noticias');?>">+ Ver más</a></span>
         </div>
       </div>		
 	</div>
@@ -31,7 +31,7 @@
 	        <div class="info-box-content">
 	          <span class="info-box-text">Mis Shows</span>
 	          <span class="info-box-number">9</span>
-	          <span><a href="<?php echo site_url('admin/shows');?>">+ Ver más</a></span>
+	          <span><a href="<?php echo site_url('mipanel/shows');?>">+ Ver más</a></span>
 	        </div>
 	    </div>		
 	</div>
@@ -43,7 +43,7 @@
 	        <div class="info-box-content">
 	          <span class="info-box-text">Mis </span>
 	          <span class="info-box-number">Discos</span>
-	          <span><a href="<?php echo site_url('admin/discos');?>">+ Ver más</a></span>
+	          <span><a href="<?php echo site_url('mipanel/discos');?>">+ Ver más</a></span>
 	        </div>
 	    </div>		
 	</div>
@@ -55,7 +55,7 @@
 	        <div class="info-box-content">
 	          <span class="info-box-text">Mis </span>
 	          <span class="info-box-number">Canciones</span>
-	          <span><a href="<?php echo site_url('admin/canciones');?>">+ Ver más</a></span>
+	          <span><a href="<?php echo site_url('mipanel/canciones');?>">+ Ver más</a></span>
 	        </div>
 	    </div>		
 	</div>

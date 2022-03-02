@@ -4,9 +4,9 @@ class Noticias extends MX_Controller {
 
 function __construct(){
 	parent::__construct();
-	if (!$this->ion_auth->logged_in()){
-		redirect('/auth/login/');
-	} 
+	// if (!$this->ion_auth->logged_in()){
+	// 	redirect('/auth/login/');
+	// } 
 	$this->load->model('Noticias_model');
 	$this->load->model('Interpretes_model');
 	$_SESSION['seccion'] = "Noticias";

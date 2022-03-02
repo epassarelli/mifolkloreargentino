@@ -93,6 +93,7 @@ function get_Ultimas($cantidad){
 	$this->db->from('canciones c');
 	$this->db->join('interprete i','c.inte_id = i.inte_id');
 	$this->db->where('c.canc_habilitado', 1);	
+	$this->db->where('LENGTH(c.canc_contenido)>', 20);
 	$this->db->order_by('c.canc_id', 'desc');	
 	$this->db->limit($cantidad);
 	$query = $this->db->get();	

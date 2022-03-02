@@ -67,7 +67,7 @@
     <div class="form-group">
       <label for="userfile">Foto</label>
       <input type="file" class="form-control" name="userfile">
-      <p class="help-block">La foto debe ser .JPG, no pesar más de 300 kb y se recortará a un tamaño máximo de 640 x 480 px.<br></p>
+      <p class="help-block">La foto debe ser .JPG, no pesar más de 300 kb y se recortará a un tamaño máximo de 480 x 480 px.<br></p>
     </div>
     
 

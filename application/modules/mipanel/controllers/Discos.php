@@ -4,9 +4,9 @@ class Discos extends MX_Controller {
 
 function __construct(){
 	parent::__construct();
-	if (!$this->ion_auth->logged_in()){
-		redirect('/auth/login/');
-	} 
+	// if (!$this->ion_auth->logged_in()){
+	// 	redirect('/auth/login/');
+	// } 
 
 	$this->load->model(array('Discos_model','Interpretes_model'));
 	$_SESSION['seccion'] = "Discos";

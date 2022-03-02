@@ -210,7 +210,7 @@ class Wpanel extends MX_Controller {
 		$crud->unset_print();
 		$crud->unset_export();
 
-		$crud->columns('canc_id','inte_id','canc_titulo','canc_visitas','canc_youtube','discos','canc_habilitado');
+		$crud->columns('canc_id','inte_id','canc_titulo','canc_contenido','canc_visitas','canc_youtube','discos','canc_habilitado');
 		//$crud->fields('user_id', 'inte_id','canc_titulo','canc_alias','canc_contenido','canc_youtube');
 		
 		$crud->required_fields('inte_id','canc_titulo','canc_contenido');

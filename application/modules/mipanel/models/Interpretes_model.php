@@ -13,8 +13,10 @@ class Interpretes_model extends MY_Model {
 	###		por el solicitante ni tengan un pedido en trámite
 
 	public function getMisAdministrados($user_id){
-		$query = $this->db->from('interprete i')
-		        ->join('user_interprete ui', 'i.inte_id = ui.inte_id')
+		$query = $this->db
+						->select('i.inte_nombre')
+						->from('interprete i')
+		        ->join('users_interpretes ui', 'i.inte_id = ui.inte_id')
                 ->where("ui.user_id", $user_id)
                 ->get();
     	
@@ -34,7 +36,7 @@ class Interpretes_model extends MY_Model {
 				FROM
 					interprete i
 				LEFT OUTER JOIN
-					user_interprete ui ON ui.inte_id = i.inte_id
+					users_interpretes ui ON ui.inte_id = i.inte_id
 				WHERE
 					i.inte_habilitado = 1 AND IFNULL(ui.user_id, 0) NOT IN ($user_id)
 				ORDER BY
@@ -65,11 +67,18 @@ class Interpretes_model extends MY_Model {
 		$query = $this->db
 				->select('i.inte_id, i.inte_nombre')
 				->from('interprete i')
-		        ->join('user_interprete ui', 'i.inte_id = ui.inte_id')
+		        ->join('users_interpretes ui', 'i.inte_id = ui.inte_id')
                 ->where("ui.user_id", $this->tank_auth->get_user_id())
                 ->get();
     	
     	return $query->result(); 
 	}
+
+  function get_all(){
+    $query = $this->db
+    	->select('inte_id, inte_nombre, inte_visitas, inte_habilitado')
+    	->get($this->table);    
+    return $query->result();
+  }
 
 }

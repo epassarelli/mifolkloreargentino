@@ -1,3 +1,5 @@
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_canciones_letra_1_view"); }?>
+
   <style>
     .mxm-edit-letra-textarea{
     background-color: #fff;

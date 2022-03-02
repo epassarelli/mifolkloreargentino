@@ -9,19 +9,16 @@ class Auth extends MX_Controller {
         
         parent::__construct();
 
-        // Load facebook library
-        $this->load->library('facebook');
-        $this->load->library('google');
 
-        $this->load->model('User_model');
 
         $this->load->database();
-        $this->load->library(['ion_auth', 'form_validation']);
+        $this->load->library(['ion_auth', 'form_validation', 'facebook', 'google']);
         $this->load->helper(['language']);
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
+        $this->load->model('User_model');
 
         if (ENVIRONMENT == 'development') {
             $this->output->enable_profiler(TRUE);
@@ -29,56 +26,16 @@ class Auth extends MX_Controller {
     }
 
 
-    public function loginNew(){
-        $userData = array();
+    public function login()
+    {
+        $this->data['title'] = $this->lang->line('login_heading');
 
+        // validate form input
         $this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
         $this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
 
-        // Check if user is logged in
-        if($this->facebook->is_authenticated()){
-            // Get user facebook profile details
-            $fbUser = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
-            //print_r($fbUser); die;
-            // Preparing data for database insertion
-            $userData['oauth_provider'] = 'facebook';
-            $userData['oauth_uid']    = !empty($fbUser['id'])?$fbUser['id']:'';;
-            $userData['name']    = $fbUser['first_name'] .' '.$fbUser['last_name'];
-            $userData['email']        = !empty($fbUser['email'])?$fbUser['email']:'';
-            $userData['picture']    = !empty($fbUser['picture']['data']['url'])?$fbUser['picture']['data']['url']:'';
-            
-            // Insert or update user data
-            $userID = $this->user->checkUser($userData);
-            
-            // Check user data insert or update status
-            if(!empty($userID)){
-                $data['userData'] = $userData;
-                $this->session->set_userdata('userData', $userData);
-            }else{
-               $data['userData'] = array();
-            }
-            
-            // Get logout URL
-            $data['logoutURL'] = $this->facebook->logout_url();
-
-        }else if(isset($_GET['code'])){
-            
-            // Authenticate user with google
-            if($this->google->getAuthenticate()){
-            
-                $google_data=$this->google->getUserInfo();
-                //print_r($google_data); die;
-                $session_data=array(
-                        'name'=>$google_data['name'],
-                        'email'=>$google_data['email'],
-                        'source'=>'google',
-                        'profile_pic'=>$google_data['picture'],
-                        'google_id'=>$google_data['id'],
-                        'sess_logged_in'=>1
-                        );
-                $this->session->set_userdata($session_data);
-            }
-        }else if ($this->form_validation->run() === TRUE) {
+        if ($this->form_validation->run() === TRUE)
+        {
             // check to see if the user is logging in
             // check for "remember me"
             $remember = (bool)$this->input->post('remember');
@@ -98,187 +55,182 @@ class Auth extends MX_Controller {
                 redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
             }
         }
+        else
+        {
+            // the user is not logging in so display the login page
+            // set the flash data error message if there is one
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-        // Get login URL
-        $data['fb_url'] =  $this->facebook->login_url();
-        $data['ga_url'] = $this->google->loginURL();
+            $this->data['identity'] = [
+                'name' => 'identity',
+                'id' => 'identity',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('identity'),
+            ];
 
-        $this->load->view('auth/login',$data);
-    }
+            $this->data['password'] = [
+                'name' => 'password',
+                'id' => 'password',
+                'type' => 'password',
+            ];
 
-
-
-
-    public function login(){
-        $userData = array();
-
-        $this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
-        $this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
-
-        // Check if user is logged in
-        if($this->facebook->is_authenticated()){
-            // Get user facebook profile details
-            $fbUser = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
-            //print_r($fbUser); die;
-            // Preparing data for database insertion
-            $userData['oauth_provider'] = 'facebook';
-            $userData['oauth_uid']      = !empty($fbUser['id'])?$fbUser['id']:'';;
-            $userData['first_name']     = $fbUser['first_name'];
-            $userData['last_name']      = $fbUser['last_name'];
-            $userData['email']          = !empty($fbUser['email'])?$fbUser['email']:'';
-            $userData['picture_url']    = !empty($fbUser['picture']['data']['url'])?$fbUser['picture']['data']['url']:'';
-            
-
-
-            // Insert or update user data
-            $userID = $this->User_model->checkUser($userData);
-            
-            // Check user data insert or update status
-            if(!empty($userID)){
-                // $data['userData'] = $userData;
-                // $this->session->set_userdata('userData', $userData);
-
-                    $session_data = [
-                        'identity'             => 'email',
-                        //$this->identity_column => $user->{$this->identity_column},
-                        'email'                => $userData['email'],
-                        'user_id'              => $userID, //everyone likes to overwrite id so we'll use user_id
-                        'old_last_login'       => time(),
-                        'last_check'           => time(),
-                    ];                     
-                    
-                    $this->session->set_userdata($session_data);
-
-                    redirect('/admin', 'refresh');
-
-            }else{
-               $data['userData'] = array();
-               redirect('auth/login', 'refresh'); 
-            }
-            // print_r($this->session->userdata()); die;
-            // Get logout URL
-            $data['logoutURL'] = $this->facebook->logout_url();
-
-        }else if(isset($_GET['code'])){
-            
-            // Authenticate user with google
-            if($this->google->getAuthenticate()){
-            
-                $gpInfo=$this->google->getUserInfo();
-                
-                // print_r($gpInfo); die;
-                
-                // $session_data=array(
-                //         'name'=>$google_data['name'],
-                //         'email'=>$google_data['email'],
-                //         'source'=>'google',
-                //         'profile_pic'=>$google_data['picture'],
-                //         'google_id'=>$google_data['id'],
-                //         'sess_logged_in'=>1
-                //         );
-
-                /////////////////////////////////////////////
-                // Codigo mio
-                ///////////////////////////////////////////// 
-
-                // preparing data for database insertion
-                $userData['oauth_provider'] = 'google';
-                $userData['oauth_uid']    = $gpInfo['id'];
-                $userData['first_name']   = $gpInfo['name'];                
-                $userData['email']        = $gpInfo['email'];
-                $userData['picture_url']  = !empty($gpInfo['picture'])?$gpInfo['picture']:'';
-                // $userData['last_name']    = $gpInfo['family_name'];
-                // $userData['gender']     = !empty($gpInfo['gender'])?$gpInfo['gender']:'';
-                // $userData['locale']     = !empty($gpInfo['locale'])?$gpInfo['locale']:'';
-                // $userData['profile_url']  = !empty($gpInfo['link'])?$gpInfo['link']:'';              
-                
-
-                // print_r($userData); die;
-                
-                // Insert or update user data
-                $userID = $this->User_model->checkUser($userData);
-                
-                // print_r($userID); die;
-
-
-
-                
-                // Check user data insert or update status
-                if(!empty($userID)){
-                    // $data['userData'] = $userData;
-                    // $this->session->set_userdata('loggedIn', true);
-                    // $this->session->set_userdata('userData', $userData);
-                     
-                    $session_data = [
-                        'identity'             => 'email',
-                        //$this->identity_column => $user->{$this->identity_column},
-                        'email'                => $userData['email'],
-                        'user_id'              => $userID, //everyone likes to overwrite id so we'll use user_id
-                        'old_last_login'       => time(),
-                        'last_check'           => time(),
-                    ];                     
-                    
-                    $this->session->set_userdata($session_data);
-
-                    //print_r($userID); die;
-                    redirect('/admin', 'refresh');
-                }else{
-                   $data['userData'] = array();
-                   redirect('auth/login', 'refresh'); 
-                }
-                
-                //print_r($this->session->userdata()); die;
-                
-                // Get logout URL
-                // $data['logoutURL'] = $this->google->logout_url();
-
-                /////////////////////////////////////////////
-                // Fin Codigo mio
-                ///////////////////////////////////////////// 
-
-
-                //print_r($session_data); die;
-                //$this->session->set_userdata($session_data);
-                
-            }
-        }else if ($this->form_validation->run() === TRUE) {
-            // check to see if the user is logging in
-            // check for "remember me"
-            $remember = (bool)$this->input->post('remember');
-
-            
-
-            //echo $this->input->post('identity') . ' - '. $this->input->post('password') . ' - '. $remember ; die;
-            if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
-            {
-                // if the login is successful
-                // redirect them back to the home page
-                $this->session->set_flashdata('message', $this->ion_auth->messages());
-                //print_r($this->session->userdata()); die;
-                //print_r('Usuario encontrado'); die;
-                redirect('/admin', 'refresh');
-            }
-            else
-                {
-                    // if the login was un-successful
-                    // redirect them back to the login page
-                    $this->session->set_flashdata('message', $this->ion_auth->errors());
-                    //print_r($this->session->userdata()); die;
-                    //print_r('Usuario NO encontrado'); die;
-                    redirect('auth/login', 'refresh');
-                    // use redirects instead of loading views for compatibility with MY_Controller libraries
-                }
+            $this->load->view('auth/login',$this->data);
         }
-
-        // Get login URL
-        $data['fb_url'] =  $this->facebook->login_url();
-        $data['ga_url'] = $this->google->loginURL();
-
-        $this->load->view('auth/login',$data);
     }
 
+
+
+//     public function login(){
+//         $userData = array();
+
+//         $this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
+//         $this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+
+//         echo 'User: ' .$this->input->post('identity') . ' - Pass: ' . $this->input->post('password'); 
+//         if ($this->form_validation->run() === TRUE) {
+//             // check to see if the user is logging in
+//             // check for "remember me"
+//             $remember = (bool)$this->input->post('remember');
+            
+            
+
+//             //echo $this->input->post('identity') . ' - '. $this->input->post('password') . ' - '. $remember ; die;
+            
+//             if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember=FALSE))
+//             {
+//                 // if the login is successful
+//                 // redirect them back to the home page
+//                 $this->session->set_flashdata('message', $this->ion_auth->messages());
+//                 //print_r($this->session->userdata()); die;
+//                 print_r('Usuario encontrado'); 
+//                 redirect('/admin', 'refresh');
+//             }
+//             else
+//                 {
+//                     // if the login was un-successful
+//                     // redirect them back to the login page
+//                     $this->session->set_flashdata('message', $this->ion_auth->errors());
+//                     //print_r($this->session->userdata()); die;
+//                     print_r('Usuario NO encontrado');
+//                     redirect('auth/login', 'refresh');
+//                     // use redirects instead of loading views for compatibility with MY_Controller libraries
+//                 }
+//         }
+//         else{
+
+//             //print_r('No paso la validacion'); die;
+
+//             // Check if user is logged in
+//             if($this->facebook->is_authenticated()){
+//                 // Get user facebook profile details
+//                 $fbUser = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
+//                 //print_r($fbUser); die;
+//                 // Preparing data for database insertion
+//                 $userData['oauth_provider'] = 'facebook';
+//                 $userData['oauth_uid']      = !empty($fbUser['id'])?$fbUser['id']:'';;
+//                 $userData['first_name']     = $fbUser['first_name'];
+//                 $userData['last_name']      = $fbUser['last_name'];
+//                 $userData['email']          = !empty($fbUser['email'])?$fbUser['email']:'';
+//                 $userData['picture_url']    = !empty($fbUser['picture']['data']['url'])?$fbUser['picture']['data']['url']:'';
+                
+
+
+//                 // Insert or update user data
+//                 $userID = $this->User_model->checkUser($userData);
+                
+//                 // Check user data insert or update status
+//                 if(!empty($userID)){
+//                     // $data['userData'] = $userData;
+//                     // $this->session->set_userdata('userData', $userData);
+
+//                         $session_data = [
+//                             'identity'             => 'email',
+//                             //$this->identity_column => $user->{$this->identity_column},
+//                             'email'                => $userData['email'],
+//                             'user_id'              => $userID, //everyone likes to overwrite id so we'll use user_id
+//                             'old_last_login'       => time(),
+//                             'last_check'           => time(),
+//                         ];                     
+                        
+//                         $this->session->set_userdata($session_data);
+
+//                         redirect('/admin', 'refresh');
+
+//                 }else{
+//                    $data['userData'] = array();
+//                    redirect('auth/login', 'refresh'); 
+//                 }
+//                 // print_r($this->session->userdata()); die;
+//                 // Get logout URL
+//                 $data['logoutURL'] = $this->facebook->logout_url();
+
+//             }else if(isset($_GET['code'])){ // Cierro if Authent Facebook y pregunto por google
+            
+//                 // Authenticate user with google
+//                 if($this->google->getAuthenticate()){
+                
+//                     $gpInfo=$this->google->getUserInfo();
+                    
+//                     /////////////////////////////////////////////
+//                     // Codigo mio
+//                     ///////////////////////////////////////////// 
+//                     // preparing data for database insertion
+//                     $userData['oauth_provider'] = 'google';
+//                     $userData['oauth_uid']    = $gpInfo['id'];
+//                     $userData['first_name']   = $gpInfo['name'];                
+//                     $userData['email']        = $gpInfo['email'];
+//                     $userData['picture_url']  = !empty($gpInfo['picture'])?$gpInfo['picture']:'';
+                    
+//                     // Insert or update user data
+//                     $userID = $this->User_model->checkUser($userData);               
+//                     // print_r($userID); die;
+
+//                         // Check user data insert or update status
+//                         if(!empty($userID)){
+//                             // $data['userData'] = $userData;
+//                             // $this->session->set_userdata('loggedIn', true);
+//                             // $this->session->set_userdata('userData', $userData);
+//                             $session_data = [
+//                                 'identity'             => 'email',
+//                                 //$this->identity_column => $user->{$this->identity_column},
+//                                 'email'                => $userData['email'],
+//                                 'user_id'              => $userID, //everyone likes to overwrite id so we'll use user_id
+//                                 'old_last_login'       => time(),
+//                                 'last_check'           => time(),
+//                             ];                     
+                            
+//                             $this->session->set_userdata($session_data);
+
+//                             //print_r($userID); die;
+//                             redirect('/admin', 'refresh');
+//                         }else{
+//                            $data['userData'] = array();
+//                            redirect('auth/login', 'refresh'); 
+//                         }
+//                     //print_r($this->session->userdata()); die;
+//                     // Get logout URL
+//                     // $data['logoutURL'] = $this->google->logout_url();
+//                     /////////////////////////////////////////////
+//                     // Fin Codigo mio
+//                     ///////////////////////////////////////////// 
+//                     //print_r($session_data); die;
+//                     //$this->session->set_userdata($session_data);
+//                 }
+//             }
+
+            
+//         // Get login URL
+//         $data['fb_url'] =  $this->facebook->login_url();
+//         $data['ga_url'] = $this->google->loginURL();
+
+//         $this->load->view('auth/login',$data);
+//     }
+// }
 
     
+
+
+
     public function logout(){
         // Reset OAuth access token
         $this->google->revokeToken();
@@ -1059,5 +1011,99 @@ class Auth extends MX_Controller {
             return $view_html;
         }
     }
+
+
+
+
+
+
+
+
+
+
+    // public function loginNew(){
+    //     $userData = array();
+
+    //     $this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
+    //     $this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+
+    //     // Check if user is logged in
+    //     if($this->facebook->is_authenticated()){
+    //         // Get user facebook profile details
+    //         $fbUser = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
+    //         //print_r($fbUser); die;
+    //         // Preparing data for database insertion
+    //         $userData['oauth_provider'] = 'facebook';
+    //         $userData['oauth_uid']    = !empty($fbUser['id'])?$fbUser['id']:'';;
+    //         $userData['name']    = $fbUser['first_name'] .' '.$fbUser['last_name'];
+    //         $userData['email']        = !empty($fbUser['email'])?$fbUser['email']:'';
+    //         $userData['picture']    = !empty($fbUser['picture']['data']['url'])?$fbUser['picture']['data']['url']:'';
+            
+    //         // Insert or update user data
+    //         $userID = $this->user->checkUser($userData);
+            
+    //         // Check user data insert or update status
+    //         if(!empty($userID)){
+    //             $data['userData'] = $userData;
+    //             $this->session->set_userdata('userData', $userData);
+    //         }else{
+    //            $data['userData'] = array();
+    //         }
+            
+    //         // Get logout URL
+    //         $data['logoutURL'] = $this->facebook->logout_url();
+
+    //     }else if(isset($_GET['code'])){
+            
+    //         // Authenticate user with google
+    //         if($this->google->getAuthenticate()){
+            
+    //             $google_data=$this->google->getUserInfo();
+    //             //print_r($google_data); die;
+    //             $session_data=array(
+    //                     'name'=>$google_data['name'],
+    //                     'email'=>$google_data['email'],
+    //                     'source'=>'google',
+    //                     'profile_pic'=>$google_data['picture'],
+    //                     'google_id'=>$google_data['id'],
+    //                     'sess_logged_in'=>1
+    //                     );
+    //             $this->session->set_userdata($session_data);
+    //         }
+    //             }else if ($this->form_validation->run() === TRUE) {
+
+    //                 // check to see if the user is logging in
+    //                 // check for "remember me"
+    //                 $remember = (bool)$this->input->post('remember');
+
+    //                 if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+    //                 {
+    //                     //if the login is successful
+    //                     //redirect them back to the home page
+    //                     $this->session->set_flashdata('message', $this->ion_auth->messages());
+    //                     redirect('/', 'refresh');
+    //                 }
+    //                 else
+    //                 {
+    //                     // if the login was un-successful
+    //                     // redirect them back to the login page
+    //                     $this->session->set_flashdata('message', $this->ion_auth->errors());
+    //                     redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+    //                 }
+    //             }
+
+    //     // Get login URL
+    //     $data['fb_url'] =  $this->facebook->login_url();
+    //     $data['ga_url'] = $this->google->loginURL();
+
+    //     $this->load->view('auth/login',$data);
+    // }
+
+
+
+
+
+
+
 
 }
