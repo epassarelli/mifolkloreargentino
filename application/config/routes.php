@@ -89,45 +89,45 @@ $route['politicas-de-privacidad'] 		= 'privacidad';
 /* Mis Datos */
 
 // Mis datos como usuario
-$route['mipanel/misdatos']					= "mipanel/misdatos";
+$route['admin/misdatos']					= "mipanel/misdatos";
 
 // Mis artistas administrados
-$route['mipanel/interpretes']				= "mipanel/interpretes";
+$route['admin/interpretes']				= "mipanel/interpretes";
 // Editar los datos de un artista administrado
-$route['mipanel/interpretes/nuevo']				= "mipanel/interpretes/nuevo";
+$route['admin/interpretes/nuevo']				= "mipanel/interpretes/nuevo";
 // Editar los datos de un artista administrado
-$route['mipanel/interpretes/editar/(:any)']		= "mipanel/interpretes/editar/$1";
+$route['admin/interpretes/editar/(:any)']		= "mipanel/interpretes/editar/$1";
 // Mostrar los datos de un artista administrado
-$route['mipanel/interpretes/ver/(:any)']		= "mipanel/interpretes/ver/$1";
+$route['admin/interpretes/ver/(:any)']		= "mipanel/interpretes/ver/$1";
 // Mostrar los datos de un artista administrado
-$route['mipanel/interpretes/eliminar/(:any)']	= "mipanel/interpretes/eliminar/$1";
+$route['admin/interpretes/eliminar/(:any)']	= "mipanel/interpretes/eliminar/$1";
 // Solicitar administrar un artista
-$route['mipanel/interpretes/solicitar']			= "mipanel/interpretes/solicitar";
+$route['admin/interpretes/solicitar']			= "mipanel/interpretes/solicitar";
 // Mostrar los datos de un artista administrado
-$route['mipanel/interpretes/administrar/(:any)']= "mipanel/interpretes/administrar/$1";
+$route['admin/interpretes/administrar/(:any)']= "mipanel/interpretes/administrar/$1";
 
 // Shows de mis artistas
-$route['mipanel/shows']					= "mipanel/shows";
+$route['admin/shows']					= "mipanel/shows";
 // Nuevo show de uno de mis artistas
-$route['mipanel/shows/nuevo']			= "mipanel/shows/nuevo";
+$route['admin/shows/nuevo']			= "mipanel/shows/nuevo";
 // Editar un show de uno de mis artistas
-$route['mipanel/shows/editar']			= "mipanel/shows/editar";
+$route['admin/shows/editar']			= "mipanel/shows/editar";
 
 // Noticias de mis artistas
-$route['mipanel/misnoticias']				= "mipanel/noticias";
+$route['admin/misnoticias']				= "mipanel/noticias";
 // Nueva noticia de uno de mis artistas
-$route['mipanel/misnoticias/nueva']			= "mipanel/noticias/nueva";
-$route['mipanel/misnoticias/editar/(:any)']	= "mipanel/noticias/editar/$1";
+$route['admin/misnoticias/nueva']			= "mipanel/noticias/nueva";
+$route['admin/misnoticias/editar/(:any)']	= "mipanel/noticias/editar/$1";
 
 
-$route['mipanel/discos']					= "mipanel/discos";
-$route['mipanel/discos/nuevo']			= "mipanel/discos/nuevo";
-$route['mipanel/discos/editar']			= "mipanel/discos/editar";
+$route['admin/discos']					= "mipanel/discos";
+$route['admin/discos/nuevo']			= "mipanel/discos/nuevo";
+$route['admin/discos/editar']			= "mipanel/discos/editar";
 
 
-$route['mipanel/canciones']				= "mipanel/canciones";
-$route['mipanel/canciones/nueva']		= "mipanel/canciones/nueva";
-$route['mipanel/canciones/editar']		= "mipanel/canciones/editar";
+$route['admin/canciones']				= "mipanel/canciones";
+$route['admin/canciones/nueva']		= "mipanel/canciones/nueva";
+$route['admin/canciones/editar']		= "mipanel/canciones/editar";
 
 ##########################################################################################
 ###

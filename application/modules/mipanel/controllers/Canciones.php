@@ -20,26 +20,36 @@ public function index(){
 	$data['description']	= "Canciones, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "Canciones";
 
+	$data['files_js'] = array('datatables.min.js' );
+	$data['files_css'] = array('datatables.min.css');
+	$user_id = $this->session->userdata('user_id');
 
-	$rol = $this->tank_auth->get_user_profile();
+	if($this->ion_auth->in_group(1)){
+		$data['filas'] = $this->Canciones_model->getAllBackend();		
+	}
+		else
+		{
+			$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados($user_id);
+		}
+	// $rol = $this->tank_auth->get_user_profile();
 
-	switch ($rol) {
-			case '1':
-				# registrado...
-				$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados();
-				break;
-			case '2':
-				# admin banda...
-				$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados();
-				break;			
-			case '3':
-				# admin mfa...
-				$data['filas'] = $this->Canciones_model->get_all();
-				break;
-			default:
-				# code...
-				break;
-		}	
+	// switch ($rol) {
+	// 		case '1':
+	// 			# registrado...
+	// 			$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados();
+	// 			break;
+	// 		case '2':
+	// 			# admin banda...
+	// 			$data['filas'] = $this->Canciones_model->getCancionesDeMisAdministrados();
+	// 			break;			
+	// 		case '3':
+	// 			# admin mfa...
+	// 			$data['filas'] = $this->Canciones_model->get_all();
+	// 			break;
+	// 		default:
+	// 			# code...
+	// 			break;
+	// 	}	
 
 	$data['breadcrumb'] 	= array(
 								'Inicio' => base_url()

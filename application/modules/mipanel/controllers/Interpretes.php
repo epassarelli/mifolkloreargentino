@@ -3,7 +3,6 @@
 class Interpretes extends MX_Controller {
 
 
-
 public function __construct(){
 	parent::__construct();
 	if (!$this->ion_auth->logged_in()){
@@ -25,32 +24,24 @@ public function index(){
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes";
 
-	$rol = $this->tank_auth->get_user_profile();
-	$user_id = $this->tank_auth->get_user_id();
+	$data['files_js'] = array('datatables.min.js' );
+	$data['files_css'] = array('datatables.min.css');
+	$user_id = $this->session->userdata('user_id');
 
-	switch ($rol) {
-		case '1':
-			# registrado...				
+	if($this->ion_auth->in_group(1)){
+		$data['filas'] = $this->Interpretes_model->get_all();		
+	}
+		else
+		{
 			$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-			break;
-		case '2':
-			# admin banda...
-			$data['filas'] = $this->Interpretes_model->getMisAdministrados($user_id);
-			break;			
-		case '3':
-			# admin mfa...
-			$data['filas'] = $this->Interpretes_model->get_all();
-			break;
-		default:
-			# code...
-			break;
-	}	
+		}
+	
+	$rol=1;
 
 	$data['breadcrumb'] 	= array(
 								'Mi panel' => base_url('mipanel'),
 								);		
 	$data['view']       	= 'misadministrados_view';
-	//$data['sidebar']       	= 'interpretes_sidebar_view';
 	$this->load->view('layout.php', $data);
 }
 
