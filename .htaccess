@@ -4,8 +4,8 @@ RewriteEngine on
 #RewriteCond %{HTTP_HOST} ^mifolkloreargentino.com [NC]
 #RewriteRule ^(.*)$ https://mifolkloreargentino.com/$1 [L,R=301]
 
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
 RewriteCond $1 !^(index\.php|assets|captcha|robots\.txt|sitemap\.xml|ads\.txt|favicon\.ico)
 RewriteRule ^(.*)$ index.php/$1 [L]

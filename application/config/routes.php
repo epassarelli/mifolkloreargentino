@@ -87,7 +87,7 @@ $route['politicas-de-privacidad'] 		= 'privacidad';
 ###    Rutas de BackEnd de Usuarios Administradores
 
 /* Mis Datos */
-
+$route['admin']					= "mipanel";
 // Mis datos como usuario
 $route['admin/misdatos']					= "mipanel/misdatos";
 
@@ -114,10 +114,10 @@ $route['admin/shows/nuevo']			= "mipanel/shows/nuevo";
 $route['admin/shows/editar']			= "mipanel/shows/editar";
 
 // Noticias de mis artistas
-$route['admin/misnoticias']				= "mipanel/noticias";
+$route['admin/noticias']				= "mipanel/noticias";
 // Nueva noticia de uno de mis artistas
-$route['admin/misnoticias/nueva']			= "mipanel/noticias/nueva";
-$route['admin/misnoticias/editar/(:any)']	= "mipanel/noticias/editar/$1";
+$route['admin/noticias/nueva']			= "mipanel/noticias/nueva";
+$route['admin/noticias/editar/(:any)']	= "mipanel/noticias/editar/$1";
 
 
 $route['admin/discos']					= "mipanel/discos";

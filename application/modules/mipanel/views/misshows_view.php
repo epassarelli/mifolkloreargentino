@@ -36,7 +36,7 @@
     </div>   
     <?php if(isset($filas)): ?>
 
-        <table id="shows" class="table table-hover datatable"> 
+        <table id="ABM" class="table table-hover datatable"> 
         <thead>
             <th>Fecha</th>
             <th class="hidden-xs">Titulo</th>

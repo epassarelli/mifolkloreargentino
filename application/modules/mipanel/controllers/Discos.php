@@ -23,25 +23,17 @@ public function index(){
 	$data['keywords']   	= "Discos";
 
 
-	$rol = $this->tank_auth->get_user_profile();
+	$data['files_js'] = array('datatables.min.js' );
+	$data['files_css'] = array('datatables.min.css');
+	$user_id = $this->session->userdata('user_id');
 
-	switch ($rol) {
-			case '1':
-				# registrado...
-				$data['filas'] = $this->Discos_model->getDiscosDeMisAdministrados();
-				break;
-			case '2':
-				# admin banda...
-				$data['filas'] = $this->Discos_model->getDiscosDeMisAdministrados();
-				break;			
-			case '3':
-				# admin mfa...
-				$data['filas'] = $this->Discos_model->get_all();
-				break;
-			default:
-				# code...
-				break;
-		}	
+	if($this->ion_auth->in_group(1)){
+		$data['filas'] = $this->Discos_model->getAllBackend();		
+	}
+		else
+		{
+			$data['filas'] = $this->Discos_model->getDiscosDeMisAdministrados($user_id);
+		}
 
 	$data['breadcrumb'] 	= array(
 								'Inicio' => base_url()

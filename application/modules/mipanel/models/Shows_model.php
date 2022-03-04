@@ -7,12 +7,24 @@ class Shows_model extends MY_Model {
 		$this->table = 'evento'; 
 	} 
 
+	public function getAllBackend(){
+		
+		$this->db->from('evento e');
+		//$this->db->join('evento_interprete ei', 'ei.even_id = e.even_id');
+		$this->db->join('interprete i', 'e.inte_id = i.inte_id');
+		$this->db->join('users_interpretes ui', 'i.inte_id = ui.inte_id', 'LEFT');
+		//$this->db->where('ui.user_id', $this->tank_auth->get_user_id());
+		$query = $this->db->get();
+		
+    	return $query->result();
+	}
+
 	public function getShowsDeMisAdministrados(){
 		
 		$this->db->from('evento e');
 		$this->db->join('evento_interprete ei', 'ei.even_id = e.even_id');
 		$this->db->join('interprete i', 'e.inte_id = i.inte_id');
-		$this->db->join('user_interprete ui', 'i.inte_id = ui.inte_id');
+		$this->db->join('users_interpretes ui', 'i.inte_id = ui.inte_id');
 		$this->db->where('ui.user_id', $this->tank_auth->get_user_id());
 		$query = $this->db->get();
 		

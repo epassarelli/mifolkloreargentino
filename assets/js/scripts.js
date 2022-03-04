@@ -37,9 +37,9 @@ $(document).ready(function() {
   $("#provincia").change( function() {
     $("#provincia option:selected").each( function() {
             provincia = $('#provincia').val();
-            
+      console.log(provincia);      
       $.post( 
-        urlBase+"admin/localidades/getLocalidadesForm", 
+        urlBase+"mipanel/localidades/getLocalidadesForm", 
         { provincia : provincia }, 
         function(data) {
           localidad.disabled = false;

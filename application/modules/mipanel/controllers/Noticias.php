@@ -4,9 +4,9 @@ class Noticias extends MX_Controller {
 
 function __construct(){
 	parent::__construct();
-	// if (!$this->ion_auth->logged_in()){
-	// 	redirect('/auth/login/');
-	// } 
+	if (!$this->ion_auth->logged_in()){
+		redirect('/auth/login/');
+	} 
 	$this->load->model('Noticias_model');
 	$this->load->model('Interpretes_model');
 	$_SESSION['seccion'] = "Noticias";
@@ -21,26 +21,18 @@ public function index(){
 	$data['description']	= "Noticias de mis administrados";
 	$data['keywords']   	= "Noticias de mis administrados";
 
+	$data['files_js'] = array('datatables.min.js' );
+	$data['files_css'] = array('datatables.min.css');
 
-	$rol = $this->tank_auth->get_user_profile();
+	$user_id = $this->session->userdata('user_id');
 
-	switch ($rol) {
-			case '1':
-				# registrado...
-				$data['filas'] = $this->Noticias_model->getNoticiasDeMisAdministrados();
-				break;
-			case '2':
-				# admin banda...
-				$data['filas'] = $this->Noticias_model->getNoticiasDeMisAdministrados();
-				break;			
-			case '3':
-				# admin mfa...
-				$data['filas'] = $this->Noticias_model->get_all();
-				break;
-			default:
-				# code...
-				break;
-		}	
+	if($this->ion_auth->in_group(1)){
+		$data['filas'] = $this->Noticias_model->getAllBackend();		
+	}
+		else
+		{
+			$data['filas'] = $this->Noticias_model->getNoticiasDeMisAdministrados($user_id);
+		}
 
 	$data['breadcrumb'] 	= array(
 								'Inicio' => base_url()

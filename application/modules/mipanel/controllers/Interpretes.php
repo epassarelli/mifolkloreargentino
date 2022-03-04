@@ -71,14 +71,20 @@ public function ver($id){
 ##
 
 public function nuevo(){
+	
 	$data['title'] 			= "Sugerir un interprete";
-	$data['mensaje'] = '';
+	$data['mensaje'] = 'a';
 	
 	$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[4]');
 	$this->form_validation->set_rules('biografia', 'biografia', 'required|trim|min_length[25]');
+
+	$this->form_validation->set_message('required', 'El campo {field} debe tener un valor');
+	$this->form_validation->set_message('min_length', 'El campo %s debe tener minimamente %s caracteres');
+	
 	if (empty($_FILES['userfile']['name']))
 	{
-	    $this->form_validation->set_rules('userfile', 'Document', 'required');
+	    //var_dump('Entro porque está vacio el FILE');
+	    $this->form_validation->set_rules('userfile', 'foto', 'required');
 	}
 
 	$data['breadcrumb'] = array(
@@ -87,18 +93,19 @@ public function nuevo(){
 	);	
 
 	// Si no pasó la validacion
-	if($this->form_validation->run()==FALSE){	
-		$data['mensaje'] = 'No pasó la validacion';
+	if($this->form_validation->run() == FALSE){	
+		var_dump('No pasó la validacion');
+		$data['accion'] = 'nuevo';
 		$data['view'] 	= 'misadministrados_form_view';
 		$this->load->view('layout', $data);	
 		}
 	else
 		{
+			var_dump($this->input->post());
 		// Obtengo el Interprete si existe o un NULL
-		$existe = 	$this->Interpretes_model->getOneBy('interprete', 'inte_nombre', $this->input->post('nombre'));	
-		
+		$existe = $this->Interpretes_model->getOneBy('interprete', 'inte_nombre', $this->input->post('nombre'));	
 		// Si no existe el Interprete en la base
-		if($existe !== 'NULL'){
+		if(!$existe){
 
 	        $config['upload_path'] = './assets/upload/interpretes';
 	        //var_dump($config['upload_path']);die();
@@ -139,19 +146,19 @@ public function nuevo(){
 				$artista['inte_biografia'] 	= nl2br($this->input->post('biografia'));			
 				$artista['inte_foto'] 		= $file_info['file_name'];
 				$artista['inte_telefono'] 	= $this->input->post('telefono');
-				$artista['user_id'] 		= $this->tank_auth->get_user_id();			
+				$artista['user_id'] 		= $this->session->userdata('user_id');			
 				$artista['inte_habilitado'] = 0;
 	            
 				// Si se inserta correctamente
 				if($this->Interpretes_model->set('interprete',$artista)){
 
 					// Guardo en la BDD la solicitud
-					$solicitud['user_id'] 		= $this->tank_auth->get_user_id();
+					$solicitud['user_id'] 		= $this->session->userdata('user_id');
 					$solicitud['inte_id'] 		= $this->db->insert_id();
 					$solicitud['habilitado']	= 0;
 
 					// Inserto la relacion de admin en la BDD
-					$this->Interpretes_model->set('user_interprete',$solicitud);					
+					$this->Interpretes_model->set('users_interpretes',$solicitud);					
 					
 					// Si no estoy en LOCAL envio el MAIL
 					if( $_SERVER['SERVER_NAME'] != 'localhost' ) {
@@ -171,6 +178,7 @@ public function nuevo(){
 				}
 				else{
 					$data['mensaje'] 	= 'El interprete NO SE PUDO INSERTAR, verifique todo';
+					$data['accion']	= 'nuevo';
 					$data['view'] 		= 'misadministrados_form_view';
 					$this->load->view('layout', $data);						
 				}
@@ -180,6 +188,7 @@ public function nuevo(){
 	    }
 	    else{
 			$data['mensaje'] 	= 'El interprete YA EXISTE';
+			$data['accion']	= 'nuevo';
 			$data['view'] 		= 'misadministrados_form_view';
 			$this->load->view('layout', $data);		    	
 	    }
@@ -262,7 +271,7 @@ public function editar($id){
 				$artista['inte_biografia'] 	= nl2br($this->input->post('biografia'));			
 				$artista['inte_foto'] 		= $file_info['file_name'];
 				$artista['inte_telefono'] 	= $this->input->post('telefono');
-				$artista['user_id'] 		= $this->tank_auth->get_user_id();			
+				$artista['user_id'] 		= $this->session->userdata('user_id');			
 				$artista['inte_habilitado'] = 0;
 	            
 				// Si se inserta correctamente
@@ -348,7 +357,7 @@ public function solicitar($inte_id=''){
 		}
 		else{ 
 			// Guardo en la BDD la solicitud
-			$solicitud['user_id'] 		= $this->tank_auth->get_user_id();
+			$solicitud['user_id'] 		= $this->session->userdata('user_id');
 			$solicitud['inte_id'] 		= $this->input->post('inte_id');
 			$solicitud['habilitado']	= 0;
 
@@ -399,7 +408,7 @@ public function administrar($inte_id='')
 	$data['description']	= "Interpretes, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "interpretes";		
 
-	$solicitud['user_id'] 		= $this->tank_auth->get_user_id();
+	$solicitud['user_id'] 		= $this->session->userdata('user_id');
 	$solicitud['inte_id'] 		= $inte_id;
 	// Verifico si existe el ID
 

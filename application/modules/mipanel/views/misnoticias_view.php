@@ -22,7 +22,7 @@
     
     <?php if(isset($filas)): ?>
 
-    <table id="interpretes" class="table table-hover datatable"> 
+    <table id="ABM" class="table table-hover datatable"> 
 
      <thead>
       <tr>
