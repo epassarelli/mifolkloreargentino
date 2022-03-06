@@ -18,9 +18,9 @@ class Noticias_model extends MY_Model {
 		$query = $this->db
 				->select('n.noti_fecha, n.noti_id, n.noti_titulo, n.inte_id, n.noti_habilitado, i.inte_nombre')
 				->from('noticia n')
-				->join('user_interprete ui', 'n.inte_id = ui.inte_id')
+				->join('users_interpretes ui', 'n.inte_id = ui.inte_id')
 		        ->join('interprete i', 'ui.inte_id = i.inte_id')	        
-                ->where("ui.user_id", $this->tank_auth->get_user_id())
+                ->where("ui.user_id", $this->session->userdata('user_id'))
                 ->order_by('n.noti_fecha', 'desc')
                 ->get();
     	
@@ -49,7 +49,7 @@ class Noticias_model extends MY_Model {
 		$this->db->select('n.noti_id, n.noti_fecha, n.noti_titulo, n.noti_habilitado, i.inte_nombre');
 		$this->db->from('noticia n');
 		$this->db->join('interprete i', 'n.inte_id = i.inte_id');
-		//$this->db->where('i.user_id', $this->tank_auth->get_user_id());
+		//$this->db->where('i.user_id', $this->session->userdata('user_id'));
 		$query = $this->db->get();
 	  return $query->result();
 	}

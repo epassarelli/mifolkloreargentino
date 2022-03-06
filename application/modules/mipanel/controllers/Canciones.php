@@ -22,8 +22,8 @@ public function index(){
 	$data['description']	= "Canciones, Grupos y Solistas del Folklore Argentino";
 	$data['keywords']   	= "Canciones";
 
-	$data['files_js'] = array('datatables.min.js' );
-	$data['files_css'] = array('datatables.min.css');
+		$data['files_js'] = array('datatables.min.js', 'datatables.init.js' );
+		$data['files_css'] = array('datatables.min.css');
 	$user_id = $this->session->userdata('user_id');
 
 	if($this->ion_auth->in_group(1)){

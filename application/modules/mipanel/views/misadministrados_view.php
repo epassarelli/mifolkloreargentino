@@ -11,7 +11,7 @@
     </ul>
 
     <a class="btn btn-primary" href="<?php echo base_url();?>mipanel/interpretes/solicitar" role="button"><i class="fa fa-user"></i> Solicitar administrar uno existente</a>
-    <a class="btn btn-success" href="<?php echo base_url();?>mipanel/interpretes/nuevo" role="button"><i class="fa fa-plus"></i> Nuevo interprete</a>  
+    <a class="btn btn-success" href="<?php echo base_url();?>mipanel/interpretes/nuevo" role="button"><i class="fa fa-plus"></i> Agregar interprete</a>  
     
     <?php if(isset($filas)): ?>
     <h3>Listado de artistas</h3>
@@ -32,12 +32,19 @@
         <td><?php echo $fila->inte_visitas?></td>
         <td class="pull-right">
           <?php $id = $fila->inte_id; ?>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary" title="Ver"><i class="fa fa-fw fa-eye"></i></a>
-          <?php if($fila->inte_habilitado == 1): ?>
-            <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-success" title="Editar"><i class="fa fa-fw fa-edit"></i>
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary" title="Ver"><i class="fa fa-fw fa-eye"></i> Ver</a>
+
+          <?php if($fila->inte_habilitado == 0): ?>
+            <a href="<?php echo site_url('mipanel/'.$this->objeto.'/aprobar/'.$id); ?>" class="btn btn-xs btn-success" title="Aprobar"><i class="fa fa-thumbs-up"> Aprobar</i>
             </a>
           <?php endif; ?>
-          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i></a>
+
+          <?php if($fila->inte_habilitado == 1): ?>
+            <a href="<?php echo site_url('mipanel/'.$this->objeto.'/editar/'.$id); ?>" class="btn btn-xs btn-warning" title="Editar"><i class="fa fa-pencil"> Editar</i>
+            </a>
+          <?php endif; ?>
+          
+          <a href="<?php echo site_url('mipanel/'.$this->objeto.'/desvincular/'.$id); ?>" class="btn btn-xs btn-danger" title="Desvincular"><i class="fa fa-fw fa-trash-o"></i> Borrar</a>
         </td>   
       </tr>      
      <?php endforeach; ?>

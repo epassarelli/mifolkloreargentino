@@ -212,20 +212,15 @@
 
   <?php if (!isset($output)): ?>
     <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- <script async src="<?php echo base_url();?>assets/js/scripts.js"></script> -->
   <?php endif; ?>
 
 <input type="hidden" id="url" value="<?php echo site_url();?>">
 
 
-
-  <script async src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
-  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script async src="<?php echo base_url();?>assets/js/scripts.js"></script>
-  
-
   <?php if(isset($js_files)): ?>
     <?php foreach($js_files as $file): ?>
-      <script src="<?php echo site_url($file); ?>"></script>
+      <script src="<?php echo $file; ?>"></script>
     <?php endforeach; ?>
   <?php endif; ?>
 
@@ -234,6 +229,14 @@
       <script src="<?php echo site_url('assets/js/'.$file); ?>"></script>
     <?php endforeach; ?>
   <?php endif; ?>
+
+
+  <script async src="<?php echo site_url().'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
+  <script src="<?php echo site_url().'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+  
+
+
 
   <script>  
     $(document).ready(function() {
@@ -324,7 +327,8 @@
 
   });
   </script>
-<script type="text/javascript" charset="utf-8">
+    <?php //if (!isset($output)): ?>
+<!-- <script type="text/javascript" charset="utf-8">
   $(document).ready( function () {
 
       $('#ABM').dataTable( {
@@ -352,6 +356,7 @@
       } );
   } );   
 
-</script> 
+</script>  -->
+<?php //endif; ?>
 </body>
 </html>

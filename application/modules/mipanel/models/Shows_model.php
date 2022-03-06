@@ -13,7 +13,7 @@ class Shows_model extends MY_Model {
 		//$this->db->join('evento_interprete ei', 'ei.even_id = e.even_id');
 		$this->db->join('interprete i', 'e.inte_id = i.inte_id');
 		$this->db->join('users_interpretes ui', 'i.inte_id = ui.inte_id', 'LEFT');
-		//$this->db->where('ui.user_id', $this->tank_auth->get_user_id());
+		//$this->db->where('ui.user_id', $this->session->userdata('user_id'));
 		$query = $this->db->get();
 		
     	return $query->result();
@@ -25,7 +25,7 @@ class Shows_model extends MY_Model {
 		$this->db->join('evento_interprete ei', 'ei.even_id = e.even_id');
 		$this->db->join('interprete i', 'e.inte_id = i.inte_id');
 		$this->db->join('users_interpretes ui', 'i.inte_id = ui.inte_id');
-		$this->db->where('ui.user_id', $this->tank_auth->get_user_id());
+		$this->db->where('ui.user_id', $this->session->userdata('user_id'));
 		$query = $this->db->get();
 		
     	return $query->result();

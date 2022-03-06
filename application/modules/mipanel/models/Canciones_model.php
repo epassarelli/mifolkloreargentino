@@ -11,7 +11,7 @@ class Canciones_model extends MY_Model {
 		$this->db->select('c.canc_id, c.canc_titulo, i.inte_nombre');
 		$this->db->from('canciones c');
 		$this->db->join('interprete i', 'c.inte_id = i.inte_id');
-		// $this->db->where('i.user_id', $this->tank_auth->get_user_id());
+		// $this->db->where('i.user_id', $this->session->userdata('user_id'));
 		$query = $this->db->get();
 	  return $query->result();
 	}
@@ -19,7 +19,7 @@ class Canciones_model extends MY_Model {
 	public function getCancionesDeMisAdministrados(){		
 		$this->db->from('canciones c');
 		$this->db->join('interprete i', 'c.inte_id = i.inte_id');
-		$this->db->where('i.user_id', $this->tank_auth->get_user_id());
+		$this->db->where('i.user_id', $this->session->userdata('user_id'));
 		$query = $this->db->get();
     return $query->result();
 	}

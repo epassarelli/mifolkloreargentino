@@ -7,7 +7,12 @@
 		$search  	= array(':', '/', 'C', 'D', 'E');
 		$replace 	= array('%3A', '%2F', 'D', 'E', 'F');
 		$share 		= str_replace($search, $replace, current_url());
-		$title 		= $title;
+		if(isset($title)){
+			$title 		= $title;
+		}else{
+			$title 		= "Admin interno";
+		};
+		
 	?>
 
 	<b>Compartir en: </b>
