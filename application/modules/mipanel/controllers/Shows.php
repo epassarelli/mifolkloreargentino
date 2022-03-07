@@ -24,7 +24,7 @@ class Shows extends MX_Controller {
 		$data['description']	= "Shows, Grupos y Solistas del Folklore Argentino";
 		$data['keywords']   	= "Shows";
 
-		$data['files_js'] = array('datatables.min.js', 'datatables.init.js' );
+		$data['files_js'] = array('datatables.min.js', 'datatables.init.js', 'provincias_localidades.js' );
 		$data['files_css'] = array('datatables.min.css');
 		
 		$user_id = $this->session->userdata('user_id');
@@ -70,7 +70,17 @@ class Shows extends MX_Controller {
 		{	
 				$this->load->model('Provincias_model');
 				$data['provincias'] 	= $this->Provincias_model->get_all();
-				$data['interpretes'] 	= $this->Interpretes_model->getMisAdministrados($this->session->userdata('user_id'));
+
+				if($this->ion_auth->in_group(1)){
+					$data['interpretes'] = $this->Interpretes_model->get_all();		
+				}
+				else
+				{
+					$data['interpretes'] = $this->Interpretes_model->getMisAdministrados($this->session->userdata('user_id'));
+				}
+
+
+				$data['files_js'] = array('provincias_localidades.js' );
 				$data['breadcrumb'] = array(
 								'Inicio' => base_url()
 							);
@@ -140,9 +150,18 @@ class Shows extends MX_Controller {
 		{	
 				$this->load->model('Provincias_model');
 				$data['provincias'] 	= $this->Provincias_model->get_all();
-				$data['interpretes'] 	= $this->Interpretes_model->getMisAdministrados($this->session->userdata('user_id'));
+
+				if($this->ion_auth->in_group(1)){
+					$data['interpretes'] = $this->Interpretes_model->get_all();		
+				}
+				else
+				{
+					$data['interpretes'] = $this->Interpretes_model->getMisAdministrados($this->session->userdata('user_id'));
+				}
+
 				$data['fila'] 	= $this->Shows_model->getOneBy('evento','even_id',$id);
 				$data['localidades'] 	= $this->Localidades_model->localidades($data['fila']->prov_id);
+				$data['files_js'] = array('provincias_localidades.js' );
 				
 				$data['breadcrumb'] = array(
 								'Inicio' => base_url()

@@ -34,7 +34,7 @@
           <?php $id = $fila->inte_id; ?>
           <a href="<?php echo site_url('mipanel/'.$this->objeto.'/ver/'.$id); ?>" class="btn btn-xs btn-primary" title="Ver"><i class="fa fa-fw fa-eye"></i> Ver</a>
 
-          <?php if($fila->inte_habilitado == 0): ?>
+          <?php if($fila->inte_habilitado == 0 and $this->ion_auth->in_group(1)): ?>
             <a href="<?php echo site_url('mipanel/'.$this->objeto.'/aprobar/'.$id); ?>" class="btn btn-xs btn-success" title="Aprobar"><i class="fa fa-thumbs-up"> Aprobar</i>
             </a>
           <?php endif; ?>
