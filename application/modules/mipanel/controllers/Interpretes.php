@@ -210,6 +210,8 @@ public function nuevo(){
 
 public function editar($id=''){
 
+	var_dump($this->input->post());
+
 	$data['title'] 			= "Sugerir Interprete del Folklore Argentino";
 	$data['mensaje'] 		= '';
 	$data['breadcrumb'] = array(
@@ -217,14 +219,14 @@ public function editar($id=''){
 		'Grupos y Solistas' => base_url().'grupos-y-solistas'
 	);	
 	
-	
+	$nameFoto = $this->input->post('nameFoto');
 
 	$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[4]');
 	$this->form_validation->set_rules('biografia', 'biografia', 'required|trim|min_length[25]');
 
-  $nameFoto = $this->input->post('nameFoto');
+  
   // Si viene vacio el campo oculto que era la foto actual y valido la nueva
-  if ($nameFoto === '') {
+  if (!empty($_FILES['userfile']['name'])) {
      $this->form_validation->set_rules('userfile','userfile', 'callback_validate_image');
   }
 	
@@ -234,6 +236,7 @@ public function editar($id=''){
 		//$data['mensaje'] = 'No pasó la validacion';
 		$data['accion'] = 'editar';
 		$data['fila']    = $this->Interpretes_model->getMiAdministrado($id);
+		//var_dump($data['fila']);
     $data['files_js'] 	= array('interpretes_foto.js?v='.rand(),'sweetalert2.min.js');
     $data['files_css'] 	= array('sweetalert2.min.css');
 		$data['view'] 	= 'misadministrados_form_view';
@@ -245,7 +248,7 @@ public function editar($id=''){
 		
     	$id = $this->input->post('id');
     
-	    if ($nameFoto === '') {
+	    if ($nameFoto == '') {
 	        $result = $this->upload();
 	        $file_name = null;
 	    } 
@@ -302,7 +305,7 @@ public function editar($id=''){
     // Metodo para upload de files
     function upload()
     {
-        $config['upload_path']          = './assets/uploads/interpretes';
+        $config['upload_path']          = './assets/upload/interpretes';
         $config['allowed_types']        = '*';
 
         $this->load->library('upload', $config);
@@ -320,11 +323,11 @@ public function editar($id=''){
     // Metodo para Eliminar el documento
     public function deleteFile()
     {      
-        $fileName = $this->input->post('userfile');
-        $id = $this->input->post('id');
-        // var_dump($fileName, $id); die();
+        $fileName = $this->input->post('NameFile');
+        $id = $this->input->post('Id');
+        //var_dump($fileName, $id); die();
         $this->Interpretes_model->deleteAdjunto($id);
-        $deletefile = './assets/uploads/interpretes/' . $fileName;
+        $deletefile = './assets/upload/interpretes/' . $fileName;
         if(unlink($deletefile))
           {
             $response['success'] = true;
@@ -338,17 +341,20 @@ public function editar($id=''){
       $check = TRUE;
       if ((!isset($_FILES['userfile'])) || $_FILES['userfile']['size'] == 0) {
           $this->form_validation->set_message('validate_image', 'El {field} es Requerido');
+          var_dump(form_error('userfile'));
           $check = FALSE;
       }else
        if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] !== 0) {
-          $allowedExts = array("JPG", "jpg");
+          $allowedExts = array("jpeg", "jpg");
           $extension = pathinfo($_FILES["userfile"]["name"], PATHINFO_EXTENSION);
           if(filesize($_FILES['userfile']['tmp_name']) > 2000000) {
               $this->form_validation->set_message('validate_image', 'El {field} NO puede exceder los 20MB');
+              var_dump(form_error('userfile'));
               $check = FALSE;
           }
           if(!in_array($extension, $allowedExts)) {
               $this->form_validation->set_message('validate_image', "Tipo de archivo invalido ({$extension})");
+              var_dump(form_error('userfile'));
               $check = FALSE;
           }
       }

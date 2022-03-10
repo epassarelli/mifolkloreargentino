@@ -77,22 +77,20 @@
           <label for="userfile" class="btn btn-primary"> 
           <i class="fa fa-upload text-white" aria-hidden="true" title="Subir foto" alt="Subir foto"></i> Subir foto
           <span class="sr-only"> Adjuntar foto</span> </label>
-          <span class="fileIcon titleAd ml-1 text-recursos"> <!-- trae el nombre del documento en PDF del js/interpretes_foto.js --> </span><br>
+          <span class="fileIcon titleAd ml-1 text-recursos"> <!-- trae el nombre del srchivo de js/interpretes_foto.js --> </span><br>
           <?php echo form_error('userfile','<span class="text-red">','</span>'); ?>
         </div>   
         
         <!-- delete documento -->
         <div class="botonDelete"> 
-          <input type="hidden" id="nameFoto" name="nameFoto" value="<?php echo set_value('userfile', @$fila->inte_foto); ?>" class="form-control-file">
+          <input type="hidden" id="nameFoto" name="nameFoto" value="<?php echo set_value('inte_foto', @$fila->inte_foto); ?>" class="form-control-file">
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalFile">
               <i class="fa fa-trash" aria-hidden="true" title="Borrar foto" alt="Borrar foto"></i><span class="sr-only">Eliminar foto</span>
             </button>
-            <span class="ml-1 h6"><?php echo set_value('userfile', @$fila->inte_foto); ?> </span> 
+            <span class="ml-1 h6"><?php echo set_value('inte_foto', @$fila->inte_foto); ?> </span> 
         </div>
 
         <input type="file" name="userfile" id="userfile" class="sr-only form-control-file" required> 
-        <?php echo form_error('userfile','<span class="text-red">','</span>'); ?>
-
       </div>  
     </div>
 
@@ -106,7 +104,8 @@
   <div class="col-xs-12">
     <div class="form-group">
     <?php if($accion == 'editar'): ?>
-      <input type="hidden" id="id" name="id" value="<?php echo set_value('inte_id', @$fila->inte_id); ?>">
+      <input type="hidden" id="id" name="id" value="<?php echo set_value('id', @$fila->inte_id); ?>">
+      <?php var_dump($fila->inte_id); ?>
     <?php endif; ?>
       <!--       
       <div class="g-recaptcha" data-sitekey="6LcEtjIUAAAAAKs-QTqMVw6vsZs-Z11iFUHyQnzY"></div>

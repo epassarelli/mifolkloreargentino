@@ -38,9 +38,9 @@
 <body class="hold-transition skin-yellow sidebar-mini">
 
 <?php 
-var_dump($this->session->userdata()); 
-echo "<hr>";
-var_dump($this->ion_auth->get_users_groups($this->session->userdata('user_id'))->result());
+//var_dump($this->session->userdata()); 
+//echo "<hr>";
+//var_dump($this->ion_auth->get_users_groups($this->session->userdata('user_id'))->result());
 ?>
 <?php //if( $_SERVER['SERVER_NAME'] !== 'localhost' ) { $this->load->view("facebook/fb_connect_view"); } ?>
   

@@ -57,17 +57,18 @@ $(document).ready(function () {
         var nameFile = $('#nameFoto').val(),
             id = $('#id').val()
             userfile.required = true;
+            //console.log(nameFile + ' - ' + id);
 
         $.ajax({
             type: "POST",
             url: url+"mipanel/interpretes/deleteFile",
             data: {NameFile : nameFile, Id: id},
             success: function (response) {
-                // console.log(response);
+                //console.log(response);
                 if (response) {
                     $('.botonDelete').hide()
                     $('.botonFile').fadeIn('slow')
-                    $('#nameFoto').val('')
+                    $('#nameFoto').val(null)
                     $('.close').trigger('click');                    
                     userfile.required = true;
                 }
