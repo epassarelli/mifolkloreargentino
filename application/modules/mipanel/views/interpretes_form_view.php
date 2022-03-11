@@ -2,16 +2,14 @@
 <div class="box">
   
   <div class="box-body">
-  <?php if(isset($mensaje)){ echo $mensaje; } ?>
-	<?php //echo validation_errors('<div class="alert alert-danger"><p>','</p></div>') ?>
 
-  <form method="POST" action="<?php echo site_url('mipanel/interpretes/'.$accion); ?>"  enctype="multipart/form-data" >
+  <form method="post" action="<?php echo site_url('mipanel/interpretes/'.$accion); ?>"  enctype="multipart/form-data" >
 
   <div class="col-md-6">
 
     <div class="form-group">
       <label for="titulo">Nombre del grupo o solista <span class="text-danger">*</span></label>    
-      <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo set_value('nombre', @$fila->inte_nombre)?>" required> 
+      <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo set_value('nombre', @$fila->inte_nombre)?>"> 
       <?php echo form_error('nombre','<span class="text-red">','</span>'); ?>
     </div>
 
@@ -62,7 +60,7 @@
     
     <div class="form-group">
         <label for="biografia">Trayectoria / Biografía <small id="temaMaxCaracter" class="text-muted">(25 caracteres mínimo)</small> <span class="text-danger">*</span></label> 
-        <textarea class="form-control" id="biografia" name="biografia" rows="15" required><?php echo set_value('biografia', @strip_tags(html_entity_decode($fila->inte_biografia))); ?></textarea>
+        <textarea class="form-control" id="biografia" name="biografia" rows="15"><?php echo set_value('biografia', @strip_tags(html_entity_decode($fila->inte_biografia))); ?></textarea>
         <?php echo form_error('biografia','<span class="text-red">','</span>'); ?>
     </div>
 
@@ -90,7 +88,7 @@
             <span class="ml-1 h6"><?php echo set_value('inte_foto', @$fila->inte_foto); ?> </span> 
         </div>
 
-        <input type="file" name="userfile" id="userfile" class="sr-only form-control-file" required> 
+        <input type="file" name="userfile" id="userfile" class="sr-only form-control-file"> 
       </div>  
     </div>
 

@@ -5,8 +5,14 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="google-site-verification" content="jVJRpZZXbfAo0RHiah6NGTfuHwJaAFWule00UR5surQ" />
   <meta name="author" content="WebPass" />
-  <meta name="description" content="<?php if(isset($description)) echo $description; ?>">
-  <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords; ?>">  
+  
+  <?php if (isset($description)): ?>
+    <meta name="description" content="<?php if(isset($description)) echo $description; ?>">
+  <?php endif; ?>
+  
+  <?php if (isset($keywords)): ?>
+    <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords; ?>"> 
+  <?php endif; ?> 
 
   <title>
     <?php 

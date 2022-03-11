@@ -21,36 +21,42 @@ $(document).ready(function () {
         $('.botonDelete').hide()
     }
 
+    //////////////////////////////////////////////////
+    //
+    // Validación de formato al seleccionar el adjunto
+    //
+    /////////////////////////////////////////////////
 
-        // Funcionalidad al seleccionar el adjunto
-        $(document).on('change', '#userfile',function() {
-          
-            name = $(this).val();
-            fic = name.split('\\');
-            var allowedExtensions = /(.jpg)$/i;
-            console.log(fic);
-            // Validamos el tipo de archivo
-            if (!allowedExtensions.exec(name)) {
-                $(this).val('');
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: `El archivo ${fic[fic.length-1]} es invalido !`,
-                    footer: '<div class="txt-alimentos">Solo se permiten archivos .jpg</div>'
-                  })
-                  $('.fileIcon').fadeOut('slow');
-            }else{
-                if (name) {
-                    $('.fileIcon').fadeIn('slow');
-                    $('.titleAd').text(' '+fic[fic.length-1]);
-                
-                }else{
-                    $('.fileIcon').fadeOut('slow');
-                }
-            }
-    
+    $(document).on('change', '#userfile',function() {
+      
+        name = $(this).val();
+        fic = name.split('\\');
+        var allowedExtensions = /(.jpg)$/i;
+        console.log(fic);
+        // Validamos el tipo de archivo
+        if (!allowedExtensions.exec(name)) {
+            $(this).val('');
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: `El archivo ${fic[fic.length-1]} es invalido !`,
+                footer: '<div class="txt-alimentos">Solo se permiten archivos .jpg</div>'
+              })
+              $('.fileIcon').fadeOut('slow');
+        }else{
+            if (name) {
+                $('.fileIcon').fadeIn('slow');
+                $('.titleAd').text(' '+fic[fic.length-1]);
             
-        });
+            }else{
+                $('.fileIcon').fadeOut('slow');
+            }
+        }
+
+        
+    });
+
+
 
     //Funcionalidad de boton eliminar
     $(document).on('click','.Eliminar',function () {
