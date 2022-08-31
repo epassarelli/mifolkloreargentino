@@ -175,7 +175,14 @@
     <section class="content container-fluid">
         <?php $this->load->view('social_share_view'); ?>
     </section>
+    <section>
+      <?php 
+      if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  
+        $this->load->view('adsense/adsense_home_inferior_view'); 
+        }
+      ?>
 
+    </section>
   </div>
 
   <footer class="main-footer">
