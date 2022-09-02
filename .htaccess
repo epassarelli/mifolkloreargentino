@@ -1,7 +1,7 @@
 #Options +SymLinksIfOwnerMatch
 RewriteEngine on
 
-RewriteCond %{HTTP_HOST} ^mifolkloreargentino.com.ar [NC]
+RewriteCond %{HTTP_HOST} ^www.mifolkloreargentino.com.ar [NC]
 RewriteRule ^(.*)$ https://mifolkloreargentino.com.ar/$1 [L,R=301]
 
 RewriteCond $1 !^(index\.php|assets|captcha|robots\.txt|sitemap\.xml|ads\.txt|favicon\.ico)
