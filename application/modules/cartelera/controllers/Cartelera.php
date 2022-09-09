@@ -11,6 +11,8 @@ public function __construct(){
 		if (ENVIRONMENT == 'development') {
 			$this->output->enable_profiler(TRUE);
 		}
+	$this->dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+	$this->meses = array("", "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 }
 
 ######################################################		  
@@ -22,7 +24,8 @@ public function index(){
 	$data['keywords']		= "agenda,cartelera,eventos,shows,cultural,folkloricas,musica,popular";	
 	$data['filas'] 			= $this->Cartelera_model->getProximos(10);
 	$data['view'] 			= 'cartelera_home_view';
-
+	$data['dias']			= $this->dias;
+	$data['meses']			= $this->meses;
 	$data['breadcrumb'] = array(
 					'Inicio' => base_url(),
 					'Cartelera folklórica' => ''

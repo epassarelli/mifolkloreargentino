@@ -24,7 +24,6 @@
   <div class="box box-warning">
   <div class="box-header with-border">
     <h3 class="box-title">Agenda de shows, recitales y festivales Folkloricos</h3>
-
   </div>
   
 
@@ -33,22 +32,23 @@
 
     <?php if(isset($filas)): ?>
 
-      <div class="row">
+    <div class="row">
       
-    <?php     
-    foreach($filas as $e):
-          $foto = "assets/upload/interpretes/" . $e->inte_foto;
-          if (is_dir($foto)) 
-            { $foto = "assets/upload/sin_foto.jpg"; }
+      <?php    
+      
+        foreach($filas as $e):
+            $foto = "assets/upload/interpretes/" . $e->inte_foto;
+            if (is_dir($foto)) 
+              { $foto = "assets/upload/sin_foto.jpg"; }
 
-          $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-          $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-           
-          $dia  = (int) date("d", strtotime($e->even_fecha));
-          $mes  = date("m", strtotime($e->even_fecha));
-          $mes  = (int) $mes;
-          $anio = date("Y", strtotime($e->even_fecha));
-    ?> 
+            // $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+            // $meses = array("", "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            
+            $dia  = (int) date("d", strtotime($e->even_fecha));
+            $mes  = date("m", strtotime($e->even_fecha));
+            $mes  = (int) $mes;
+            $anio = date("Y", strtotime($e->even_fecha));
+      ?> 
     
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="info-box bg-yellow">
@@ -111,7 +111,8 @@
 
     <?php endforeach; ?>
 
-</div>
+    </div>
+    
     <?php else: ?>
     
       <p>No hemos encontrado en nuestra Base de Datos eventos para el d&iacute;a solicitado</p>

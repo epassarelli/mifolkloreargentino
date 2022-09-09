@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 if( $_SERVER['SERVER_NAME'] == 'localhost' ) {
-	$config['base_url']	= 'http://localhost/mifolkloreargentino';
+	$config['base_url']	= 'http://localhost/mfa';
 	}else{
 		$config['base_url']	= 'https://mifolkloreargentino.com.ar';
 		}
