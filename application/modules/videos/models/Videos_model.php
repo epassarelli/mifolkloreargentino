@@ -1,13 +1,16 @@
-<?php 
-class Videos_model extends MY_Model { 
-########################################################## 
-function __construct() { 
-    parent::__construct(); 
-	$this->table = 'video'; 
-} 
-########################################################## 
-function videos_x_interprete($inte_id){	
-	$sql = "SELECT
+<?php
+class Videos_model extends MY_Model
+{
+	########################################################## 
+	function __construct()
+	{
+		parent::__construct();
+		$this->table = 'video';
+	}
+	########################################################## 
+	function videos_x_interprete_OLD($inte_id)
+	{
+		$sql = "SELECT
 		video.vide_id,
 		video.vide_codigo,
 		canciones.canc_titulo,
@@ -18,12 +21,27 @@ function videos_x_interprete($inte_id){
 		WHERE
 		video.inte_id = " . $inte_id;
 
-	$query = $this->db->query($sql);
-    return $query->result();
-}
-########################################################## 
-function get_video($inte_alias , $vide_alias){
-	$sql = "SELECT
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	public function	videos_x_interprete($inte_id)
+	{
+		//$this->db->select();
+		$this->db->from('canciones');
+		$this->db->where('inte_id', $inte_id);
+		$this->db->where('length(canc_youtube)>', 9);
+
+		// $where = "name='Joe' AND status='boss' OR status='active'";
+		// $this->db->where($where);
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+	########################################################## 
+	function get_video($inte_alias, $vide_alias)
+	{
+		$sql = "SELECT
 		video.vide_id,
 		video.vide_codigo,
 		canciones.canc_titulo,
@@ -34,15 +52,16 @@ function get_video($inte_alias , $vide_alias){
 		INNER JOIN canciones ON video.canc_id = canciones.canc_id
 		INNER JOIN interprete ON video.inte_id = interprete.inte_id
 		WHERE
-		canciones.canc_alias = '".$vide_alias."' AND
-		interprete.inte_alias = '".$inte_alias."'";
-	$query = $this->db->query($sql);
+		canciones.canc_alias = '" . $vide_alias . "' AND
+		interprete.inte_alias = '" . $inte_alias . "'";
+		$query = $this->db->query($sql);
 
-	return $query->row();
-}
-########################################################## 
-function get_videos_recomendados($inte_id, $vide_id){	
-	$sql = "SELECT
+		return $query->row();
+	}
+	########################################################## 
+	function get_videos_recomendados($inte_id, $vide_id)
+	{
+		$sql = "SELECT
 		video.vide_id,
 		video.vide_codigo,
 		canciones.canc_titulo,
@@ -52,14 +71,15 @@ function get_videos_recomendados($inte_id, $vide_id){
 		INNER JOIN canciones ON video.canc_id = canciones.canc_id
 		WHERE
 		video.inte_id = " . $inte_id . " AND
-		video.vide_id != " . $vide_id ;
+		video.vide_id != " . $vide_id;
 
-	$query = $this->db->query($sql);
-    return $query->result();
-}
-########################################################## 
-function getUltimosVideos($cantidad){
-	$sql = "SELECT
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	########################################################## 
+	function getUltimosVideos($cantidad)
+	{
+		$sql = "SELECT
 		video.vide_id,
 		video.vide_codigo,
 		canciones.canc_titulo,
@@ -74,15 +94,16 @@ function getUltimosVideos($cantidad){
 		WHERE
 		video.vide_habilitado = 1
 		ORDER BY video.vide_id DESC
-		LIMIT " . $cantidad ;
+		LIMIT " . $cantidad;
 
-	$query = $this->db->query($sql);
-    return $query->result();
-}
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
-########################################################## 
-function getMasVistos($cantidad){
-	$sql = "SELECT
+	########################################################## 
+	function getMasVistos($cantidad)
+	{
+		$sql = "SELECT
 		video.vide_id,
 		video.vide_codigo,
 		canciones.canc_titulo,
@@ -96,26 +117,26 @@ function getMasVistos($cantidad){
 		WHERE
 		video.vide_habilitado = 1
 		ORDER BY video.vide_visitas DESC
-		LIMIT " . $cantidad ;
+		LIMIT " . $cantidad;
 
-	$query = $this->db->query($sql);
-    return $query->result();
-}
-
-########################################################## 
-###
-###		Devuelve solo aquellos interpretes que tiene videos
-###
-
-function getInterpretesConVideos($cantidad){
-	if($cantidad == 0){
-	$limite = "";
-	}
-	else{	
-		$limite = $cantidad;
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 
-$sql = "SELECT 
+	########################################################## 
+	###
+	###		Devuelve solo aquellos interpretes que tiene videos
+	###
+
+	function getInterpretesConVideos($cantidad)
+	{
+		if ($cantidad == 0) {
+			$limite = "";
+		} else {
+			$limite = $cantidad;
+		}
+
+		$sql = "SELECT 
 	i.inte_id, 
 	i.inte_alias, 
 	i.inte_nombre, 
@@ -127,9 +148,7 @@ $sql = "SELECT
 	Order By count(*) desc ";
 
 
-	$query = $this->db->query($sql);
-    return $query->result();
-}
-
-
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
