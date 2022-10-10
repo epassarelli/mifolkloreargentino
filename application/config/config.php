@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-if( $_SERVER['SERVER_NAME'] == 'localhost' ) {
-	$config['base_url']	= 'http://localhost/mfa';
-	}else{
-		$config['base_url']	= 'https://mifolkloreargentino.com.ar';
-		}
+if ($_SERVER['SERVER_NAME'] == 'localhost') {
+	$config['base_url']	= 'http://localhost/mifolkloreargentino';
+} else {
+	$config['base_url']	= 'https://mifolkloreargentino.com.ar';
+}
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -534,9 +534,9 @@ $config['rewrite_short_tags'] = FALSE;
 | 
 | $ config ['maintenance_mode'] = TRUE; // el sitio está desconectado 
 | $ config ['maintenance_mode'] = FALSE; // el sitio está en línea 
-*/ 
+*/
 
-$config['maintenance_mode'] =  FALSE ;
+$config['maintenance_mode'] =  FALSE;
 
 
 
@@ -557,14 +557,11 @@ $config['facebook_auth_on_load']          = TRUE;
 $config['google']['client_id']        = '487147293916-ef937bj9b31vrh4oni1uvg3mic16dunc.apps.googleusercontent.com';
 $config['google']['client_secret']    = 'F4NJw0eBOKCO8cxEv2T2Na3i';
 
-if( $_SERVER['SERVER_NAME'] == 'localhost' ) 
-	{
+if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	$config['google']['redirect_uri']     = 'http://localhost/mifolkloreargentino/auth/login';
-	}
-	else
-	{
-		$config['google']['redirect_uri']     = 'https://mifolkloreargentino.com.ar/auth/login';
-	}
+} else {
+	$config['google']['redirect_uri']     = 'https://mifolkloreargentino.com.ar/auth/login';
+}
 
 //$config['google']['redirect_uri']     = 'http://localhost/mifolkloreargentino/auth/login';
 $config['google']['application_name'] = 'Login MFA';
