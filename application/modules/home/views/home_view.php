@@ -14,7 +14,7 @@
       </a>
       <div class="caption">
         <a href="<?php echo site_url('noticias/ver/' . $noticia[0]->noti_alias); ?>">
-          <h2><?php echo $noticia[0]->noti_titulo; ?></h2>
+          <h3><?php echo $noticia[0]->noti_titulo; ?></h3>
         </a>
       </div>
 
