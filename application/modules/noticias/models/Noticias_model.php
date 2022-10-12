@@ -16,7 +16,7 @@ class Noticias_model extends MY_Model
     ##
     function getUltimas($cantidad)
     {
-        $this->db->select('noti_titulo, noti_alias, noti_foto, noti_fecha');
+        $this->db->select('noti_titulo, noti_alias, noti_foto, noti_fecha, noti_detalle');
         $this->db->where('noti_habilitado', 1);
         $this->db->where('noti_fecha <=', date('Y-m-d', time()));
         $this->db->order_by('noti_id', 'desc');

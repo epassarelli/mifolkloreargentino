@@ -6,31 +6,83 @@
 
 <div class="row">
 
-  <div class="col-xs-12 col-sm-12 col-md-8 clearfix">
+  <?php
+  $i = 0;
+  foreach ($noticias as $noticia) :
+
+    // echo '<div class="row">';
+
+    switch ($i) {
+      case 0:
+        echo '<div class="col-md-6 clearfix">';
+        break;
+      default:
+        echo '<div class="col-md-3 clearfix">';
+        break;
+    }
+  ?>
+
+    <!-- <div class="col-xs-12 col-sm-12 col-md-8 clearfix"> -->
     <div class="thumbnail">
 
-      <a href="<?php echo site_url('noticias/ver/' . $noticia[0]->noti_alias); ?>">
-        <img src="<?php echo site_url('assets/upload/noticias/' . $noticia[0]->noti_foto); ?>" alt="<?php echo $noticia[0]->noti_titulo; ?>" class="img-responsive" itemprop="image">
+      <a href="<?php echo site_url('noticias/ver/' . $noticia->noti_alias); ?>">
+        <img src="<?php echo site_url('assets/upload/noticias/' . $noticia->noti_foto); ?>" alt="<?php echo $noticia->noti_titulo; ?>" class="img-responsive" itemprop="image">
       </a>
+
       <div class="caption">
-        <a href="<?php echo site_url('noticias/ver/' . $noticia[0]->noti_alias); ?>">
-          <h3><?php echo $noticia[0]->noti_titulo; ?></h3>
-        </a>
+        <a href="<?php echo site_url('noticias/ver/' . $noticia->noti_alias); ?>">
+
+          <?php
+          if ($i == 0) {
+            echo "<h2>" . $noticia->noti_titulo . "</h2></a>";
+            //echo "<p>" . substr($noticia->noti_detalle, 0, 200) . "</p>";
+          } else {
+            echo "<h4>" . $noticia->noti_titulo . "</h4></a>";
+          }
+          ?>
+
+
+
+
       </div>
 
     </div>
-  </div>
 
+    <!-- <div class="attachment-block clearfix">
+      <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
+
+      <div class="attachment-pushed">
+        <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
+
+        <div class="attachment-text">
+          Description about the attachment can be placed here.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
+        </div>
+
+      </div>
+
+    </div> -->
+
+
+</div>
+
+
+<?php
+    $i++;
+  endforeach;
+?>
+</div>
+
+<div class="row">
 
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
     <div class="thumbnail">
 
       <div class="caption">
         <a href="<?php echo site_url('letras-de-canciones'); ?>" itemprop="url">
-          <!-- <h3 itemprop="name">Letras de Canciones</h3> -->
+          <h3 itemprop="name">Letras de Canciones</h3>
           <img src="<?php echo site_url('assets/img/cancionero-folklorico.jpg'); ?>" alt="Cancionero folklorico" class="img-responsive" itemprop="image">
         </a>
-        <p>Todas las letras de canciones folkloricas de tus interpretes favoritos en un solo lugar.</p>
       </div>
 
     </div>
@@ -42,25 +94,19 @@
 
       <div class="caption">
         <a href="<?php echo site_url('cartelera-folklorica'); ?>" itemprop="url">
-          <!-- <h3 itemprop="name">Cartelera Folklorica</h3> -->
+          <h3 itemprop="name">Cartelera Folklorica</h3>
           <img src="<?php echo site_url('assets/img/cartelera-folklorica.jpg'); ?>" alt="Cartelera folklorica" class="img-responsive" itemprop="image">
         </a>
-        <p>En la agenda de shows y eventos folkloricos de Argentina encontrarás a dónde ir.</p>
 
       </div>
 
     </div>
   </div>
 
-</div>
 
+  <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_medio_view');} 
+  ?>
 
-<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_medio_view');} 
-?>
-
-<br>
-
-<div class="row">
 
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
     <div class="thumbnail">
@@ -69,7 +115,6 @@
           <h3 itemprop="name">Festivales Tradicionales</h3>
           <img src="<?php echo site_url('assets/img/fiestas-tradicionales-argentina.jpg'); ?>" alt="Fiestas y festivales folkloricos" class="img-responsive" itemprop="image">
         </a>
-        <p>Fiestas tradicionales y festivales folklóricos a lo largo del país.</p>
       </div>
     </div>
   </div>
@@ -77,13 +122,11 @@
 
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
     <div class="thumbnail">
-
       <div class="caption">
         <a href="<?php echo site_url('grupos-y-solistas'); ?>" itemprop="url">
           <h3 itemprop="name">Biografías folklóricas</h3>
           <img src="<?php echo site_url('assets/img/biografias-folkloricas.jpg'); ?>" alt="Biografias de folklore" class="img-responsive" itemprop="image">
         </a>
-        <p>Los artistas del Folklore Argentino con sus biografías y trayectoria.</p>
       </div>
     </div>
   </div>
@@ -91,15 +134,27 @@
 
   <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
     <div class="thumbnail">
-      <div class="caption">
-        <a href="<?php echo site_url('radios-para-escuchar-folklore-argentino'); ?>" itemprop="url">
-          <h3 itemprop="name">Radios de Folklore</h3>
-          <img src="<?php echo site_url('assets/img/radios-folkloricas.jpg'); ?>" alt="Radios folkloricas" class="img-responsive" itemprop="image">
+      <div class="caption"><a href="<?php echo base_url() . 'recetas-de-comidas-tipicas' ?>" itemprop="url">
+          <h3 itemprop="name">Comidas Tradicionales</h3>
+          <img src="<?php echo site_url('assets/img/comidas-tipicas.jpg'); ?>" alt="Comidas tipicas folkloricas" class="img-responsive" itemprop="image">
         </a>
-        <p>Encontrá tu radio folklórica de la zona o escuchálas a través de internet.</p>
       </div>
     </div>
   </div>
+
+
+  <div class="col-xs-12 col-sm-12 col-md-4 clearfix">
+    <div class="thumbnail">
+      <div class="caption"><a href="<?php echo base_url() . 'mitos-y-leyendas' ?>" itemprop="url">
+          <h3 itemprop="name">Mitos, Leyendas y Fabulas</h3>
+          <img src="<?php echo site_url('assets/img/mitos-leyendas-folklore.jpg'); ?>" alt="Mitos y leyendas" class="img-responsive" itemprop="image">
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
 
 </div>
 
@@ -134,40 +189,6 @@
 
 <div class="row">
 
-  <div class="col-xs-12 col-sm-6 col-md-6 clearfix">
-    <!-- start:article.linkbox -->
-
-    <div class="thumbnail">
-
-      <div class="caption"><a href="<?php echo base_url() . 'recetas-de-comidas-tipicas' ?>" itemprop="url">
-          <h3 itemprop="name">Comidas Tipicas Tradicionales</h3>
-          <img src="<?php echo site_url('assets/img/comidas-tipicas.jpg'); ?>" alt="Comidas tipicas folkloricas" class="img-responsive" itemprop="image">
-        </a>
-        <p>La historia Argentina a través de su cocina tradicional con las recetas más antiguas y clásicas de nuestro folklore...</p>
-      </div>
-
-    </div>
-
-    <!-- end:article.linkbox -->
-  </div>
-
-
-  <div class="col-xs-12 col-sm-6 col-md-6 clearfix">
-    <!-- start:article.linkbox -->
-
-    <div class="thumbnail">
-
-      <div class="caption"><a href="<?php echo base_url() . 'mitos-y-leyendas' ?>" itemprop="url">
-          <h3 itemprop="name">Mitos, Leyendas y Fabulas</h3>
-          <img src="<?php echo site_url('assets/img/mitos-leyendas-folklore.jpg'); ?>" alt="Mitos y leyendas" class="img-responsive" itemprop="image">
-        </a>
-        <p>El MITO, la LEYENDA y las FABULAS recopiladas de Argentina abarcando en la totalidad su territorio...</p>
-      </div>
-
-    </div>
-
-    <!-- end:article.linkbox -->
-  </div>
 
 </div>
 
