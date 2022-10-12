@@ -21,6 +21,10 @@ class Home extends MX_Controller
 		}
 
 		$data['noticias']	= $this->Noticias_model->getUltimas(9);
+		// $data['shows']	= $this->Cartelera_model->getProximos(5);
+		// $data['canciones']	= $this->Canciones_model->getUltimas(9);
+		// $data['discos']	= $this->Discografias_model->getUltimas(9);
+		// $data['interpretes']	= $this->Noticias_model->getUltimas(9);
 		$data['title'] 		= 'Mi Folklore Argentino - Grupos y Solistas, Festivales, Show, Letras';
 		$data['description']	= "El Folklore Argentino en un solo lugar, biografías, interpretes, cartelera de eventos y letras de canciones";
 
