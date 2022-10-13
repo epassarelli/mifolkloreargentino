@@ -1,59 +1,59 @@
-<?php 
+<?php
 
-class Cartelera_model extends MY_Model { 
+class Cartelera_model extends MY_Model
+{
 
-   
-function __construct() { 
-    parent::__construct(); 
-	$this->table = 'cartelera'; 
-} 
+	function __construct()
+	{
+		parent::__construct();
+		$this->table = 'cartelera';
+	}
 
-######################################################		  
-##   Devuelve los eventos para la fecha solicitada
-##
+	######################################################		  
+	##   Devuelve los eventos para la fecha solicitada
+	##
 
-function getPorDia($even_fecha){
-	$sql = "SELECT *
+	function getPorDia($even_fecha)
+	{
+		$sql = "SELECT *
 				FROM
 				evento
 				/*INNER JOIN evento_interprete ON evento.even_id = evento_interprete.even_id*/
 				INNER JOIN interprete ON interprete.inte_id = evento.inte_id
 				INNER JOIN provincia ON evento.prov_id = provincia.prov_id
 				INNER JOIN localidad ON evento.loca_id = localidad.loca_id
-				WHERE evento.even_fecha = '".$even_fecha."' AND evento.even_estado = 1 ";
+				WHERE evento.even_fecha = '" . $even_fecha . "' AND evento.even_estado = 1 ";
 
-	$query = $this->db->query($sql);	
+		$query = $this->db->query($sql);
 
-    return $query->result();
-}
+		return $query->result();
+	}
 
-######################################################		  
-##   Devuelve la cantidad solicitada de proximos eventos activos
-##
+	######################################################		  
+	##   Devuelve la cantidad solicitada de proximos eventos activos
+	##   y ya en fecha de publicacion 
 
-function getProximos($cantidad){
-	$sql = "SELECT *
-				FROM
-				evento
-				INNER JOIN interprete ON interprete.inte_id = evento.inte_id
-				LEFT OUTER JOIN provincia ON evento.prov_id = provincia.prov_id
-				LEFT OUTER JOIN localidad ON evento.loca_id = localidad.loca_id
-			WHERE evento.even_fecha >= '" . date('Y-m-d',time()) . "'
-			AND evento.even_estado = 1 
-			ORDER BY evento.even_fecha
-			LIMIT " . $cantidad ;
+	function getProximos($cantidad)
+	{
+		$this->db->from('evento');
+		$this->db->join('interprete', 'evento.inte_id = interprete.inte_id');
+		$this->db->join('provincia', 'evento.prov_id = provincia.prov_id');
+		$this->db->join('localidad', 'evento.loca_id = localidad.loca_id');
+		$this->db->where('evento.even_publicar <=', date('Y-m-d', time()));
+		$this->db->where('evento.even_fecha >=', date('Y-m-d', time()));
+		$this->db->order_by('evento.even_fecha', 'ASC');
+		$this->db->limit($cantidad);
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-	$query = $this->db->query($sql);	
+	######################################################		  
+	##   Devuelve todas los dias del mes que tienen eventos
+	##
 
-    return $query->result();
-}
-
-######################################################		  
-##   Devuelve todas los dias del mes que tienen eventos
-##
-
-function getDiasConEventos(){
-	$sql = "SELECT
+	function getDiasConEventos()
+	{
+		$sql = "SELECT
 				count(*),
 				DAY(evento.even_fecha) as dia,
 				evento.even_fecha
@@ -61,20 +61,21 @@ function getDiasConEventos(){
 				WHERE evento.even_fecha >= CURDATE()
 				AND YEAR(evento.even_fecha) = YEAR(NOW())
 				AND MONTH (evento.even_fecha) = MONTH (NOW())
-				GROUP BY evento.even_fecha" ;
+				GROUP BY evento.even_fecha";
 
-	$query = $this->db->query($sql);	
+		$query = $this->db->query($sql);
 
-    return $query->result();
-}
+		return $query->result();
+	}
 
 
 
-######################################################		  
-##   Devuelve todas los dias del mes que tienen eventos
-##
-function getEventos(){
-	$sql = "SELECT
+	######################################################		  
+	##   Devuelve todas los dias del mes que tienen eventos
+	##
+	function getEventos()
+	{
+		$sql = "SELECT
 				e.even_id,
 				e.even_fecha,
 				e.even_titulo,
@@ -89,19 +90,19 @@ function getEventos(){
 			INNER JOIN 
 				interprete i ON i.inte_id = ei.inte_id
 			WHERE
-				e.even_fecha > '" . date('Y-m-d',time()) . "'";
-				
-	$query = $this->db->query($sql);	
+				e.even_fecha > '" . date('Y-m-d', time()) . "'";
 
-    return $query->result();
+		$query = $this->db->query($sql);
 
-}
+		return $query->result();
+	}
 
-######################################################		  
-##   Devuelve todas los dias del mes que tienen eventos
-##
-function getEvento($id){
-	$sql = "SELECT
+	######################################################		  
+	##   Devuelve todas los dias del mes que tienen eventos
+	##
+	function getEvento($id)
+	{
+		$sql = "SELECT
 				*
 			FROM
 				evento e
@@ -111,49 +112,52 @@ function getEvento($id){
 				interprete i ON i.inte_id = ei.inte_id
 			WHERE
 				e.even_id = " . $id;
-				
-	$query = $this->db->query($sql);	
-	return $query->row();	
-}
 
-function isOwner($even_id, $inte_id){
-	$sql = "SELECT * 
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
+	function isOwner($even_id, $inte_id)
+	{
+		$sql = "SELECT * 
 			FROM
 				evento 
 			WHERE
 				even_id = " . $even_id .  "
 			AND 
-				inte_id = " . $inte_id ;
-				
-	$query = $this->db->query($sql);	
-	return $query->row();	
-}
+				inte_id = " . $inte_id;
 
-######################################################		  
-##   Devuelve todas los dias del mes que tienen eventos
-##
-function getPorInterprete($inte_alias){
-	$sql = "SELECT *
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
+	######################################################		  
+	##   Devuelve todas los dias del mes que tienen eventos
+	##
+	function getPorInterprete($inte_alias)
+	{
+		$sql = "SELECT *
 			FROM evento
 			INNER JOIN interprete ON interprete.inte_id = evento.inte_id
 			INNER JOIN provincia ON evento.prov_id = provincia.prov_id
 			INNER JOIN localidad ON evento.loca_id = localidad.loca_id
-			WHERE interprete.inte_alias = '".$inte_alias."' AND evento.even_estado = 1 ";
-				
-	$query = $this->db->query($sql);	
+			WHERE interprete.inte_alias = '" . $inte_alias . "' AND evento.even_estado = 1 ";
 
-    return $query->result();
-}
+		$query = $this->db->query($sql);
 
-######################################################	
-###	  
-###   Funciones para el Panel de Administracion
-###
-######################################################
+		return $query->result();
+	}
+
+	######################################################	
+	###	  
+	###   Funciones para el Panel de Administracion
+	###
+	######################################################
 
 
-function getMisEventos($inte_id){
-	$sql = "SELECT
+	function getMisEventos($inte_id)
+	{
+		$sql = "SELECT
 				e.even_id,
 				e.even_fecha,
 				e.even_titulo,
@@ -170,15 +174,16 @@ function getMisEventos($inte_id){
 				localidad l ON l.loca_id = e.loca_id				
 			WHERE
 				e.inte_id = " . $inte_id;
-				
-	$query = $this->db->query($sql);	
 
-    return $query->result();	
-}
+		$query = $this->db->query($sql);
+
+		return $query->result();
+	}
 
 
-function getMiEvento($even_id){
-	$sql = "SELECT
+	function getMiEvento($even_id)
+	{
+		$sql = "SELECT
 				e.even_id,
 				e.even_fecha,
 				e.even_hora,
@@ -199,29 +204,27 @@ function getMiEvento($even_id){
 				localidad l ON l.loca_id = e.loca_id				
 			WHERE
 				e.even_id = " . $even_id;
-				
-	$query = $this->db->query($sql);	
-	return $query->row();
-}
+
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
 
 
-#########################################################
-####
-#### Devuelve los N discos mas vistos de X artista
-#### 2018-01-31 
+	#########################################################
+	####
+	#### Devuelve los N discos mas vistos de X artista
+	#### 2018-01-31 
 
-  function getUltimosPorArtista($inte_id, $campoVisitas, $cantidad, $tabla){
-    $this->db->from($tabla);
-    $this->db->join('interprete', 'evento.inte_id = interprete.inte_id');
-    $this->db->join('provincia', 'evento.prov_id = provincia.prov_id');
-    $this->db->join('localidad', 'evento.loca_id = localidad.loca_id');
-    $this->db->where('evento.inte_id', $inte_id);
-    $this->db->order_by($campoVisitas, 'DESC');
-    $this->db->limit($cantidad);
-    $query = $this->db->get();
-    return $query->result();
-  }
-
-
-
+	function getUltimosPorArtista($inte_id, $campoVisitas, $cantidad, $tabla)
+	{
+		$this->db->from($tabla);
+		$this->db->join('interprete', 'evento.inte_id = interprete.inte_id');
+		$this->db->join('provincia', 'evento.prov_id = provincia.prov_id');
+		$this->db->join('localidad', 'evento.loca_id = localidad.loca_id');
+		$this->db->where('evento.inte_id', $inte_id);
+		$this->db->order_by($campoVisitas, 'DESC');
+		$this->db->limit($cantidad);
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

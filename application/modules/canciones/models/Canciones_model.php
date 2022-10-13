@@ -37,6 +37,7 @@ class Canciones_model extends MY_Model
 		$this->db->join('interprete i', 'c.inte_id = i.inte_id');
 		$this->db->where('c.inte_id', $inte_id);
 		$this->db->where('c.canc_habilitado', 1);
+		$this->db->where('c.canc_publicar <=', date('Y-m-d', time()));
 		$this->db->order_by('c.canc_titulo', 'ASC');
 		$query = $this->db->get();
 		return $query->result();

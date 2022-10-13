@@ -185,19 +185,12 @@ class Interpretes_model extends MY_Model
 	function getUltimosActivos($cantidad)
 	{
 
-		$sql = "SELECT
-			inte_nombre,
-			inte_alias,
-			inte_foto,
-			inte_visitas
-			FROM
-			interprete
-			WHERE
-			inte_habilitado=1 
-			ORDER BY inte_id DESC
-			LIMIT $cantidad";
-
-		$query = $this->db->query($sql);
+		$this->db->select('inte_nombre,inte_alias,inte_foto,inte_visitas');
+		$this->db->where("inte_habilitado", "1");
+		$this->db->where('inte_publicar <=', date('Y-m-d', time()));
+		$this->db->order_by('inte_publicar, inte_id', 'DESC');
+		$this->db->limit($cantidad);
+		$query = $this->db->get($this->table);
 		return $query->result();
 	}
 
