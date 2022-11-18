@@ -70,6 +70,9 @@ RedirectMatch 301 ^/letras-de-canciones-folkloricas/(.*)$  https://mifolklorearg
 RedirectMatch 301 ^/letras-de-canciones-del-folklore/(.*)$  https://mifolkloreargentino.com.ar/letras-de-canciones	
 RedirectMatch 301 ^/canciones-con-letra/(.*)$  https://mifolkloreargentino.com.ar/letras-de-canciones		
 
+RedirectMatch 301 ^/letras-de-canciones-de-musica-folklorica/(.*)$  https://mifolkloreargentino.com.ar/letras-de-canciones
+
+
 ###################################
 ##  Directorio gral Comidas
 RedirectMatch 301 ^/comidas-tipicas-del-folklore-argentino/(.*)$  https://mifolkloreargentino.com.ar/recetas-de-comidas-tipicas

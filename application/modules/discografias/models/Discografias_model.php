@@ -55,6 +55,7 @@ class Discografias_model extends MY_Model
 			album.albu_titulo,
 			album.albu_anio,
 			album.albu_foto,
+			album.albu_spotify,
 			interprete.inte_id,
 			interprete.inte_nombre
 			FROM

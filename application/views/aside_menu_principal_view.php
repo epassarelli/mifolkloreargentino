@@ -24,7 +24,7 @@
       </li>
 
       <li <?php if ($this->uri->segment(2) == 'discos') echo "class='active'"; ?>>
-        <a href="<?php echo site_url('discografias'); ?>"><i class="fa fa-bullseye"></i> <span>Discos</span></a>
+        <a href="<?php echo site_url('discos-de-musica-folklorica'); ?>"><i class="fa fa-bullseye"></i> <span>Discos</span></a>
       </li>
       <li <?php if ($this->uri->segment(2) == 'festivales') echo "class='active'"; ?>>
         <a href="<?php echo site_url('fiestas-tradicionales-argentina'); ?>"><i class="fa fa-map"></i> <span>Festivales</span></a>
