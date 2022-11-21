@@ -20,13 +20,13 @@ class Home extends MX_Controller
 			redirect('auth/login?code=' . $_GET['code'], 'refresh');
 		}
 
-		$data['noticias']	= $this->Noticias_model->getUltimas(9);
+		$data['noticias']	= $this->Noticias_model->getUltimas(3);
 		// $data['shows']	= $this->Cartelera_model->getProximos(5);
 		// $data['canciones']	= $this->Canciones_model->getUltimas(9);
 		// $data['discos']	= $this->Discografias_model->getUltimas(9);
 		// $data['interpretes']	= $this->Noticias_model->getUltimas(9);
-		$data['title'] 		= 'Mi Folklore Argentino - Grupos y Solistas, Festivales, Show, Letras';
-		$data['description']	= "El Folklore Argentino en un solo lugar, biografías, interpretes, cartelera de eventos y letras de canciones";
+		$data['title'] 		= 'Folklore Argentino, Noticias, Festivales, Cartelera, Letras';
+		$data['description']	= "Folklore Argentino, ultimas noticias, biografías, interpretes, cartelera de eventos y letras de canciones";
 
 		$data['breadcrumb'] = array(
 			'Inicio' => base_url()
