@@ -1,6 +1,10 @@
+.content-wrapper {
+  background-color: #333;
+}
+
 .interpretes {
-	display: block;
-	height: 200px;
+  display: block;
+  height: 200px;
 }
 
 

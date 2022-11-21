@@ -1,66 +1,65 @@
-<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_mitos_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_mitos_view"); }
+?>
 
 <div class="row">
-	
+
 	<div class="col-xs-12 col-sm-8">
 
-	    <div class="box box-warning">
-	        
-	        <div class="box-header with-border">
-	          <h3 class="box-title">Mitos, leyendas y f&aacute;bulas</h3>
-	          <div class="box-tools pull-right">
-	            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-	          </div><!-- /.box-tools -->
-	        </div><!-- /.box-header -->
-	        
-	        <div class="box-body">
-	    
-	        <?php if(isset($filas)): ?>
+		<div class="box box-warning">
 
-	          <ul class="products-list product-list-in-box">
+			<div class="box-header with-border">
+				<h2 class="box-title">Mitos, leyendas y f&aacute;bula del folklore argentino</h2>
+			</div>
 
-	            <?php foreach($filas as $fila): ?>
+			<div class="box-body">
 
-	                <li class="item col-xs-12 col-sm-6 col-md-4">
-	                    
-	                    <a href="<?php echo base_url()?>mitos-y-leyendas/<?php echo $fila->id?>-<?php echo url_title($fila->titulo)?>.html">
-	                    	<?php echo $fila->titulo?>
-	                    	
-	                    </a>
-	                    
-	                    <span class="product-description">
+				<?php if (isset($filas)) : ?>
 
-	                        <?php echo substr(trim(strip_tags($fila->contenido)), 0, 80);?>...                       
-	                        
-	                    </span>
-	                  
-	                </li>
+					<ul class="products-list product-list-in-box">
 
-			    <?php endforeach; ?>
+						<?php foreach ($filas as $fila) : ?>
 
-			  </ul>
+							<li class="item col-xs-12 col-sm-6 col-md-4">
+
+								<a href="<?php echo base_url() ?>mitos-y-leyendas/<?php echo $fila->id ?>-<?php echo url_title($fila->titulo) ?>.html">
+									<?php echo $fila->titulo ?>
+
+								</a>
+
+								<span class="product-description">
+
+									<?php echo substr(trim(strip_tags($fila->contenido)), 0, 80); ?>...
+
+								</span>
+
+							</li>
+
+						<?php endforeach; ?>
+
+					</ul>
 
 
-		
-	    	<?php else: ?>
 
-	    		<div class="alert alert-danger" role="alert">
-	            No hemos encontrado en nuestra Base de Datos recetas de comidas con dicha letra
-	            </div>
+				<?php else : ?>
 
-	    	<?php endif; ?>
-	        
-	        </div>
-        </div>
+					<div class="alert alert-danger" role="alert">
+						No hemos encontrado en nuestra Base de Datos recetas de comidas con dicha letra
+					</div>
 
-    	<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_mitos_view"); }?>
+				<?php endif; ?>
+
+			</div>
+		</div>
+
+		<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_mitos_view"); }
+		?>
 
 	</div>
 
 
 
 	<div class="col-xs-12 col-sm-4">
-		<?php $this->load->view($sidebar); ?> 
+		<?php $this->load->view($sidebar); ?>
 	</div>
 
 </div>

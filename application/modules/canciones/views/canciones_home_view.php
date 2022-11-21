@@ -56,7 +56,8 @@
 				<p>El ranking de canciones del folklore argentino se realiza tomando como referencia la cantidad de visitas en nuestro sitio. Con lo cual dicho listado es dinámico y puede ir variando a medida que los usuarios ingresen a mirar otras canciones folkloricas.</p>
 				<ul class="products-list product-list-in-box">
 
-					<?php foreach ($xvisitas as $fila) : ?>
+					<?php $i = 1;
+					foreach ($xvisitas as $fila) : ?>
 
 						<li class="item col-xs-12 col-sm-4 col-md-3">
 							<a href="<?php echo site_url('letras-de-canciones-de-' . $fila->inte_alias . '/' . $fila->canc_alias) ?>" class="product-title">
@@ -72,7 +73,8 @@
 
 						</li>
 
-					<?php endforeach; ?>
+					<?php $i++;
+					endforeach; ?>
 				</ul>
 			</div>
 

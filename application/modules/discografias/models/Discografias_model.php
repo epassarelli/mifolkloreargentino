@@ -43,6 +43,7 @@ class Discografias_model extends MY_Model
 		$this->db->where('inte_id', $inte_id);
 		$this->db->from('album');
 		$this->db->where('albu_publicar <=', date('Y-m-d', time()));
+		$this->db->order_by('albu_anio', 'desc');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -55,6 +56,7 @@ class Discografias_model extends MY_Model
 			album.albu_titulo,
 			album.albu_anio,
 			album.albu_foto,
+			album-albu_spotify,
 			album.albu_spotify,
 			interprete.inte_id,
 			interprete.inte_nombre
@@ -171,6 +173,7 @@ class Discografias_model extends MY_Model
 		$this->db->where('a.albu_publicar <=', date('Y-m-d', time()));
 		$ignore = array($albu_id);
 		$this->db->where_not_in('ai.albu_id', $ignore);
+		$this->db->order_by('a.albu_anio', 'desc');
 
 		$query = $this->db->get('album a');
 		return $query->result();
