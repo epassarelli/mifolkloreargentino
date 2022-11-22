@@ -17,7 +17,7 @@
 
 
 
-  <div class="col-xs-12 col-sm-6 col-md-4 clearfix">
+  <!-- <div class="col-xs-12 col-sm-6 col-md-4 clearfix">
 
     <div class="box box-warning">
 
@@ -49,13 +49,13 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
 
 
-  <div class="col-xs-12 col-sm-6 col-md-4 clearfix">
+  <div class="col-xs-12 clearfix">
 
     <div class="box box-warning">
 
@@ -65,27 +65,31 @@
       </div>
 
       <div class="box-body">
+        <div class="row">
 
-        <?php if (isset($fiestasMasVisitadas)) : ?>
-          <?php foreach ($fiestasMasVisitadas as $fila) : ?>
+          <?php if (isset($fiestasMasVisitadas)) : ?>
+            <?php foreach ($fiestasMasVisitadas as $fila) : ?>
+              <div class="col-xs-4 clearfix">
+                <div class="thumbnail">
+                  <a href="<?php echo base_url() ?>fiestas-tradicionales-argentina/<?php echo $fila->fies_alias ?>" itemprop="url">
+                    <img class="img-responsive" alt="<?php echo $fila->fies_nombre ?>" title="<?php echo $fila->fies_nombre ?>" src="<?php echo base_url() ?>assets/upload/fiestas/<?php echo $fila->fies_foto; ?>" itemprop="image">
 
-            <div class="thumbnail">
-              <a href="<?php echo base_url() ?>fiestas-tradicionales-argentina/<?php echo $fila->fies_alias ?>" itemprop="url">
-                <img class="img-responsive" alt="<?php echo $fila->fies_nombre ?>" title="<?php echo $fila->fies_nombre ?>" src="<?php echo base_url() ?>assets/upload/fiestas/<?php echo $fila->fies_foto; ?>" itemprop="image">
-
-                <div class="caption">
-                  <h4 itemprop="name"><?php echo $fila->fies_nombre ?></h4>
-                  <p><?php echo substr(trim(strip_tags($fila->fies_detalle)), 0, 150); ?>...<br>
-                    <span class="badge"><?php echo $fila->fies_visitas; ?></span> veces vista
-                  </p>
+                    <div class="caption">
+                      <h4 itemprop="name"><?php echo $fila->fies_nombre ?></h4>
+                      <p><?php echo substr(trim(strip_tags($fila->fies_detalle)), 0, 150); ?>...<br>
+                        <span class="badge"><?php echo $fila->fies_visitas; ?></span> veces vista
+                      </p>
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else : ?>
+            <p>No tenemos fiestas por mostrar</p>
+          <?php endif; ?>
 
-          <?php endforeach; ?>
-        <?php else : ?>
-          <p>No tenemos fiestas por mostrar</p>
-        <?php endif; ?>
+        </div>
+
 
       </div>
     </div>
@@ -96,7 +100,7 @@
 
 
 
-  <div class="col-xs-12 col-sm-6 col-md-4 clearfix">
+  <!-- <div class="col-xs-12 col-sm-6 col-md-4 clearfix">
 
     <div class="box box-warning">
 
@@ -128,7 +132,7 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 </div>

@@ -57,7 +57,7 @@
 									$foto = "assets/img/noticiasinimagen.jpg";
 								}
 								?>
-								<img class="img-responsive" src="<?php echo $foto; ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>">
+								<!-- <img class="img-responsive" src="<?php echo $foto; ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>"> -->
 							</a>
 
 							<a href="<?php echo site_url('noticias/ver/' . $n->noti_alias); ?>">
@@ -94,7 +94,7 @@
 									$foto = "assets/img/noticiasinimagen.jpg";
 								}
 								?>
-								<img class="img-responsive" src="<?php echo $foto; ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>">
+								<!-- <img class="img-responsive" src="<?php echo $foto; ?>" title="<?php echo $n->noti_titulo; ?>" alt="<?php echo $n->noti_titulo; ?>"> -->
 							</a>
 
 							<a href="<?php echo site_url('noticias/ver/' . $n->noti_alias); ?>">

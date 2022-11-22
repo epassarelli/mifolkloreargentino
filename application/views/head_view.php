@@ -34,9 +34,8 @@
   }
   ?>
 
-  <?php if (($_SERVER['SERVER_NAME'] != 'localhost') and ($frontend)) {
-    $this->load->view("adsense/adsense_head_view");
-  } ?>
+  <?php //if (($_SERVER['SERVER_NAME'] != 'localhost') and ($frontend)) {    $this->load->view("adsense/adsense_head_view");  } 
+  ?>
   <?php if (($_SERVER['SERVER_NAME'] != 'localhost') and ($frontend)) {
     $this->load->view("google_analitycs_view");
   } ?>

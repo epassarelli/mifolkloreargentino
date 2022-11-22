@@ -29,7 +29,7 @@
 
 </div>
 
-<div class="row">
+<!-- <div class="row">
 
 	<div class="col-xs-12 col-sm-12 col-md-4 clearfix">
 		<div class="thumbnail">
@@ -112,7 +112,7 @@
 
 
 
-</div>
+</div> -->
 
 
 <?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) {  $this->load->view('adsense/adsense_home_inferior_view'); }

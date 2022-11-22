@@ -36,18 +36,18 @@
 
         <?php
         foreach ($ultimos as $fila) :
-          $foto = "assets/upload/interpretes/" . $fila->inte_foto;
+          // $foto = "assets/upload/interpretes/" . $fila->inte_foto;
 
-          if (is_dir($foto)) {
-            $foto = "assets/upload/sin_foto.jpg";
-          }
+          // if (is_dir($foto)) {
+          //   $foto = "assets/upload/sin_foto.jpg";
+          // }
         ?>
 
           <div class="col-xs-12 col-sm-4 col-md-2 interpretes">
 
             <a href="<?php echo base_url(); ?>biografia-de-<?php echo $fila->inte_alias; ?>">
 
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre; ?>" title="<?php echo $fila->inte_nombre ?>">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre; ?>" title="<?php echo $fila->inte_nombre ?>"> -->
 
               <h4 class="profile-username text-center"><?php echo $fila->inte_nombre ?></h4>
 
@@ -88,11 +88,11 @@
 
         foreach ($populares as $fila) :
 
-          $foto = "assets/upload/interpretes/" . $fila->inte_foto;
+          // $foto = "assets/upload/interpretes/" . $fila->inte_foto;
 
-          if (is_dir($foto)) {
-            $foto = "assets/upload/sin_foto.jpg";
-          }
+          // if (is_dir($foto)) {
+          //   $foto = "assets/upload/sin_foto.jpg";
+          // }
 
         ?>
 
@@ -100,7 +100,7 @@
 
             <a href="<?php echo base_url(); ?>biografia-de-<?php echo $fila->inte_alias; ?>">
 
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre; ?>" title="<?php echo $fila->inte_nombre ?>">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre; ?>" title="<?php echo $fila->inte_nombre ?>"> -->
 
               <h4 class="profile-username text-center"><?php echo $fila->inte_nombre ?></h4>
 

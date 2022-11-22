@@ -15,11 +15,11 @@
 
         foreach ($ultimos as $fila) :
 
-          $foto = "assets/upload/albunes/" . $fila->albu_foto;
+          // $foto = "assets/upload/albunes/" . $fila->albu_foto;
 
-          if (is_dir($foto)) {
-            $foto = "assets/upload/sin_foto.jpg";
-          }
+          // if (is_dir($foto)) {
+          //   $foto = "assets/upload/sin_foto.jpg";
+          // }
 
         ?>
 
@@ -27,7 +27,7 @@
 
             <a href="<?php echo site_url('discografia-de-') . $fila->inte_alias . '/' . $fila->albu_alias; ?>">
 
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->albu_titulo; ?>" title="<?php echo $fila->albu_titulo ?>">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->albu_titulo; ?>" title="<?php echo $fila->albu_titulo ?>"> -->
 
               <h4 class="text-center"><?php echo $fila->albu_titulo ?></h5>
                 <p class=" text-center"><?php echo $fila->inte_nombre ?></p>
@@ -60,11 +60,11 @@
 
         foreach ($populares as $fila) :
 
-          $foto = "assets/upload/albunes/" . $fila->albu_foto;
+          // $foto = "assets/upload/albunes/" . $fila->albu_foto;
 
-          if (is_dir($foto)) {
-            $foto = "assets/upload/sin_foto.jpg";
-          }
+          // if (is_dir($foto)) {
+          //   $foto = "assets/upload/sin_foto.jpg";
+          // }
 
         ?>
 
@@ -72,7 +72,7 @@
 
             <a href="<?php echo site_url('discografia-de-') . $fila->inte_alias . '/' . $fila->albu_alias; ?>">
 
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->albu_titulo; ?>" title="<?php echo $fila->albu_titulo ?>">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->albu_titulo; ?>" title="<?php echo $fila->albu_titulo ?>"> -->
 
               <h4 class="text-center"><?php echo $fila->albu_titulo ?></h5>
 
