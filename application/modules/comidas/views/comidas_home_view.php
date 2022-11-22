@@ -1,12 +1,14 @@
-<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_enlaces_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_enlaces_view"); }
+?>
 
-<?php if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }
+?>
 
 <div class="row">
 
 	<div class="col-xs-12">
 
-	<p>Las recetas de comidas típicas que encontrará en esta seccion han sido una colaboración de nuestros visitantes que van sugeriendo y agregando distintas recetas que ellos o sus antepasados cocinaban en sus hogares. Sientase libre de agregar una comida y sigamos compartiendo nuestras tradiciones.</p>
+		<p>Las recetas de comidas típicas que encontrará en esta seccion han sido una colaboración de nuestros visitantes que van sugeriendo y agregando distintas recetas que ellos o sus antepasados cocinaban en sus hogares. Sientase libre de agregar una comida y sigamos compartiendo nuestras tradiciones.</p>
 
 	</div>
 
@@ -16,62 +18,64 @@
 <div class="row">
 	<div class="col-xs-12">
 
-	<div class="box box-warning">
-	<div class="box-header with-border">
-	  <h3 class="box-title">Recetas de Comidas m&aacute;s visitadas</h3>
+		<div class="box box-warning">
+			<div class="box-header with-border">
+				<h3 class="box-title">Recetas de Comidas m&aacute;s visitadas</h3>
 
-	  <div class="box-tools pull-right">
-	    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-	    </button>
-	    <!--
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					</button>
+					<!--
 	    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 		-->
-	  </div>
-	</div>
-	<!-- /.box-header -->
+				</div>
+			</div>
+			<!-- /.box-header -->
 
-	<div class="box-body">
-	  
-		<?php foreach($visitadas as $fila): ?>
+			<div class="box-body">
 
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-cutlery"></i></span>
+				<?php foreach ($visitadas as $fila) : ?>
 
-                <div class="info-box-content">
-                  <span class="progress-description">
-                    <span class="badge"><?php echo $fila->visitas;?></span> visitas
-                  </span>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-yellow"><i class="fa fa-cutlery"></i></span>
 
-                  <span class="info-box-number">
-                    <a href="<?php echo site_url('recetas-de-comidas-tipicas/'.$fila->id.'-'.url_title($fila->titulo).'.html');?>">
-                        <?php echo $fila->titulo?>                          
-                    </a>
-                  </span>
+							<div class="info-box-content">
+								<span class="progress-description">
+									<span class="badge"><?php echo $fila->visitas; ?></span> visitas
+								</span>
 
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
+								<span class="info-box-number">
+									<a href="<?php echo site_url('recetas-de-comidas-tipicas/' . $fila->id . '-' . url_title($fila->titulo) . '.html'); ?>">
+										<?php echo $fila->titulo ?>
+									</a>
+								</span>
 
-		<?php endforeach; ?>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
 
-	</div>
+				<?php endforeach; ?>
 
-	<!-- /.box-body -->
-	</div>
+			</div>
+
+			<!-- /.box-body -->
+		</div>
 
 	</div>
 </div>
 
 
-	<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_enlaces_view"); }?>
-	
-	<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }?>
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_enlaces_view"); }
+?>
+
+<?php //if( $_SERVER['SERVER_NAME'] != 'localhost' ) { $this->load->view("adsense/adsense_comidas_view"); }
+?>
 
 
-	<?php $this->load->view('comidas_sidebar_view'); ?> 
+<?php $this->load->view('comidas_sidebar_view'); ?>
 
 
 </div>

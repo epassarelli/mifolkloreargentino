@@ -1,6 +1,5 @@
-<?php if ($_SERVER['SERVER_NAME'] != 'localhost') {
-	$this->load->view("adsense/adsense_mitos_view");
-} ?>
+<?php //if ($_SERVER['SERVER_NAME'] != 'localhost') {	$this->load->view("adsense/adsense_mitos_view");} 
+?>
 
 <div class="row">
 
@@ -50,9 +49,8 @@
 			</div>
 		</div>
 
-		<?php if ($_SERVER['SERVER_NAME'] != 'localhost') {
-			$this->load->view("adsense/adsense_mitos_view");
-		} ?>
+		<?php //if ($_SERVER['SERVER_NAME'] != 'localhost') {			$this->load->view("adsense/adsense_mitos_view");		} 
+		?>
 
 	</div>
 

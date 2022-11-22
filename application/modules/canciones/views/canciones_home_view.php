@@ -1,6 +1,5 @@
-<?php if ($_SERVER['SERVER_NAME'] != 'localhost') {
-	$this->load->view("adsense/adsense_canciones_home_1_view");
-} ?>
+<?php //if ($_SERVER['SERVER_NAME'] != 'localhost') {	$this->load->view("adsense/adsense_canciones_home_1_view");} 
+?>
 
 <div class="row">
 
