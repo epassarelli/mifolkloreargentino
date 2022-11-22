@@ -105,3 +105,12 @@ RedirectMatch 301 /mitos-y-leyendas-del-folklore-argentino/ https://mifolklorear
 
 RedirectMatch 301 ^/letras-de-canciones/abel-pintos/(.*)$  https://mifolkloreargentino.com.ar/letras-de-canciones-de-abel-pintos
 RedirectMatch 301 ^/letras-de-canciones/pastorutti-soledad/(.*)$  https://mifolkloreargentino.com.ar/letras-de-canciones-de-soledad-pastorutti
+
+##################################
+# 2022
+
+Redirect 301 /discos-de-florencia-paz/ https://mifolkloreargentino.com.ar/discografia-de-florencia-paz
+Redirect 301 /discos-de-florencia-paz https://mifolkloreargentino.com.ar/discografia-de-florencia-paz
+
+Redirect 301 /noticias-y-actualidad-de-musica-folklorica/ https://mifolkloreargentino.com.ar/noticias
+Redirect 301 /noticias-y-actualidad-de-musica-folklorica https://mifolkloreargentino.com.ar/noticias
