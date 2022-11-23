@@ -12,12 +12,14 @@
         <link rel="stylesheet" href="<?php echo site_url() . 'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
     <?php endif; ?>
 
-    <link rel="stylesheet" href="<?php echo site_url() . 'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="<?php //echo site_url() . 'assets/templates/adminlte242/'; 
+                                        ?>bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/AdminLTE.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo site_url('assets/templates/adminlte242/dist/css/skins/skin-yellow.min.css'); ?>">
 
-    <link rel="stylesheet" href="<?php echo site_url() . 'assets/templates/adminlte242/'; ?>bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo site_url('assets/css/mfa.css'); ?>">
+    <link rel="stylesheet" href="<?php echo site_url() . 'assets/templates/adminlte242/';   ?>bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="<?php //echo site_url('assets/css/mfa.css'); 
+                                        ?>"> -->
 
     <?php if (isset($css_files)) : ?>
         <?php foreach ($css_files as $file) : ?>
@@ -40,7 +42,6 @@
 
     <script async src="<?php echo site_url() . 'assets/templates/adminlte242/'; ?>dist/js/adminlte.min.js"></script>
     <script src="<?php echo site_url() . 'assets/templates/adminlte242/'; ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <script async src="<?php echo base_url(); ?>assets/js/scripts.js"></script> -->
     <script>
         $(document).ready(function() {
             let urlBase = $('#url').val();
@@ -72,30 +73,6 @@
                 return false;
             });
 
-            // //habilitamos el combo en la edicion
-            // if (localidad.length > 0) {
-            //   localidad.disabled = false;
-            // }
-
-            // // Llena de localidades el combo dependiente
-            // $("#provincia").change( function() {
-            //   $("#provincia option:selected").each( function() {
-            //           provincia = $('#provincia').val();
-
-            //     $.post( 
-            //       urlBase+"admin/localidades/getLocalidadesForm", 
-            //       { provincia : provincia }, 
-            //       function(data) {
-            //         localidad.disabled = false;
-            //                 $("#localidad").html(data);
-            //           });
-
-            //       });
-
-            // });
-
-
-
 
             ///////////////////////////// SCRIPT ////////////////////////////////
 
@@ -123,9 +100,6 @@
                     } // success
                 }); //Ajax
             }
-
-            //En el metodo de CI tomas el valor con:  ...input->post(Objeto)
-
 
             // Carga de nueva letra
             $("#send").click(function() {

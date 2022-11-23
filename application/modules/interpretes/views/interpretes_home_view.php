@@ -34,26 +34,17 @@
 
       <div class="box-body">
 
-        <?php
-        foreach ($ultimos as $fila) :
-          // $foto = "assets/upload/interpretes/" . $fila->inte_foto;
+        <?php foreach ($ultimos as $fila) :        ?>
 
-          // if (is_dir($foto)) {
-          //   $foto = "assets/upload/sin_foto.jpg";
-          // }
-        ?>
 
-          <div class="col-xs-12 col-sm-4 col-md-2 interpretes">
-
+          <div class="well col-xs-12 col-sm-4 col-md-2">
             <a href="<?php echo base_url(); ?>biografia-de-<?php echo $fila->inte_alias; ?>">
 
-              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre; ?>" title="<?php echo $fila->inte_nombre ?>"> -->
-
-              <h4 class="profile-username text-center"><?php echo $fila->inte_nombre ?></h4>
+              <?php echo $fila->inte_nombre ?>
 
             </a>
-
           </div>
+
 
         <?php endforeach; ?>
 
@@ -84,29 +75,14 @@
 
       <div class="box-body">
 
-        <?php
+        <?php foreach ($populares as $fila) :  ?>
 
-        foreach ($populares as $fila) :
-
-          // $foto = "assets/upload/interpretes/" . $fila->inte_foto;
-
-          // if (is_dir($foto)) {
-          //   $foto = "assets/upload/sin_foto.jpg";
-          // }
-
-        ?>
-
-          <div class="col-xs-12 col-sm-4 col-md-2 interpretes">
-
+          <div class="well col-xs-12 col-sm-4 col-md-2">
             <a href="<?php echo base_url(); ?>biografia-de-<?php echo $fila->inte_alias; ?>">
-
-              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo $foto; ?>" alt="<?php echo $fila->inte_nombre; ?>" title="<?php echo $fila->inte_nombre ?>"> -->
-
-              <h4 class="profile-username text-center"><?php echo $fila->inte_nombre ?></h4>
-
+              <?php echo $fila->inte_nombre ?>
             </a>
 
-            <p class="text-muted text-center"><?php echo $fila->inte_visitas; ?></p>
+            <br><?php echo $fila->inte_visitas; ?> visitas
 
           </div>
 
