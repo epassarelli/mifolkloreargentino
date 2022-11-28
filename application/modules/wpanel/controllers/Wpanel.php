@@ -62,7 +62,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('faqs');
 		$crud->set_subject('FAQ');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 
 		$crud->display_as('faqscategoria_id', 'Categoria');
 
@@ -158,7 +158,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('rubros');
 		$crud->set_subject('FAQ');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 
 		$crud->display_as('faqscategoria_id', 'Categoria');
 
@@ -196,7 +196,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('canciones');
 		$crud->set_subject('Canciones');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 
 		$crud->display_as('canc_titulo', 'Titulo')
 			->display_as('canc_alias', 'Alias')
@@ -253,7 +253,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('interprete');
 		$crud->set_subject('Artista');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$crud->display_as('inte_nombre', 'Artista')
 			->display_as('inte_alias', 'Alias')
 			->display_as('inte_foto', 'Foto')
@@ -286,7 +286,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('noticia');
 		$crud->set_subject('Gacetilla');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$crud->display_as('noti_titulo', 'Titulo')
 			->display_as('noti_foto', 'Foto')
 			->display_as('noti_fecha', 'Fecha')
@@ -314,7 +314,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('evento');
 		$crud->set_subject('Show');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$crud->set_relation('loca_id', 'localidad', 'loca_nombre');
 		$crud->set_relation('prov_id', 'provincia', 'prov_nombre');
 		$crud->set_relation('inte_id', 'interprete', 'inte_nombre');
@@ -334,7 +334,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('album');
 		$crud->set_subject('Disco');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$crud->display_as('albu_titulo', 'Titulo')
 			->display_as('albu_anio', 'Año')
 			->display_as('inte_id', 'Interprete')
@@ -360,7 +360,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('fiestas');
 		$crud->set_subject('Festival');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
@@ -382,7 +382,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('comidas');
 		$crud->set_subject('Comida');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
@@ -393,7 +393,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('radios');
 		$crud->set_subject('Radio');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
@@ -404,7 +404,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('penia');
 		$crud->set_subject('Peña');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
@@ -415,7 +415,7 @@ class Wpanel extends MX_Controller
 		$crud = new Grocery_crud();
 		$crud->set_table('mitos');
 		$crud->set_subject('Mito');
-		$crud->set_theme('flexigrid');
+		// $crud->set_theme('flexigrid');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}
