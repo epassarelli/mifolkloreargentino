@@ -1,4 +1,6 @@
-<?php //if ($_SERVER['SERVER_NAME'] != 'localhost') {  $this->load->view("adsense/adsense_fiestas_tradicionales_view");} 
+<?php if ($_SERVER['SERVER_NAME'] != 'localhost') {
+  $this->load->view("adsense/adsense_fiestas_tradicionales_view");
+}
 ?>
 
 <?php $this->load->view($sidebar); ?>
